@@ -1,0 +1,15 @@
+<h2> Companies </h2>
+
+<app-form [model]='newCompany' (submit)='onAddNewCompany()'></app-form>
+
+<ul class='companies'>
+  <li *ngFor='let company of companies' [class.selected]='company === selectedCompany' (click)='onSelect(company)'>
+    <span class='company'>{{company.id}}</span> {{company.name}}
+    <a routerLink='/detail/{{company.id}}'>
+      Open
+    </a>
+    <button class='delete' title='delete company' (click)='delete(company)'>x</button>
+  </li>
+</ul>
+
+<app-company-detail [company]='selectedCompany'></app-company-detail>

@@ -1,0 +1,6 @@
+<form>
+  <div *ngFor='let form of formArray.getModelFormControls()'>
+    <div>{{ form.name }} <input [formControl]='form'></div>
+  </div>
+  <button (click)='onSubmit()' type='button'>Submit</button>
+</form>

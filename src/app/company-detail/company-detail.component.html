@@ -1,0 +1,6 @@
+<div *ngIf='company'>
+  <h2>{{company.name | uppercase}}</h2>
+
+  <app-form [model]='company' (submit)='save()'></app-form>
+
+</div>
