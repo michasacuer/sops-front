@@ -2,21 +2,18 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-  private backendUrl = 'http://localhost:56971/api/';
+  constructor(
+    private http: HttpClient,
+    private api: ApiService) { }
 
   public getObjects<T> (type: new () => T): Observable<T[]> {
     const url = this.getUrl(type);
-    console.log(url);
     return this.http.get(url).pipe(map((input: Object, indx: number) => {
       const inputObjects: T[] = input as T[];
       const outputObjects: T[] = [];
@@ -31,7 +28,6 @@ export class DataService {
 
   public getObject<T> (type: new () => T, id: number): Observable<T> {
     const url = `${this.getUrl(type)}${id}`;
-    console.log(url);
     return this.http.get<T>(url).pipe(map((input: Object, indx: number) => {
       const inputObject: T = input as T;
       const outputObject = new type();
@@ -40,36 +36,43 @@ export class DataService {
     }, catchError(this.handleError<T>(`get${type.name} id=${id}`))));
   }
 
+  public getObjectByUrl<T>(type: new () => T, relativeUrl: string, options?: any): Observable<T> {
+    const url = `${this.api.getBaseUrl()}${relativeUrl}`;
+    return this.http.get<T>(url, options).pipe(map((input: Object, indx: number) => {
+      const inputObject: T = input as T;
+      const outputObject = new type();
+      Object.assign(outputObject, inputObject);
+      return outputObject;
+    }, catchError(this.handleError<T>(`get${type.name}`))));
+  }
+
   public updateObject<T> (obj: T): Observable<any> {
     const url = `${this.getUrl(obj.constructor)}${(<any>obj).id}`;
-    return this.http.put(url, obj, httpOptions)
+    return this.http.put(url, obj)
         .pipe(catchError(this.handleError<any>(`update${obj.constructor.name}`)));
   }
 
   public addObject<T> (obj: T): Observable<T> {
     const url = this.getUrl(obj.constructor);
-    return this.http.post<T>(url, obj, httpOptions)
+    return this.http.post<T>(url, obj)
         .pipe(catchError(this.handleError<T>(`add${obj.constructor.name}`)));
   }
 
   public deleteObject<T>(obj: T): Observable<T> {
     const url = `${this.getUrl(obj.constructor)}${(<any>obj).id}`;
 
-    return this.http.delete<T>(url, httpOptions)
+    return this.http.delete<T>(url)
         .pipe(catchError(this.handleError<T>(`get${obj.constructor.name}`)));
   }
 
   private getUrl(type: Function): string {
-    return `${this.backendUrl}${type.name.toLowerCase()}/`;
+    return `${this.api.getBaseUrl()}api/${type.name.toLowerCase()}/`;
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  public handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T);
     };
   }
-
-  constructor(
-    private http: HttpClient) { }
 }

@@ -8,8 +8,11 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormComponent } from './form/form.component';
+import { AuthHttpInterceptor } from './authentication/auth-http-interceptor';
+import { AuthComponent } from './auth/auth.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { FormComponent } from './form/form.component';
     CompaniesComponent,
     CompanyDetailComponent,
     FormComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,14 @@ import { FormComponent } from './form/form.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
+    },
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,11 @@
+<div>
+  <div *ngIf='userInfo; elseTemplate'>
+    <p>Hello {{ userInfo.email }} !</p>
+  </div>
+  <div #elseTemplate>
+    <button type='button' (click)='isLoginDialogOpen=!isLoginDialogOpen'>Login</button>
+  </div>
+  <div *ngIf='isLoginDialogOpen'>
+    <app-form [model]='userCredentials' (submit)='onLoginClick()'></app-form>
+  </div>
+</div>
