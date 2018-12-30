@@ -1,11 +1,11 @@
 <div>
-  <div *ngIf='userInfo; elseTemplate'>
+  <div *ngIf='userInfo'>
     <p>Hello {{ userInfo.email }} !</p>
   </div>
-  <div #elseTemplate>
-    <button type='button' (click)='isLoginDialogOpen=!isLoginDialogOpen'>Login</button>
-  </div>
-  <div *ngIf='isLoginDialogOpen'>
-    <app-form [model]='userCredentials' (submit)='onLoginClick()'></app-form>
+  <div *ngIf='!userInfo'>
+    <button type='button' mat-button (click)='onLoginClick()'>
+      <mat-icon>input</mat-icon>
+      Login
+    </button>
   </div>
 </div>

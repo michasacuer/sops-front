@@ -17,7 +17,8 @@ export class FormComponent implements OnInit {
     this.formArray = generator.generate();
   }
 
-  @Output() submit = new EventEmitter<any>();
+  @Input()
+  submit: EventEmitter<any>;
 
   _model: any;
   formArray: ModelFormArrayControl;
@@ -26,10 +27,8 @@ export class FormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  public onSubmit(): void {
+    this.submit.subscribe(() => {
     this.formArray.updateModel(this._model);
-    this.submit.emit(this._model);
+    });
   }
 }

@@ -13,6 +13,11 @@ import { FormComponent } from './form/form.component';
 import { AuthHttpInterceptor } from './authentication/auth-http-interceptor';
 import { AuthComponent } from './auth/auth.component';
 import { CookieService } from 'ngx-cookie-service';
+import { HomeComponent } from './home/home.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatDialogModule} from '@angular/material';
+import { AuthLoginDialogComponent } from './auth-login-dialog/auth-login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +26,8 @@ import { CookieService } from 'ngx-cookie-service';
     CompanyDetailComponent,
     FormComponent,
     AuthComponent,
+    HomeComponent,
+    AuthLoginDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +35,12 @@ import { CookieService } from 'ngx-cookie-service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -35,8 +48,9 @@ import { CookieService } from 'ngx-cookie-service';
       useClass: AuthHttpInterceptor,
       multi: true
     },
-    CookieService
+    CookieService,
   ],
+  entryComponents: [AuthLoginDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
