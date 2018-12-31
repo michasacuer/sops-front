@@ -24,6 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductsComponent } from './products/products.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     AuthLoginDialogComponent,
     ProductsComponent,
     StatisticComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
