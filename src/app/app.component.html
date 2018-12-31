@@ -1,15 +1,31 @@
-<mat-toolbar>
-  <span>SOPS</span>
+<mat-toolbar id="toolbar" color="warn">
+  <a mat-button>
+    <mat-icon>fastfood</mat-icon>
+    SOPS
+  </a>
+  <a href="/profile" mat-button>
+    <mat-icon>account_circle</mat-icon>
+    Profile
+  </a>
+  <a href="/scans" mat-button>My products</a>
+  <a href="/companies" mat-button>Companies</a>
+  <a href="/companies" mat-button>Products</a>
   <span class="fill-remaining-space"></span>
   <app-auth></app-auth>
 </mat-toolbar>
 
-<h1>
-  Welcome to {{ title }}!
-</h1>
+<div id="toolbar-placeholder"></div>
 
-<nav>
-  <a routerLink="/companies">Companies</a>
-</nav>
-
-<router-outlet></router-outlet>
+<div id="container">
+  <header>
+    <div id='blur'></div>
+    <div id='blur-smoke'></div>
+    <div id='header-title' class='mat-display-4'>
+      SOPS
+    </div>
+    <div id='header-subtitle' class='mat-h3'>
+      System Oznaczania Produktów Spożywczych
+    </div>
+  </header>
+  <router-outlet></router-outlet>
+</div>

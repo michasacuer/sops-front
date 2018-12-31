@@ -16,8 +16,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './home/home.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatDialogModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatToolbarModule,
+   MatIconModule, MatDialogModule, MatCardModule,
+   MatFormFieldModule, MatInputModule, MatListModule} from '@angular/material';
 import { AuthLoginDialogComponent } from './auth-login-dialog/auth-login-dialog.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,12 @@ import { AuthLoginDialogComponent } from './auth-login-dialog/auth-login-dialog.
     MatCheckboxModule,
     MatToolbarModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    FlexLayoutModule
   ],
   providers: [
     {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Company } from '../models/company';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 export class CompanyDetailComponent implements OnInit {
 
   @Input() company: Company;
+  public submitEmitter = new EventEmitter();
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +38,7 @@ export class CompanyDetailComponent implements OnInit {
   }
 
   save(): void {
+    this.submitEmitter.emit();
     this.dataService.updateObject(this.company).subscribe(() => this.goBack());
   }
 

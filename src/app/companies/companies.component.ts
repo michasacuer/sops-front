@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Company } from '../models/company';
 import { DataService } from '../data.service';
 
@@ -12,6 +12,7 @@ export class CompaniesComponent implements OnInit {
   companies: Company[] = [];
   selectedCompany: Company;
   newCompany: Company = new Company();
+  submitEmitter = new EventEmitter();
 
   constructor(private dataService: DataService) {}
 
@@ -43,7 +44,8 @@ export class CompaniesComponent implements OnInit {
     this.dataService.deleteObject(company).subscribe();
   }
 
-  onAddNewCompany(): void {
+  onCompanyAddClick(): void {
+    this.submitEmitter.emit();
     this.dataService.addObject(this.newCompany).subscribe(() => this.getCompanies());
   }
 }

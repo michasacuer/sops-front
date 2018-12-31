@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Sops</title>
@@ -8,8 +9,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/clippy/clippy.css" media="all">
 </head>
+
 <body>
-  <app-root></app-root>
+  <div id="content">
+    <app-root></app-root>
+  </div>
+
+  <!--clippy-->
+  <script src="assets/jquery/jquery-3.3.1.min.js"></script>
+  <script src="assets/clippy/clippy.min.js"></script>
+  <script type="text/javascript">
+    clippy.load('Clippy', function (agent) {
+      window.setInterval(function () {
+        agent.animate();
+      }, 8000);
+      agent.show();
+      agent.animate();
+    });
+
+  </script>
 </body>
+
 </html>

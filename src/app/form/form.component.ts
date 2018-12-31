@@ -28,7 +28,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.submit.subscribe(() => {
-    this.formArray.updateModel(this._model);
+      this.formArray.updateModel(this._model);
     });
   }
 }

@@ -1,6 +1,14 @@
 <div *ngIf='company'>
-  <h2>{{company.name | uppercase}}</h2>
+  <mat-card>
+    <h2>{{company.name | uppercase}}</h2>
 
-  <app-form [model]='company' (submit)='save()'></app-form>
+    <app-form [model]='company' [submit]='submitEmitter'></app-form>
 
+    <button type='button' mat-button (click)='save()'>
+      <mat-icon>
+        edit
+      </mat-icon>
+      Save
+    </button>
+  </mat-card>
 </div>

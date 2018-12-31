@@ -1,15 +1,38 @@
-<h2> Companies </h2>
+<div fxLayout="row" fxLayoutAlign="center start">
 
-<app-form [model]='newCompany' (submit)='onAddNewCompany()'></app-form>
+  <mat-card fxFlex='33%'>
+    <app-form [model]='newCompany' [submit]='submitEmitter'></app-form>
+    <button type='button' mat-button (click)='onCompanyAddClick()'>
+      <mat-icon>
+        add
+      </mat-icon>
+      Add
+    </button>
+  </mat-card>
 
-<ul class='companies'>
-  <li *ngFor='let company of companies' [class.selected]='company === selectedCompany' (click)='onSelect(company)'>
-    <span class='company'>{{company.id}}</span> {{company.name}}
-    <a routerLink='/detail/{{company.id}}'>
-      Open
-    </a>
-    <button class='delete' title='delete company' (click)='delete(company)'>x</button>
-  </li>
-</ul>
+  <mat-card fxFlex='33%'>
+    <mat-selection-list>
+      <mat-list-item *ngFor='let company of companies' [class.selected]='company === selectedCompany' (click)='onSelect(company)'>
+        <button mat-button>
+          {{company.name}}
+        </button>
+        <a routerLink='/detail/{{company.id}}'>
+          <mat-icon>
+            link
+          </mat-icon>
+        </a>
+        <span class="fill-remaining-space"></span>
+        <button mat-button title='delete company' (click)='delete(company)'>
+          <mat-icon>
+            delete
+          </mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-selection-list>
+  </mat-card>
 
-<app-company-detail [company]='selectedCompany'></app-company-detail>
+  <div fxFlex='33%'>
+    <app-company-detail [company]='selectedCompany'></app-company-detail>
+  </div>
+
+</div>
