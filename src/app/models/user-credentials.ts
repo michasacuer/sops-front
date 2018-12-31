@@ -1,9 +1,10 @@
-import { editable } from '../model-decorators/display-decorators';
+import { editable, password } from '../model-decorators/display-decorators';
 
 export class UserCredentials {
   @editable
   email: string;
 
   @editable
+  @password
   password: string;
 }

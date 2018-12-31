@@ -1,7 +1,7 @@
 <form class='model-form'>
   <div *ngFor='let form of formArray.getModelFormControls()'>
     <mat-form-field>
-      <input [formControl]='form' matInput placeholder="{{ form.name }}">
+      <input [formControl]='form' matInput placeholder="{{ form.name }}" type="{{ form.isPassword ? 'password' : 'text' }}">
     </mat-form-field>
   </div>
 </form>

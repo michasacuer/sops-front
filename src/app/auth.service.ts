@@ -29,7 +29,10 @@ export class AuthService {
     private dataService: DataService,
     private cookieService: CookieService) {
     if (this.cookieService.check(authUserDataCookieKey)) {
-      this.userData = JSON.parse(this.cookieService.get(authUserDataCookieKey));
+      const cookieData = this.cookieService.get(authUserDataCookieKey);
+      if (cookieData.length > 0) {
+        this.userData = JSON.parse(this.cookieService.get(authUserDataCookieKey));
+      }
     }
   }
 
@@ -52,6 +55,12 @@ export class AuthService {
         this.userInfoSubject.next(userInfo);
       });
     }));
+  }
+
+  public signOut() {
+    this.cookieService.set(authUserDataCookieKey, '');
+    this.userData = new UserData();
+    this.userInfoSubject.next(this.userData.userInfo);
   }
 
   public getAuthorizationHeaderValue(): string {

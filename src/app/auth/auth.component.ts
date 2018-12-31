@@ -28,4 +28,8 @@ export class AuthComponent implements OnInit {
       }
     });
   }
+
+  onLogoutClick() {
+    this.auth.signOut();
+  }
 }
