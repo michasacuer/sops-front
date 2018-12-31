@@ -11,15 +11,15 @@ export class Company {
   // @editable
   kind: string;
 
-  @displayName('AddressStreet')
+  @displayName('Address street')
   @editable
   addressStreet: string;
 
-  @displayName('AddressZipCode')
+  @displayName('Address ZIP code')
   @editable
   addressZipCode: string;
 
-  @displayName('AddressCity')
+  @displayName('Address city')
   @editable
   addressCity: string;
 
