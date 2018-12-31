@@ -15,9 +15,9 @@
         (click)="onSelect(product)"
       >
         <button mat-button>{{ product.name }}</button>
-        <a routerLink="/detail/{{ product.id }}">
+        <!-- <a routerLink="/detail/{{ product.id }}"> 
           <mat-icon> link </mat-icon>
-        </a>
+        </a> -->
         <span class="fill-remaining-space"></span>
         <button mat-button title="delete product" (click)="delete(product)">
           <mat-icon> delete </mat-icon>
