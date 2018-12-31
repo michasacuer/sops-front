@@ -1,5 +1,5 @@
 <mat-toolbar id="toolbar" color="warn" class="mat-elevation-z8">
-  <a mat-button>
+    <a href="" mat-button>
     <mat-icon>fastfood</mat-icon>
     SOPS
   </a>
@@ -7,9 +7,18 @@
     <mat-icon>account_circle</mat-icon>
     Profile
   </a>
-  <a href="/scans" mat-button>My products</a>
-  <a href="/companies" mat-button>Companies</a>
-  <a href="/companies" mat-button>Products</a>
+  <a href="/scans" mat-button>
+    <mat-icon> category</mat-icon>
+    My products</a
+  >
+  <a href="/companies" mat-button>
+    <mat-icon> business</mat-icon>
+    Companies</a
+  >
+  <a href="/products" mat-button>
+    <mat-icon> layers</mat-icon>
+    Products</a
+  >
   <span class="fill-remaining-space"></span>
   <app-auth></app-auth>
 </mat-toolbar>
@@ -18,12 +27,10 @@
 
 <div id="container">
   <header>
-    <div id='blur'></div>
-    <div id='blur-smoke'></div>
-    <div id='header-title' class='mat-display-4'>
-      $OP$
-    </div>
-    <div id='header-subtitle' class='mat-h3'>
+    <div id="blur"></div>
+    <div id="blur-smoke"></div>
+    <div id="header-title" class="mat-display-4">$OP$</div>
+    <div id="header-subtitle" class="mat-h3">
       System Oznaczania Produktów Spożywczych
     </div>
   </header>

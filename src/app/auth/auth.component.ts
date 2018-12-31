@@ -30,6 +30,7 @@ export class AuthComponent implements OnInit {
   }
 
   onLogoutClick() {
+    console.log(this.auth.getCurrentUserId());
     this.auth.signOut();
   }
 }

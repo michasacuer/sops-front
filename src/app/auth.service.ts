@@ -70,4 +70,8 @@ export class AuthService {
 
     return this.userData.tokenResponse;
   }
+
+  public getCurrentUserId(): string {
+    return this.userData.userInfo.id;
+  }
 }

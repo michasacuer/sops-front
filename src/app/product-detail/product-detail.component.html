@@ -1,0 +1,12 @@
+<div *ngIf="product">
+  <mat-card>
+    <h2>{{ product.name | uppercase }}</h2>
+
+    <app-form [model]="product" [submit]="submitEmitter"></app-form>
+
+    <button type="button" mat-button (click)="save()">
+      <mat-icon> edit </mat-icon>
+      Save
+    </button>
+  </mat-card>
+</div>

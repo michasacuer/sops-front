@@ -1,0 +1,18 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <mat-card fxFlex="33%">
+    <h1>Statystyki</h1>
+    <mat-list-item>
+      <h3>
+        <mat-icon> business</mat-icon> Ilość firm:
+        {{ statistic.companiesCount }}
+      </h3>
+    </mat-list-item>
+    <span class="fill-remaining-space"></span>
+    <mat-list-item>
+      <h3>
+        <mat-icon> category</mat-icon> Ilość produktów:
+        {{ statistic.allProductsCount }}
+      </h3>
+    </mat-list-item>
+  </mat-card>
+</div>
