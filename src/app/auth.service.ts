@@ -32,6 +32,7 @@ export class AuthService {
       const cookieData = this.cookieService.get(authUserDataCookieKey);
       if (cookieData.length > 0) {
         this.userData = JSON.parse(this.cookieService.get(authUserDataCookieKey));
+        console.log(this.userData);
       }
     }
   }
@@ -49,7 +50,8 @@ export class AuthService {
 
     this.http.post<TokenResponse>(url, token).subscribe(((tokenResponse) => {
       this.userData.tokenResponse = tokenResponse.access_token;
-      this.dataService.getObjectByUrl(UserInfo, 'Api/Account/UserInfo/').subscribe((userInfo) => {
+      this.dataService.getObjectByUrl(UserInfo, 'Api/Account/UserInfo/').subscribe((userInfo) => { // switchmap?
+        console.log(userInfo);
         this.userData.userInfo = userInfo;
         this.cookieService.set(authUserDataCookieKey, JSON.stringify(this.userData));
         this.userInfoSubject.next(userInfo);
@@ -72,6 +74,10 @@ export class AuthService {
   }
 
   public getCurrentUserId(): string {
-    return this.userData.userInfo.id;
+    return this.userData.userInfo == null ? null : this.userData.userInfo.id;
+  }
+
+  public getCurrentUserRole(): string {
+    return this.userData.userInfo == null ? 'Guest' : this.userData.userInfo.role;
   }
 }
