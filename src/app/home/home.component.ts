@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { DataService } from "../data.service";
-import { Statistic } from "../models/statistic";
 
 @Component({
   selector: "app-home",
@@ -8,18 +6,7 @@ import { Statistic } from "../models/statistic";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-  statistic: Statistic = new Statistic();
-  constructor(private dataService: DataService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.getStatistic();
-  }
-
-  getStatistic(): void {
-    this.dataService
-      .getObjectByUrl(Statistic, "api/Statistic/getallcount")
-      .subscribe(statistic => {
-        this.statistic = statistic;
-      });
-  }
+  ngOnInit() {}
 }

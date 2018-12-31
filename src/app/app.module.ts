@@ -22,6 +22,7 @@ import {MatButtonModule, MatCheckboxModule, MatToolbarModule,
 import { AuthLoginDialogComponent } from './auth-login-dialog/auth-login-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductsComponent } from './products/products.component';
+import { StatisticComponent } from './statistic/statistic.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProductsComponent } from './products/products.component';
     AuthComponent,
     HomeComponent,
     AuthLoginDialogComponent,
-    ProductsComponent
+    ProductsComponent,
+    StatisticComponent
   ],
   imports: [
     BrowserModule,
