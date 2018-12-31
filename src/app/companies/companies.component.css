@@ -1,3 +1,8 @@
 .selected {
-    color: #f44336;
+  color: #f44336;
+}
+
+mat-selection-list {
+  max-height: 470px;
+  overflow: auto;
 }
