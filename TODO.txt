@@ -14,6 +14,8 @@
 
 --> pracownicy beda mogli dodawac i edytowac produkty swojej firmy ale reszta bedzie mogla tylko przegladac
 
+--> naprawa wylogowania - czasem nie chce wylogować
+
 --> rejestracje [OSKAR]
 
 --> jakis dashboard tylko dla pracownikow gdzie moga zarzadzac firma czyli np. dodawac produkty (moze w takim razie dodawanie produktow w zakladce produkty jest zbedne) i pobierac raporty - albo taki dashboard jako oddzielna opcja w toolabrze, albo zamiast dashboard rozszerzyć widoki dla pracowników
