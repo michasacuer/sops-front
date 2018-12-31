@@ -17,7 +17,7 @@ export class AuthComponent implements OnInit {
   constructor(public auth: AuthService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.auth.getUserInfo().subscribe((userInfo) => this.userInfo = userInfo);
+    this.auth.userInfo.subscribe((userInfo) => this.userInfo = userInfo);
   }
 
   onLoginClick() {
@@ -30,7 +30,7 @@ export class AuthComponent implements OnInit {
   }
 
   onLogoutClick() {
-    console.log(this.auth.getCurrentUserId());
+    console.log(this.auth.currentUserId);
     this.auth.signOut();
   }
 }

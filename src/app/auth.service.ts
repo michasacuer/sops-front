@@ -37,7 +37,7 @@ export class AuthService {
     }
   }
 
-  public getUserInfo(): Observable<UserInfo> {
+  public get userInfo(): Observable<UserInfo> {
     if (this.userData.userInfo) {
       return of(this.userData.userInfo);
     }
@@ -65,7 +65,7 @@ export class AuthService {
     this.userInfoSubject.next(this.userData.userInfo);
   }
 
-  public getAuthorizationHeaderValue(): string {
+  public get authorizationHeaderValue(): string {
     if (!this.userData.tokenResponse) {
       return null;
     }
@@ -73,11 +73,11 @@ export class AuthService {
     return this.userData.tokenResponse;
   }
 
-  public getCurrentUserId(): string {
+  public get currentUserId(): string {
     return this.userData.userInfo == null ? null : this.userData.userInfo.id;
   }
 
-  public getCurrentUserRole(): string {
+  public get currentUserRole(): string {
     return this.userData.userInfo == null ? 'Guest' : this.userData.userInfo.role;
   }
 }

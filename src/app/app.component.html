@@ -11,7 +11,7 @@
     <mat-icon> category</mat-icon>
     My products</a
   >
-  <a href="/companies" mat-button>
+  <a href="/companies" mat-button *ngIf="auth.currentUserRole == 'Administrator'">
     <mat-icon> business</mat-icon>
     Companies</a
   >

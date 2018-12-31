@@ -17,7 +17,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
       // withCredentials: true
     };
 
-    const authHeaderValue = this.auth.getAuthorizationHeaderValue();
+    const authHeaderValue = this.auth.authorizationHeaderValue;
     if (authHeaderValue) {
         options.setHeaders['Authorization'] = `Bearer ${authHeaderValue}`;
     }
