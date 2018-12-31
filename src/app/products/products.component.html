@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <mat-card fxFlex="33%">
+    <app-form [model]="newProduct" [submit]="submitEmitter"></app-form>
+    <button type="button" mat-button (click)="onProductAddClick()">
+      <mat-icon> add </mat-icon>
+      Add
+    </button>
+  </mat-card>
+
+  <mat-card fxFlex="33%">
+    <mat-selection-list>
+      <mat-list-item
+        *ngFor="let product of products"
+        [class.selected]="product === selectedproduct"
+        (click)="onSelect(product)"
+      >
+        <button mat-button>{{ product.name }}</button>
+        <a routerLink="/detail/{{ product.id }}">
+          <mat-icon> link </mat-icon>
+        </a>
+        <span class="fill-remaining-space"></span>
+        <button mat-button title="delete product" (click)="delete(product)">
+          <mat-icon> delete </mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-selection-list>
+  </mat-card>
+
+  <div fxFlex="33%">
+    <!--<app-company-detail [company]='selectedProduct'></app-company-detail> -->
+  </div>
+</div>

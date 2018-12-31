@@ -21,6 +21,7 @@ import {MatButtonModule, MatCheckboxModule, MatToolbarModule,
    MatFormFieldModule, MatInputModule, MatListModule} from '@angular/material';
 import { AuthLoginDialogComponent } from './auth-login-dialog/auth-login-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormComponent,
     AuthComponent,
     HomeComponent,
-    AuthLoginDialogComponent
+    AuthLoginDialogComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
