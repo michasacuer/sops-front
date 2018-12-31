@@ -7,7 +7,6 @@ import { DataService } from '../data.service';
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.css']
 })
-
 export class CompaniesComponent implements OnInit {
   companies: Company[] = [];
   selectedCompany: Company;
