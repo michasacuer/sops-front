@@ -23,6 +23,7 @@ import { AuthLoginDialogComponent } from './auth-login-dialog/auth-login-dialog.
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductsComponent } from './products/products.component';
 import { StatisticComponent } from './statistic/statistic.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { StatisticComponent } from './statistic/statistic.component';
     HomeComponent,
     AuthLoginDialogComponent,
     ProductsComponent,
-    StatisticComponent
+    StatisticComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

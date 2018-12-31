@@ -23,7 +23,15 @@ export class Product {
   @editable
   countryOfOrigin: string;
 
+  @displayName("CreationDate")
+  @editable
+  creationDate: Date;
+
+  @displayName("DefaultExpirationDateInMonths")
+  @editable
+  defaultExpirationDateInMonths: number;
+
   @displayName("SuggestedPrice")
   @editable
-  suggestedPrice: number;
+  suggestedPrice: any;
 }
