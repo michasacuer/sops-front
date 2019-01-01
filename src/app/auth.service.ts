@@ -3,11 +3,12 @@ import { DataService } from './data.service';
 import { UserInfo } from './models/user-info';
 import { Observable, Subject, of } from 'rxjs';
 import { UserCredentials } from './models/user-credentials';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { catchError } from 'rxjs/operators';
 import { TokenResponse } from './models/token-response';
 import { CookieService } from 'ngx-cookie-service';
+import { UserRegister } from './models/user-register';
 
 const authUserDataCookieKey = 'authTokenCookieKey';
 
@@ -57,6 +58,12 @@ export class AuthService {
         this.userInfoSubject.next(userInfo);
       });
     }));
+  }
+
+  public register(registerData: UserRegister) {
+    const url = `${this.api.getBaseUrl()}Api/Account/Register`;
+    console.log(registerData);
+    return this.http.post(url, registerData, {observe: 'response'});
   }
 
   public signOut() {
