@@ -33,8 +33,13 @@ export class ProductsComponent implements OnInit {
   }
 
   delete(product: Product): void {
-    this.products = this.products.filter(c => c !== product);
-    this.dataService.deleteObject(product).subscribe();
+    this.dataService.deleteObject(product).subscribe((response) => {
+      if (response.object) {
+        this.products = this.products.filter(c => c !== product);
+      } else {
+        this.errorService.showError(response);
+      }
+    });
   }
 
   add(name: string): void {
@@ -53,8 +58,12 @@ export class ProductsComponent implements OnInit {
     this.dataService
       .postObject(this.newProduct)
       .subscribe((result) => {
-        this.modelState.update(result.modelState);
-        this.getProducts();
+        if (result.object) {
+          this.modelState.update(result.modelState);
+          this.getProducts();
+        } else {
+          this.errorService.showError(result);
+        }
       });
   }
 }
