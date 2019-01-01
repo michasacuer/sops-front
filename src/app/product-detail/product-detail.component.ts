@@ -1,15 +1,15 @@
-import { Component, OnInit, Input, EventEmitter } from "@angular/core";
-import { Product } from "../models/product";
-import { ActivatedRoute } from "@angular/router";
-import { Location } from "@angular/common";
-import { DataService } from "../data.service";
-import { FormGenerator } from "../form-generator/form-generator";
-import { Observable } from "rxjs";
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Product } from '../models/product';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { DataService } from '../data.service';
+import { FormGenerator } from '../form-generator/form-generator';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: "app-product-detail",
-  templateUrl: "./product-detail.component.html",
-  styleUrls: ["./product-detail.component.css"]
+  selector: 'app-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
@@ -25,12 +25,12 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = this.route.snapshot.paramMap.get("id");
+    const id = this.route.snapshot.paramMap.get('id');
     if (id == null) {
       return;
     }
-    this.dataService.getObject(Product, +id).subscribe(product => {
-      this.product = product;
+    this.dataService.getObject(Product, +id).subscribe(result => {
+      this.product = result.object;
     });
   }
 
@@ -40,6 +40,6 @@ export class ProductDetailComponent implements OnInit {
 
   save(): void {
     this.submitEmitter.emit();
-    this.dataService.updateObject(this.product).subscribe(() => this.goBack());
+    this.dataService.putObject(this.product).subscribe(() => this.goBack());
   }
 }

@@ -1,37 +1,37 @@
-import { editable, displayName } from "../model-decorators/display-decorators";
+import { editable, displayName } from '../model-decorators/display-decorators';
 
 export class Product {
   id: number;
 
-  @displayName("Name")
+  @displayName('Name')
   @editable
   name: string;
 
-  @displayName("Barcode")
+  @displayName('Barcode')
   @editable
   barcode: string;
 
-  @displayName("Description")
+  @displayName('Description')
   @editable
   description: string;
 
-  @displayName("CompanyId")
+  @displayName('CompanyId')
   @editable
   companyId: number;
 
-  @displayName("ContryOfOrigin")
+  @displayName('ContryOfOrigin')
   @editable
   countryOfOrigin: string;
 
-  @displayName("CreationDate")
+  @displayName('CreationDate')
   @editable
   creationDate: Date;
 
-  @displayName("DefaultExpirationDateInMonths")
+  @displayName('DefaultExpirationDateInMonths')
   @editable
   defaultExpirationDateInMonths: number;
 
-  @displayName("SuggestedPrice")
+  @displayName('SuggestedPrice')
   @editable
   suggestedPrice: any;
 }

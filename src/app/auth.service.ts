@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DataService } from './data.service';
+import { DataService, DataResponse } from './data.service';
 import { UserInfo } from './models/user-info';
-import { Observable, Subject, of } from 'rxjs';
+import { Observable, Subject, of, BehaviorSubject, from, ReplaySubject } from 'rxjs';
 import { UserCredentials } from './models/user-credentials';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ApiService } from './api.service';
@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 import { TokenResponse } from './models/token-response';
 import { CookieService } from 'ngx-cookie-service';
 import { UserRegister } from './models/user-register';
+import { ErrorService } from './error.service';
 
 const authUserDataCookieKey = 'authTokenCookieKey';
 
@@ -22,13 +23,14 @@ class UserData {
   providedIn: 'root'
 })
 export class AuthService {
-  private userInfoSubject = new Subject<UserInfo>();
+  private userInfoSubject = new ReplaySubject<DataResponse<UserInfo>>(1);
   private userData = new UserData();
 
   constructor(private http: HttpClient,
     private api: ApiService,
     private dataService: DataService,
-    private cookieService: CookieService) {
+    private cookieService: CookieService,
+    private errorService: ErrorService) {
     if (this.cookieService.check(authUserDataCookieKey)) {
       const cookieData = this.cookieService.get(authUserDataCookieKey);
       if (cookieData.length > 0) {
@@ -38,26 +40,31 @@ export class AuthService {
     }
   }
 
-  public get userInfo(): Observable<UserInfo> {
+  public get userInfo(): Observable<DataResponse<UserInfo>> {
     if (this.userData.userInfo) {
-      return of(this.userData.userInfo);
+      this.userInfoSubject.next(new DataResponse(this.userData.userInfo));
     }
     return this.userInfoSubject;
   }
 
   public signIn(credentials: UserCredentials) {
-    const url = `${this.api.getBaseUrl()}Token`;
-    const token = `grant_type=password&username=${credentials.email}&password=${credentials.password}`;
+    const credentialsString = `grant_type=password&username=${credentials.email}&password=${credentials.password}`;
 
-    this.http.post<TokenResponse>(url, token).subscribe(((tokenResponse) => {
-      this.userData.tokenResponse = tokenResponse.access_token;
-      this.dataService.getObjectByUrl(UserInfo, 'Api/Account/UserInfo/').subscribe((userInfo) => { // switchmap?
-        console.log(userInfo);
-        this.userData.userInfo = userInfo;
-        this.cookieService.set(authUserDataCookieKey, JSON.stringify(this.userData));
-        this.userInfoSubject.next(userInfo);
+    this.dataService.postObjectByUrl(credentialsString, 'Token').subscribe((credentialsResponse) => {
+      if (!credentialsResponse.object) {
+        this.errorService.showError(credentialsResponse);
+        return;
+      }
+      this.userData.tokenResponse = credentialsResponse.object.access_token;
+      this.dataService.getObjectByUrl(UserInfo, 'Api/Account/UserInfo/').subscribe((response) => { // switchmap?
+        if (response.errorMessage) {
+        } else {
+          this.userData.userInfo = response.object;
+          this.cookieService.set(authUserDataCookieKey, JSON.stringify(this.userData));
+        }
+        this.userInfoSubject.next(response);
       });
-    }));
+    });
   }
 
   public register(registerData: UserRegister) {
@@ -69,7 +76,7 @@ export class AuthService {
   public signOut() {
     this.cookieService.set(authUserDataCookieKey, '');
     this.userData = new UserData();
-    this.userInfoSubject.next(this.userData.userInfo);
+    this.userInfoSubject.next(new DataResponse(this.userData.userInfo));
   }
 
   public get authorizationHeaderValue(): string {

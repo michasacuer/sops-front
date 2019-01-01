@@ -20,8 +20,8 @@ export class CompaniesComponent implements OnInit {
   }
 
   getCompanies(): void {
-    this.dataService.getObjects(Company).subscribe(companies => {
-      this.companies = companies;
+    this.dataService.getObjects(Company).subscribe(result => {
+      this.companies = result.object;
     });
   }
 
@@ -45,6 +45,6 @@ export class CompaniesComponent implements OnInit {
 
   onCompanyAddClick(): void {
     this.submitEmitter.emit();
-    this.dataService.addObject(this.newCompany).subscribe(() => this.getCompanies());
+    this.dataService.postObject(this.newCompany).subscribe(() => this.getCompanies());
   }
 }

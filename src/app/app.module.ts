@@ -27,6 +27,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { AuthRegisterDialogComponent } from './auth-register-dialog/auth-register-dialog.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AuthRegisterDialogComponent } from './auth-register-dialog/auth-registe
     ProductDetailComponent,
     ProfileComponent,
     ProfileDetailsComponent,
-    AuthRegisterDialogComponent
+    AuthRegisterDialogComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +73,7 @@ import { AuthRegisterDialogComponent } from './auth-register-dialog/auth-registe
     CookieService,
   ],
   entryComponents: [AuthLoginDialogComponent, AuthRegisterDialogComponent],
+  entryComponents: [AuthLoginDialogComponent, ErrorComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

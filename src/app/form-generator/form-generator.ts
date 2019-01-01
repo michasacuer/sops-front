@@ -13,12 +13,19 @@ export class FormGenerator {
     const properties: string[] = getEditables(this.model);
     const group: any = [];
 
-    for (const property of properties) {
-      // const dataType = Reflect.getMetadata('design:type', this.model, property);
-      const control = new ModelFormControl(this.model[property], Validators.required);
-      control.propertyKey = property;
-      control.name = getDisplayName(this.model, property);
-      control.isPassword = isPassword(this.model, property);
+    for (const propertyName of properties) {
+      const dataType = Reflect.getMetadata('design:type', this.model, propertyName);
+      const control = new ModelFormControl(this.model[propertyName], Validators.required);
+      control.propertyKey = propertyName;
+      control.name = getDisplayName(this.model, propertyName);
+
+      if (isPassword(this.model, propertyName)) {
+        control.inputType = 'password';
+      } else if (dataType === Date) {
+        control.inputType = 'date';
+      } else {
+        control.inputType = 'text';
+      }
 
       group.push(control);
     }

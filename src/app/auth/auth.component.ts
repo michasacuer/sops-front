@@ -7,6 +7,7 @@ import { AuthLoginDialogComponent } from '../auth-login-dialog/auth-login-dialog
 import { EventEmitter } from 'protractor';
 import { AuthRegisterDialogComponent } from '../auth-register-dialog/auth-register-dialog.component';
 import { clippyRef } from '../../assets/clippy/clippy-ref';
+import { ErrorService } from '../error.service';
 
 @Component({
   selector: 'app-auth',
@@ -16,10 +17,13 @@ import { clippyRef } from '../../assets/clippy/clippy-ref';
 export class AuthComponent implements OnInit {
   public userInfo: UserInfo;
 
-  constructor(public auth: AuthService, public dialog: MatDialog) { }
+  constructor(public auth: AuthService, public dialog: MatDialog, public errorService: ErrorService) { }
 
   ngOnInit() {
-    this.auth.userInfo.subscribe((userInfo) => this.userInfo = userInfo);
+    this.auth.userInfo.subscribe((response) => {
+      this.errorService.showError(response);
+      this.userInfo = response.object;
+    });
   }
 
   onLoginClick() {

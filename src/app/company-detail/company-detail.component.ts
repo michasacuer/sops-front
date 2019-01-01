@@ -28,8 +28,8 @@ export class CompanyDetailComponent implements OnInit {
   getCompany(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id == null) { return; }
-    this.dataService.getObject(Company, +id).subscribe(company => {
-      this.company = company;
+    this.dataService.getObject(Company, +id).subscribe(result => {
+      this.company = result.object;
     });
   }
 
@@ -39,7 +39,7 @@ export class CompanyDetailComponent implements OnInit {
 
   save(): void {
     this.submitEmitter.emit();
-    this.dataService.updateObject(this.company).subscribe(() => this.goBack());
+    this.dataService.putObject(this.company).subscribe(() => this.goBack());
   }
 
 }

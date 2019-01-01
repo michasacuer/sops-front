@@ -1,13 +1,13 @@
-import { Component, OnInit, EventEmitter } from "@angular/core";
-import { ProfileDetails } from "../models/profile-details";
-import { ActivatedRoute } from "@angular/router";
-import { Location } from "@angular/common";
-import { DataService } from "../data.service";
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { ProfileDetails } from '../models/profile-details';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { DataService } from '../data.service';
 
 @Component({
-  selector: "app-profile-details",
-  templateUrl: "./profile-details.component.html",
-  styleUrls: ["./profile-details.component.css"]
+  selector: 'app-profile-details',
+  templateUrl: './profile-details.component.html',
+  styleUrls: ['./profile-details.component.css']
 })
 export class ProfileDetailsComponent implements OnInit {
   public submitEmitter = new EventEmitter();
@@ -24,10 +24,10 @@ export class ProfileDetailsComponent implements OnInit {
 
   getProfileDetails(): void {
     this.dataService
-      .getObjectByUrl(ProfileDetails, "api/User/Current")
-      .subscribe(profileDetails => {
-        console.log(profileDetails);
-        this.profileDetails = profileDetails;
+      .getObjectByUrl(ProfileDetails, 'api/User/Current')
+      .subscribe(result => {
+        console.log(result);
+        this.profileDetails = result.object;
       });
   }
 }
