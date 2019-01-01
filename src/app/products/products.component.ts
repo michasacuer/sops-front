@@ -51,6 +51,5 @@ export class ProductsComponent implements OnInit {
     this.dataService
       .addObject(this.newProduct)
       .subscribe(() => this.getProducts());
-    console.log(this.newProduct);
   }
 }
