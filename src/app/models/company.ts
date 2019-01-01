@@ -34,4 +34,8 @@ export class Company {
   @displayName('REGON')
   @editable
   regon: string;
+
+  @displayName('Join Date')
+  @editable
+  joinDate: Date;
 }

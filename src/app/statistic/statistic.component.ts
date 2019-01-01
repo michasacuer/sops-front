@@ -30,14 +30,20 @@ export class StatisticComponent implements OnInit {
   }
 
   getLastProduct(): void {
-    this.dataService.getObjects(Product).subscribe(products => {
-      this.lastAddedProduct = products.object.pop();
+    this.dataService.getNewestObject(Product).subscribe(result => {
+      this.lastAddedProduct = result.object;
     });
+    /* this.dataService.getObjects(Product).subscribe(products => {
+      this.lastAddedProduct = products.object.pop();
+    }); */
   }
 
   getLastCompany(): void {
-    this.dataService.getObjects(Company).subscribe(companies => {
-      this.lastAddedCompany = companies.object.pop();
+    this.dataService.getNewestObject(Company).subscribe(result => {
+      this.lastAddedCompany = result.object;
     });
+    /* this.dataService.getObjects(Company).subscribe(companies => {
+      this.lastAddedCompany = companies.object.pop();
+    }); */
   }
 }
