@@ -27,7 +27,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { AuthRegisterDialogComponent } from './auth-register-dialog/auth-register-dialog.component';
-import { ErrorComponent } from './error/error.component';
+import { ErrorComponent as ErrorDialogComponent } from './error-dialog/error.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { ErrorComponent } from './error/error.component';
     ProfileComponent,
     ProfileDetailsComponent,
     AuthRegisterDialogComponent,
-    ErrorComponent
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -72,8 +72,7 @@ import { ErrorComponent } from './error/error.component';
     },
     CookieService,
   ],
-  entryComponents: [AuthLoginDialogComponent, AuthRegisterDialogComponent],
-  entryComponents: [AuthLoginDialogComponent, ErrorComponent],
+  entryComponents: [AuthLoginDialogComponent, AuthRegisterDialogComponent, ErrorDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

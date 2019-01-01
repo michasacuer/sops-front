@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataResponse } from './data.service';
 import { MatDialog } from '@angular/material';
-import { ErrorComponent } from './error/error.component';
+import { ErrorComponent } from './error-dialog/error.component';
 
 @Injectable({
   providedIn: 'root'

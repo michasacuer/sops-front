@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { DataService } from "../data.service";
-import { Statistic } from "../models/statistic";
-import { Product } from "../models/product";
-import { Company } from "../models/company";
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { Statistic } from '../models/statistic';
+import { Product } from '../models/product';
+import { Company } from '../models/company';
 
 @Component({
   selector: 'app-statistic',
@@ -31,13 +31,13 @@ export class StatisticComponent implements OnInit {
 
   getLastProduct(): void {
     this.dataService.getObjects(Product).subscribe(products => {
-      this.lastAddedProduct = products.pop();
+      this.lastAddedProduct = products.object.pop();
     });
   }
 
   getLastCompany(): void {
     this.dataService.getObjects(Company).subscribe(companies => {
-      this.lastAddedCompany = companies.pop();
+      this.lastAddedCompany = companies.object.pop();
     });
   }
 }
