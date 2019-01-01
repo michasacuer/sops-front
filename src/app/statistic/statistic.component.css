@@ -2,3 +2,13 @@ mat-card {
   height: 400px;
   text-align: center;
 }
+
+.subtitle {
+  text-align: justify;
+}
+
+.statistic-list-item  {
+  display: flex;
+  width: 100%;
+  display: contents;
+}

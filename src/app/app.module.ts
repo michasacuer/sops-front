@@ -18,7 +18,7 @@ import { HomeComponent } from './home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatToolbarModule,
    MatIconModule, MatDialogModule, MatCardModule,
-   MatFormFieldModule, MatInputModule, MatListModule} from '@angular/material';
+   MatFormFieldModule, MatInputModule, MatListModule, MatBadgeModule} from '@angular/material';
 import { AuthLoginDialogComponent } from './auth-login-dialog/auth-login-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductsComponent } from './products/products.component';
@@ -62,7 +62,8 @@ import { ErrorComponent as ErrorDialogComponent } from './error-dialog/error.com
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatBadgeModule
   ],
   providers: [
     {
