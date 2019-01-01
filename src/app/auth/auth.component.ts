@@ -5,6 +5,7 @@ import { UserCredentials } from '../models/user-credentials';
 import { MatDialog } from '@angular/material';
 import { AuthLoginDialogComponent } from '../auth-login-dialog/auth-login-dialog.component';
 import { EventEmitter } from 'protractor';
+import { ErrorService } from '../error.service';
 
 @Component({
   selector: 'app-auth',
@@ -14,10 +15,13 @@ import { EventEmitter } from 'protractor';
 export class AuthComponent implements OnInit {
   public userInfo: UserInfo;
 
-  constructor(public auth: AuthService, public dialog: MatDialog) { }
+  constructor(public auth: AuthService, public dialog: MatDialog, public errorService: ErrorService) { }
 
   ngOnInit() {
-    this.auth.userInfo.subscribe((userInfo) => this.userInfo = userInfo);
+    this.auth.userInfo.subscribe((response) => {
+      this.errorService.showError(response);
+      this.userInfo = response.object;
+    });
   }
 
   onLoginClick() {

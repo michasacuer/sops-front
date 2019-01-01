@@ -1,5 +1,4 @@
-.input-error {
+.errorBodyMessage {
   color: red;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 12px;
 }

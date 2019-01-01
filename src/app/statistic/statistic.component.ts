@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { DataService } from "../data.service";
-import { Statistic } from "../models/statistic";
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { Statistic } from '../models/statistic';
 
 @Component({
-  selector: "app-statistic",
-  templateUrl: "./statistic.component.html",
-  styleUrls: ["./statistic.component.css"]
+  selector: 'app-statistic',
+  templateUrl: './statistic.component.html',
+  styleUrls: ['./statistic.component.css']
 })
 export class StatisticComponent implements OnInit {
   statistic: Statistic = new Statistic();
@@ -17,9 +17,9 @@ export class StatisticComponent implements OnInit {
 
   getStatistic(): void {
     this.dataService
-      .getObjectByUrl(Statistic, "api/Statistic/getallcount")
-      .subscribe(statistic => {
-        this.statistic = statistic;
+      .getObjectByUrl(Statistic, 'api/Statistic/getallcount')
+      .subscribe(result => {
+        this.statistic = result.object;
       });
   }
 }

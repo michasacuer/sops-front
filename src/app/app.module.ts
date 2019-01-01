@@ -26,6 +26,7 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
     StatisticComponent,
     ProductDetailComponent,
     ProfileComponent,
-    ProfileDetailsComponent
+    ProfileDetailsComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,7 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
     },
     CookieService,
   ],
-  entryComponents: [AuthLoginDialogComponent],
+  entryComponents: [AuthLoginDialogComponent, ErrorComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
