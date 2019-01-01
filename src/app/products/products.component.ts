@@ -32,7 +32,7 @@ export class ProductsComponent implements OnInit {
 
   delete(product: Product): void {
     this.products = this.products.filter(c => c !== product);
-    this.dataService.deleteObject(product).subscribe();
+    this.dataService.deleteObject(Product).subscribe();
   }
 
   add(name: string): void {
@@ -51,6 +51,5 @@ export class ProductsComponent implements OnInit {
     this.dataService
       .addObject(this.newProduct)
       .subscribe(() => this.getProducts());
-    console.log(this.newProduct);
   }
 }
