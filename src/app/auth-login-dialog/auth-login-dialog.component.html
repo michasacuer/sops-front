@@ -1,6 +1,9 @@
 <h1 mat-dialog-title>Hi</h1>
 <div mat-dialog-content>
-    <app-form [model]='userCredentials' [submit]='submitEmitter'></app-form>
+  <div class='error-message' *ngIf='errorMessage'>
+    {{ errorMessage }}
+  </div>
+  <app-form [model]='userCredentials' [submit]='submitEmitter'></app-form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)='onLoginClick()' cdkFocusInitial>Ok</button>
