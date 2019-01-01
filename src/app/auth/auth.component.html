@@ -6,10 +6,18 @@
       Logout
     </button>
   </div>
-  <div *ngIf='!userInfo'>
-    <button type='button' mat-button (click)='onLoginClick()'>
-      <mat-icon>input</mat-icon>
-      Login
-    </button>
+  <div *ngIf='!userInfo' fxLayout='row'>
+    <div fxFlex>
+      <button type='button' mat-button (click)='onLoginClick()'>
+        <mat-icon>input</mat-icon>
+        Login
+      </button>
+    </div>
+    <div fxFlex>
+      <button type='button' mat-button (click)='onRegisterClick()'>
+        <mat-icon>how_to_reg</mat-icon>
+        Register
+      </button>
+    </div>
   </div>
 </div>

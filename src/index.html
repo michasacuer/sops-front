@@ -22,7 +22,9 @@
   <script src="assets/jquery/jquery-3.3.1.min.js"></script>
   <script src="assets/clippy/clippy.min.js"></script>
   <script type="text/javascript">
+    var clippyRef;
     clippy.load('Clippy', function (agent) {
+      clippyRef = agent;
       window.setInterval(function () {
         agent.animate();
       }, 8000);

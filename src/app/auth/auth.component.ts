@@ -5,6 +5,7 @@ import { UserCredentials } from '../models/user-credentials';
 import { MatDialog } from '@angular/material';
 import { AuthLoginDialogComponent } from '../auth-login-dialog/auth-login-dialog.component';
 import { EventEmitter } from 'protractor';
+import { AuthRegisterDialogComponent } from '../auth-register-dialog/auth-register-dialog.component';
 
 @Component({
   selector: 'app-auth',
@@ -25,6 +26,17 @@ export class AuthComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.auth.signIn(result);
+      }
+    });
+  }
+
+  onRegisterClick() {
+    const dialogRef = this.dialog.open(AuthRegisterDialogComponent);
+    dialogRef.componentInstance.registerEmitter.subscribe(() => {
+      // console.log("try to login");
+      // console.log(dialogRef.componentInstance.userRegister);
+      if (dialogRef.componentInstance.userRegister.email === "oskar") {
+        dialogRef.close();
       }
     });
   }
