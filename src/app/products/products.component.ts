@@ -32,7 +32,7 @@ export class ProductsComponent implements OnInit {
 
   delete(product: Product): void {
     this.products = this.products.filter(c => c !== product);
-    this.dataService.deleteObject(Product).subscribe();
+    this.dataService.deleteObject(product).subscribe();
   }
 
   add(name: string): void {
