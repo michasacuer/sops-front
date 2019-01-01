@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserRegister } from '../models/user-register';
-declare var clippyRef: any;
+import { clippyRef } from '../../assets/clippy/clippy-ref'
 
 @Component({
   selector: 'app-auth-register-dialog',
