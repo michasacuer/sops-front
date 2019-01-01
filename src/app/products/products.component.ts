@@ -58,7 +58,7 @@ export class ProductsComponent implements OnInit {
     this.dataService
       .postObject(this.newProduct)
       .subscribe((result) => {
-        if (result.object) {
+        if (result.object || !result.modelState.isOk()) {
           this.modelState.update(result.modelState);
           this.getProducts();
         } else {

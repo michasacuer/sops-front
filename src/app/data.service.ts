@@ -8,6 +8,10 @@ export class ModelState<T> {
   constructor(private modelStateResponse: {} = null) {
   }
 
+  isOk(): boolean {
+    return !this.modelStateResponse;
+  }
+
   update(modelState: ModelState<T>) {
     this.modelStateResponse = modelState.modelStateResponse;
   }
