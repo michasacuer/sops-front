@@ -14,5 +14,21 @@
         {{ statistic.allProductsCount }}
       </h3>
     </mat-list-item>
+    <mat-list-item>
+      <h3>
+        <mat-icon> layers</mat-icon> Ostatnio dodany produkt:
+        {{ lastAddedProduct.name }}
+      </h3>
+    </mat-list-item>
+    <mat-list-item>
+      <h3>
+        <mat-icon> business</mat-icon> Ostatnio dodana firma:
+        {{ lastAddedCompany.name }}
+      </h3>
+    </mat-list-item>
+  </mat-card>
+  <mat-card fxFlex="33%">
+    <h1>Witaj!</h1>
+    <h4>Serwis powstał na potrzeby zaliczenia przedmiotu ASP MVC</h4>
   </mat-card>
 </div>

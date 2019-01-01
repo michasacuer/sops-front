@@ -21,8 +21,8 @@ export class ProductsComponent implements OnInit {
 
   getProducts(): void {
     this.dataService.getObjects(Product).subscribe(products => {
-      console.log(products);
       this.products = products;
+      console.log(this.products);
     });
   }
 
