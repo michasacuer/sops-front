@@ -12,11 +12,11 @@
     My products</a
   >
   <a href="/companies" mat-button *ngIf="auth.currentUserRole == 'Administrator'">
-    <mat-icon> business</mat-icon>
+    <mat-icon matBadge="A" matBadgeColor="accent" matBadgePosition="above before" matBadgeColor='primary'>business</mat-icon>
     Companies</a
   >
-  <a href="/products" mat-button>
-    <mat-icon> layers</mat-icon>
+  <a href="/products" mat-button *ngIf="auth.currentUserRole == 'Administrator'">
+    <mat-icon matBadge="A" matBadgeColor="accent" matBadgePosition="above before" matBadgeColor='primary'>layers</mat-icon>
     Products</a
   >
   <span class="fill-remaining-space"></span>
