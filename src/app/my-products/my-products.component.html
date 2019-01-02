@@ -2,16 +2,16 @@
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Watched Products">
       <mat-card fxFlex="100%">
-        <mat-form-field class="full-width">
-          <input
-            type="text"
-            [(ngModel)]="searchText"
-            matInput
-            placeholder="Search..."
-          />
-        </mat-form-field>
         <mat-selection-list>
           <h1>Obserwowane produkty:</h1>
+          <mat-form-field class="full-width">
+            <input
+              type="text"
+              [(ngModel)]="searchText"
+              matInput
+              placeholder="Search..."
+            />
+          </mat-form-field>
           <mat-list-item
             *ngFor="let product of (watchedProducts | search: searchText)"
             [class.selected]="product === selectedProduct"
