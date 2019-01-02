@@ -17,7 +17,7 @@
     >
       <button mat-button>{{ watchedProducts[i].name }}</button>
       <span class="fill-remaining-space"></span> Ocena:
-      {{ ratings[i].avarageRating }}
+      <span *ngIf="ratings[i]"> {{ ratings[i].avarageRating }} </span>
     </mat-list-item>
   </mat-selection-list>
 </div>
