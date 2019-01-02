@@ -1,0 +1,34 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Watched Products">
+      <mat-card fxFlex="100%">
+        <app-my-products-watched
+          [watchedProducts]="watchedProducts"
+        ></app-my-products-watched>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Scans">
+      <mat-card fxFlex="100%">
+        <mat-selection-list>
+          <h1>Skany:</h1>
+          <mat-form-field class="full-width">
+            <input
+              type="text"
+              [(ngModel)]="searchText"
+              matInput
+              placeholder="Search..."
+            />
+          </mat-form-field>
+        </mat-selection-list>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Ratings">
+      <mat-card fxFlex="100%">
+        <app-my-products-ratings
+          [watchedProducts]="watchedProducts"
+          [ratings]="ratings"
+        ></app-my-products-ratings>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>

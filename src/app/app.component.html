@@ -1,5 +1,5 @@
 <mat-toolbar id="toolbar" color="warn" class="mat-elevation-z8">
-    <a href="" mat-button>
+  <a href="" mat-button>
     <mat-icon>fastfood</mat-icon>
     SOPS
   </a>
@@ -7,16 +7,36 @@
     <mat-icon>account_circle</mat-icon>
     Profile
   </a>
-  <a href="/scans" mat-button>
+  <a href="/myproducts" mat-button>
     <mat-icon> category</mat-icon>
     My products</a
   >
-  <a href="/companies" mat-button *ngIf="auth.currentUserRole == 'Administrator'">
-    <mat-icon matBadge="A" matBadgeColor="accent" matBadgePosition="above before" matBadgeColor='primary'>business</mat-icon>
+  <a
+    href="/companies"
+    mat-button
+    *ngIf="auth.currentUserRole == 'Administrator'"
+  >
+    <mat-icon
+      matBadge="A"
+      matBadgeColor="accent"
+      matBadgePosition="above before"
+      matBadgeColor="primary"
+      >business</mat-icon
+    >
     Companies</a
   >
-  <a href="/products" mat-button *ngIf="auth.currentUserRole == 'Administrator'">
-    <mat-icon matBadge="A" matBadgeColor="accent" matBadgePosition="above before" matBadgeColor='primary'>layers</mat-icon>
+  <a
+    href="/products"
+    mat-button
+    *ngIf="auth.currentUserRole == 'Administrator'"
+  >
+    <mat-icon
+      matBadge="A"
+      matBadgeColor="accent"
+      matBadgePosition="above before"
+      matBadgeColor="primary"
+      >layers</mat-icon
+    >
     Products</a
   >
   <span class="fill-remaining-space"></span>

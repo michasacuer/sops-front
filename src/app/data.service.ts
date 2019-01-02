@@ -91,16 +91,6 @@ export class DataService {
     }), catchError(this.handleError<T>(`get${type.name} id=${id}`)));
   }
 
-  public getNewestObject<T>(type: new () => T): Observable<DataResponse<T>> {
-    const url = `${this.getUrl(type)}/Newest`;
-    return this.http.get<T>(url).pipe(map((input: Object) => {
-      const inputObject: T = input as T;
-      const outputObject = new type();
-      Object.assign(outputObject, inputObject);
-      return new DataResponse(outputObject);
-    }), catchError(this.handleError<T>(`get${type.name}`)));
-  }
-
   public getObjectByUrl<T>(type: new () => T, relativeUrl: string, options?: any): Observable<DataResponse<T>> {
     const url = `${this.api.getBaseUrl()}${relativeUrl}`;
     return this.http.get<T>(url, options).pipe(map((input: Object, indx: number) => {

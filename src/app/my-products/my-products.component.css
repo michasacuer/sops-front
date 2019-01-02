@@ -1,0 +1,11 @@
+mat-selection-list {
+  max-height: 470px;
+  overflow: auto;
+}
+mat-tab-group {
+  width: 500px;
+}
+
+.full-width {
+  width: 100%;
+}
