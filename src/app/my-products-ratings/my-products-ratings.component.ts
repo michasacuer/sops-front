@@ -14,7 +14,9 @@ export class MyProductsRatingsComponent implements OnInit {
   selectedProduct = new Product();
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.ratings);
+  }
   onSelect(product: Product): void {
     this.selectedProduct = product;
   }

@@ -19,7 +19,7 @@
         {{ watchedProducts[i].name }}
       </button>
       <span class="fill-remaining-space"></span> Ocena:
-      <span *ngIf="ratings[i]">
+      <span *ngIf="ratings[i] && ratings[i].productId == watchedProducts[i].id">
         <h5>{{ ratings[i].avarageRating }}</h5>
       </span>
     </mat-list-item>

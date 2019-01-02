@@ -1,3 +1,8 @@
 <div fxLayout="row" fxLayoutAlign="center start">
-  <mat-card fxFlex="33%"> <h1>O TU BĘDZIE LISTA WSZYSTKICH OCEN</h1> </mat-card>
+  <mat-card fxFlex="33%">
+    <h1>O TU BĘDZIE LISTA WSZYSTKICH OCEN</h1>
+    <mat-selection-list *ngFor="let rate of rates"
+      >{{ rate.rating }}
+    </mat-selection-list>
+  </mat-card>
 </div>
