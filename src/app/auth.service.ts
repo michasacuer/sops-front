@@ -29,8 +29,7 @@ export class AuthService {
   constructor(private http: HttpClient,
     private api: ApiService,
     private dataService: DataService,
-    private cookieService: CookieService,
-    private errorService: ErrorService) {
+    private cookieService: CookieService) {
     if (this.cookieService.check(authUserDataCookieKey)) {
       const cookieData = this.cookieService.get(authUserDataCookieKey);
       if (cookieData.length > 0) {
@@ -47,12 +46,12 @@ export class AuthService {
     return this.userInfoSubject;
   }
 
-  public signIn(credentials: UserCredentials) {
+  public signIn(credentials: UserCredentials): Observable<DataResponse<UserInfo>> {
     const credentialsString = `grant_type=password&username=${credentials.email}&password=${credentials.password}`;
 
     this.dataService.postObjectByUrl(credentialsString, 'Token').subscribe((credentialsResponse) => {
       if (!credentialsResponse.object) {
-        this.errorService.showError(credentialsResponse);
+        this.userInfoSubject.next(credentialsResponse);
         return;
       }
       this.userData.tokenResponse = credentialsResponse.object.access_token;
@@ -65,6 +64,8 @@ export class AuthService {
         this.userInfoSubject.next(response);
       });
     });
+
+    return this.userInfoSubject;
   }
 
   public register(registerData: UserRegister) {
