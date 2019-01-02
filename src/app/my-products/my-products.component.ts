@@ -4,6 +4,7 @@ import { DataService, ModelState } from "../data.service";
 import { ErrorService } from "../error.service";
 import { WatchedProduct } from "../models/watched-product";
 import { forkJoin } from "rxjs";
+import { ProductAvarageRating } from "../models/product-avarage-rating";
 
 @Component({
   selector: "app-my-products",
@@ -14,7 +15,8 @@ export class MyProductsComponent implements OnInit {
   watched: WatchedProduct[] = [];
   products: Product[] = [];
   watchedProducts: Product[] = [];
-  selectedProduct = new Product();
+  ratings: ProductAvarageRating[] = [];
+
   constructor(
     private dataService: DataService,
     private errorService: ErrorService
@@ -22,6 +24,7 @@ export class MyProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getWatchedProducts();
+    console.log(this.watchedProducts);
   }
   getWatchedProducts(): void {
     forkJoin(
@@ -35,24 +38,18 @@ export class MyProductsComponent implements OnInit {
       this.products = result[1].object;
       for (let i = 0; i < this.watched.length; i++) {
         for (let j = 0; j < this.products.length; j++) {
-          if (this.watched[i].productId == this.products[j].id)
+          if (this.watched[i].productId == this.products[j].id) {
             this.watchedProducts.push(this.products[j]);
+            this.dataService
+              .getObjectByUrl(
+                ProductAvarageRating,
+                `api/ProductRating/Avarage/${this.products[j].id}`
+              )
+              .subscribe(result => {
+                this.ratings.push(result.object);
+              });
+          }
         }
-      }
-    });
-  }
-
-  onSelect(product: Product): void {
-    console.log(product);
-    this.selectedProduct = product;
-  }
-
-  delete(product: WatchedProduct): void {
-    this.dataService.deleteObject(product).subscribe(response => {
-      if (response.object) {
-        this.watched = this.watched.filter(c => c !== product);
-      } else {
-        this.errorService.showError(response);
       }
     });
   }
