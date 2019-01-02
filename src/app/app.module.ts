@@ -40,6 +40,9 @@ import { AuthRegisterDialogComponent } from "./auth-register-dialog/auth-registe
 import { ErrorComponent as ErrorDialogComponent } from "./error-dialog/error.component";
 import { MyProductsComponent } from "./my-products/my-products.component";
 import { SearchPipe } from "./pipes/search.pipe";
+import { MyProductsWatchedComponent } from "./my-products-watched/my-products-watched.component";
+import { StarRatingModule } from "angular-star-rating";
+import { MyProductsRatingsComponent } from './my-products-ratings/my-products-ratings.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import { SearchPipe } from "./pipes/search.pipe";
     AuthRegisterDialogComponent,
     ErrorDialogComponent,
     MyProductsComponent,
-    SearchPipe
+    SearchPipe,
+    MyProductsWatchedComponent,
+    MyProductsRatingsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +83,8 @@ import { SearchPipe } from "./pipes/search.pipe";
     MatListModule,
     FlexLayoutModule,
     MatBadgeModule,
-    MatTabsModule
+    MatTabsModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
     {
