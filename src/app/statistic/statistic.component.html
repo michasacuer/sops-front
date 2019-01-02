@@ -1,42 +1,42 @@
-<div fxLayout="row" fxLayoutAlign="center start">
-  <mat-card fxFlex="33%">
-    <h1>Statystyki</h1>
-    <mat-list>
-      <mat-list-item>
-        <div class='statistic-list-item'>
-          <mat-icon> business</mat-icon>
-          <span>Ilość firm:</span>
-          <span class='fill-remaining-space'></span>
-          {{ statistic.companiesCount }}
-        </div>
-      </mat-list-item>
-      <span class="fill-remaining-space"></span>
-      <mat-list-item>
-        <div class='statistic-list-item'>
-          <mat-icon> category</mat-icon>
-          <span>Ilość produktów:</span>
-          <span class='fill-remaining-space'></span>
-          {{ statistic.allProductsCount }}
-        </div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class='statistic-list-item'>
-          <mat-icon> layers</mat-icon>
-          <span>Ostatnio dodany produkt:</span>
-          <span class='fill-remaining-space'></span>
-          {{ lastAddedProduct.name }}
-        </div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class='statistic-list-item'>
-          <mat-icon> business</mat-icon>
-          <span>Ostatnio dodana firma:</span>
-          <span class='fill-remaining-space'></span>
-          {{ lastAddedCompany.name }}
-        </div>
-      </mat-list-item>
-    </mat-list>
-  </mat-card>
+<mat-card>
+  <mat-list>
+    <mat-list-item>
+      <div class='statistic-list-item'>
+        <mat-icon> business</mat-icon>
+        <span>Companies Count:</span>
+        <span class='fill-remaining-space'></span>
+        {{ statistic.companiesCount }}
+      </div>
+    </mat-list-item>
+    <span class="fill-remaining-space"></span>
+    <mat-list-item>
+      <div class='statistic-list-item'>
+        <mat-icon> category</mat-icon>
+        <span>Product Count:</span>
+        <span class='fill-remaining-space'></span>
+        {{ statistic.allProductsCount }}
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div class='statistic-list-item'>
+        <mat-icon> layers</mat-icon>
+        <span>New product:</span>
+        <span class='fill-remaining-space'></span>
+        {{ lastAddedProduct.name }}
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div class='statistic-list-item'>
+        <mat-icon> business</mat-icon>
+        <span>New company:</span>
+        <span class='fill-remaining-space'></span>
+        {{ lastAddedCompany.name }}
+      </div>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
+
+<!-- <div fxLayout="row" fxLayoutAlign="center start">
   <mat-card fxFlex="33%">
     <h1>Witaj!</h1>
     <h4>Serwis powstał na potrzeby ekspresji artystycznej oraz żeby ratować świat</h4>
@@ -44,4 +44,4 @@
       wprowadzenia ujednoliconego systemu znakowania i przechowywania informacji o produktach.</h5>
       <h5 class="subtitle">Nasi niepełnosprawni użytkownicy na wszystkich kontynentach doceniają możliwość skanowania kodu kreskowego. Dzięki temu ich wadliwe oczy mogą z radościa odczytywać jak dotąd niemożliwe do odczytania daty produktów. </h5>
   </mat-card>
-</div>
+</div> -->
