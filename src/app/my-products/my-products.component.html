@@ -1,27 +1,36 @@
 <div fxLayout="row" fxLayoutAlign="center start">
-  <mat-card fxFlex="33%">
-    <input
-      type="text"
-      [(ngModel)]="searchText"
-      matInput
-      placeholder="Search..."
-    />
-  </mat-card>
-  <mat-card fxFlex="33%">
-    <mat-selection-list>
-      <h1>Obserwowane produkty:</h1>
-      <mat-list-item
-        *ngFor="let product of (watchedProducts | search: searchText)"
-        [class.selected]="product === selectedProduct"
-        (click)="onSelect(product)"
-      >
-        <button mat-button>{{ product.name }}</button>
-        <a routerLink="detail/{{ product.id }}">
-          <mat-icon> link </mat-icon>
-        </a>
-        <span class="fill-remaining-space"></span>
-        <mat-icon> delete </mat-icon>
-      </mat-list-item>
-    </mat-selection-list>
-  </mat-card>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Watched Products">
+      <mat-card fxFlex="100%">
+        <mat-form-field class="full-width">
+          <input
+            type="text"
+            [(ngModel)]="searchText"
+            matInput
+            placeholder="Search..."
+          />
+        </mat-form-field>
+        <mat-selection-list>
+          <h1>Obserwowane produkty:</h1>
+          <mat-list-item
+            *ngFor="let product of (watchedProducts | search: searchText)"
+            [class.selected]="product === selectedProduct"
+            (click)="onSelect(product)"
+          >
+            <button mat-button>{{ product.name }}</button>
+            <a routerLink="detail/{{ product.id }}">
+              <mat-icon> link </mat-icon>
+            </a>
+            <span class="fill-remaining-space"></span>
+            <button mat-button title="Delete product" (click)="delete(product)">
+              <mat-icon> delete </mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-selection-list>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Scans">
+      <mat-card fxFlex="100%"> <h1>Skany:</h1> </mat-card>
+    </mat-tab>
+  </mat-tab-group>
 </div>

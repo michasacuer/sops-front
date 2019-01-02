@@ -2,3 +2,7 @@ mat-selection-list {
   max-height: 470px;
   overflow: auto;
 }
+
+.full-width {
+  width: 100%;
+}

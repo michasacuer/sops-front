@@ -47,4 +47,14 @@ export class MyProductsComponent implements OnInit {
     console.log(product);
     this.selectedProduct = product;
   }
+
+  delete(product: WatchedProduct): void {
+    this.dataService.deleteObject(product).subscribe(response => {
+      if (response.object) {
+        this.watched = this.watched.filter(c => c !== product);
+      } else {
+        this.errorService.showError(response);
+      }
+    });
+  }
 }
