@@ -27,7 +27,8 @@ import {
   MatInputModule,
   MatListModule,
   MatBadgeModule,
-  MatTabsModule
+  MatTabsModule,
+  MatGridListModule
 } from "@angular/material";
 import { AuthLoginDialogComponent } from "./auth-login-dialog/auth-login-dialog.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -78,7 +79,8 @@ import { SearchPipe } from "./pipes/search.pipe";
     MatListModule,
     FlexLayoutModule,
     MatBadgeModule,
-    MatTabsModule
+    MatTabsModule,
+    MatGridListModule
   ],
   providers: [
     {

@@ -1,0 +1,10 @@
+mat-grid-list
+{
+	max-height: 500px;
+	margin: 20px;
+}
+
+mat-grid-tile
+{
+	background: lightblue;
+}
