@@ -43,6 +43,7 @@ import { SearchPipe } from "./pipes/search.pipe";
 import { MyProductsWatchedComponent } from "./my-products-watched/my-products-watched.component";
 import { StarRatingModule } from "angular-star-rating";
 import { MyProductsRatingsComponent } from './my-products-ratings/my-products-ratings.component';
+import { ProductDetailRatingsComponent } from './product-detail-ratings/product-detail-ratings.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { MyProductsRatingsComponent } from './my-products-ratings/my-products-ra
     MyProductsComponent,
     SearchPipe,
     MyProductsWatchedComponent,
-    MyProductsRatingsComponent
+    MyProductsRatingsComponent,
+    ProductDetailRatingsComponent
   ],
   imports: [
     BrowserModule,

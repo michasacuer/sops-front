@@ -15,9 +15,13 @@
         let i = index
       "
     >
-      <button mat-button>{{ watchedProducts[i].name }}</button>
+      <button routerLink="ratings/{{ watchedProducts[i].id }}" mat-button>
+        {{ watchedProducts[i].name }}
+      </button>
       <span class="fill-remaining-space"></span> Ocena:
-      <span *ngIf="ratings[i]"> {{ ratings[i].avarageRating }} </span>
+      <span *ngIf="ratings[i]">
+        <h5>{{ ratings[i].avarageRating }}</h5>
+      </span>
     </mat-list-item>
   </mat-selection-list>
 </div>
