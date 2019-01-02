@@ -1,10 +1,20 @@
 mat-grid-list
 {
-	max-height: 500px;
+	height: 600px;
 	margin: 20px;
 }
 
-mat-grid-tile
+#event-list-title
 {
-	background: lightblue;
+	background: gray;
+	color: white;
+	font-size: 20px;
+	border-radius: 3%;
+}
+
+mat-grid-tile-header
+{
+	opacity: 1;
+	font-size: 20px;
+	background: red;
 }
