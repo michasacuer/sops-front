@@ -1,4 +1,5 @@
-:host{
+:host
+{
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -8,28 +9,31 @@
 #news-container
 {
     flex-grow: 1;
-	overflow: scroll;
-	padding: 7px;
-	border: 2px solid gray;
+	overflow-x: hidden;
+	padding: 16px;
+	/* border: 2px solid gray; */
+	background: rgba(255, 255, 255, 0.95);
+	margin: 0;
 }
 
 .news
 {
 	margin: 11px;
-    border: 2px solid gray;
+    border: 1px solid gray;
 }
 
 .news-header
 {
 	display: flex;
-	border-bottom: 1px dashed black;
+	padding-bottom: 5px;
+	border-bottom: 1px solid black;
 }
 
 .news-header-title
 {
 	flex: 4;
 	font-size: 19px;
-	font-weight: bold;
+	/* font-weight: bold; */
 }
 
 .news-header-date
