@@ -11,12 +11,18 @@
     </mat-form-field>
     <mat-list-item
       *ngFor="let rates of (userRatings | search: searchText); let i = index"
+      [class.selected]="rates === selectedProductRating"
+      (click)="onSelect(rates)"
     >
+      Produkt:
       <h5 *ngIf="ratedProducts[i]">{{ ratedProducts[i].name }}</h5>
       <span class="fill-remaining-space"></span> Data dodania oceny:
       <h5>{{ rates.added | date }}</h5>
       Ocena:
       <h5>{{ rates.rating }}</h5>
+      <button mat-button title="Delete rate" (click)="delete(rates)">
+        <mat-icon> delete </mat-icon>
+      </button>
     </mat-list-item>
   </mat-selection-list>
 </div>

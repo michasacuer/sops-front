@@ -10,9 +10,27 @@ import { ErrorService } from "../error.service";
   styleUrls: ["./my-products-ratings.component.css"]
 })
 export class MyProductsRatingsComponent implements OnInit {
+  selectedProductRating: ProductRating = new ProductRating();
   @Input() userRatings: ProductRating[] = [];
   @Input() ratedProducts: Product[] = [];
-  constructor() {}
+  constructor(
+    private dataService: DataService,
+    private errorService: ErrorService
+  ) {}
 
   ngOnInit() {}
+
+  onSelect(productRating: ProductRating): void {
+    this.selectedProductRating = productRating;
+  }
+
+  delete(productRating: ProductRating): void {
+    this.userRatings = this.userRatings.filter(r => r !== productRating);
+    this.dataService
+      .deleteObjectByUrl(
+        productRating,
+        `${productRating.userId}/${productRating.productId}`
+      )
+      .subscribe();
+  }
 }
