@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="center start">
-  <mat-tab-group mat-align-tabs="center">
+  <mat-tab-group mat-align-tabs="center" fxFlex="100%">
     <mat-tab label="Watched Products">
       <mat-card fxFlex="100%">
         <app-my-products-watched
@@ -11,7 +11,7 @@
       <mat-card fxFlex="100%">
         <mat-selection-list>
           <h1>Skany:</h1>
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <input
               type="text"
               [(ngModel)]="searchText"
