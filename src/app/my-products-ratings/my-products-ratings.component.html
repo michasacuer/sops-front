@@ -10,21 +10,13 @@
       />
     </mat-form-field>
     <mat-list-item
-      *ngFor="
-        let product of (watchedProducts | search: searchText);
-        let i = index
-      "
+      *ngFor="let rates of (userRatings | search: searchText); let i = index"
     >
-      <button routerLink="ratings/{{ watchedProducts[i].id }}" mat-button>
-        {{ watchedProducts[i].name }}
-      </button>
-      <span class="fill-remaining-space"></span> Ocena:
-      <span *ngIf="ratings[i] && ratings[i].productId == watchedProducts[i].id">
-        <h5 *ngIf="ratings[i].avarageRating > 0">
-          {{ ratings[i].avarageRating }}
-        </h5>
-        <h5 *ngIf="ratings[i].avarageRating == 0">Brak Ocen</h5>
-      </span>
+      <h5 *ngIf="ratedProducts[i]">{{ ratedProducts[i].name }}</h5>
+      <span class="fill-remaining-space"></span> Data dodania oceny:
+      <h5>{{ rates.added | date }}</h5>
+      Ocena:
+      <h5>{{ rates.rating }}</h5>
     </mat-list-item>
   </mat-selection-list>
 </div>
