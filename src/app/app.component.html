@@ -7,7 +7,11 @@
     <mat-icon>account_circle</mat-icon>
     Profile
   </a>
-  <a href="/myproducts" mat-button>
+  <a
+    href="/myproducts"
+    mat-button
+    *ngIf="auth.currentUserRole == 'Administrator'"
+  >
     <mat-icon> category</mat-icon>
     My products</a
   >
