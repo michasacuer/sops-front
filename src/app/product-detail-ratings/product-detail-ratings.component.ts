@@ -23,22 +23,9 @@ export class ProductDetailRatingsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.getRates();
     this.getProduct();
     this.getUserDetailsAndRates();
   }
-
-  // getRates() {
-  //   const id = this.route.snapshot.paramMap.get("id");
-  //   if (id == null) {
-  //     return;
-  //   }
-  //   this.dataService
-  //     .getObjectsByUrl(ProductRating, `api/ProductRating/${id}`)
-  //     .subscribe(result => {
-  //       this.rates = result.object;
-  //     });
-  // }
 
   getProduct(): void {
     const id = this.route.snapshot.paramMap.get("id");
@@ -67,7 +54,6 @@ export class ProductDetailRatingsComponent implements OnInit {
             )
             .subscribe(result => {
               this.userProfiles.push(result.object);
-              console.log(result);
             });
         }
       });
@@ -80,14 +66,4 @@ export class ProductDetailRatingsComponent implements OnInit {
   onSelect(rate: ProductRating): void {
     this.selectedRate = rate;
   }
-
-  // delete(rate: ProductRating): void {
-  //   this.dataService.deleteObject(rate).subscribe(response => {
-  //     if (response.object) {
-  //       this.rates = this.rates.filter(c => c !== rate);
-  //     } else {
-  //       this.errorService.showError(response);
-  //     }
-  //   });
-  // }
 }
