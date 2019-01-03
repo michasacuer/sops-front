@@ -19,10 +19,11 @@
         {{ watchedProducts[i].name }}
       </button>
       <span class="fill-remaining-space"></span> Ocena:
-      <span
-        *ngIf="_ratings[i] && _ratings[i].productId == watchedProducts[i].id"
-      >
-        <h5>{{ _ratings[i].avarageRating }}</h5>
+      <span *ngIf="ratings[i] && ratings[i].productId == watchedProducts[i].id">
+        <h5 *ngIf="ratings[i].avarageRating > 0">
+          {{ ratings[i].avarageRating }}
+        </h5>
+        <h5 *ngIf="ratings[i].avarageRating == 0">Brak Ocen</h5>
       </span>
     </mat-list-item>
   </mat-selection-list>

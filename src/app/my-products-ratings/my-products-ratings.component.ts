@@ -9,7 +9,6 @@ import { Product } from "../models/product";
   styleUrls: ["./my-products-ratings.component.css"]
 })
 export class MyProductsRatingsComponent implements OnInit {
-  _ratings: ProductAvarageRating[] = [];
   @Input() watchedProducts: WatchedProduct[] = [];
   @Input() ratings: ProductAvarageRating[] = [];
   selectedProduct = new Product();

@@ -47,6 +47,13 @@ export class MyProductsComponent implements OnInit {
               )
               .subscribe(result => {
                 this.ratings.push(result.object);
+                this.ratings.sort((a, b) =>
+                  a.productId > b.productId
+                    ? 1
+                    : b.productId > a.productId
+                    ? -1
+                    : 0
+                );
               });
           }
         }

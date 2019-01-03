@@ -63,11 +63,11 @@ export class ProductDetailRatingsComponent implements OnInit {
           this.dataService
             .getObjectByUrl(
               ProfileDetails,
-              `api/User/Profile/${this.rates[i].userId}`
+              `api/User/Profile?id=${this.rates[i].userId}`
             )
             .subscribe(result => {
-              console.log(result);
               this.userProfiles.push(result.object);
+              console.log(result);
             });
         }
       });
