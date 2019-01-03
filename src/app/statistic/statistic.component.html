@@ -3,20 +3,46 @@
     <mat-list-item>
       <div class='statistic-list-item'>
         <mat-icon> business</mat-icon>
+
         <span>Companies Count:</span>
+
         <span class='fill-remaining-space'></span>
-        {{ statistic.companiesCount }}
-        (<span style="color: green;">+4</span>)
+
+        <span>{{ statistic.companiesCount }}</span>
+
+        <span *ngIf="currentLastMonthCompanyDifference() > 0">
+          (<span style="color: green;">+{{ currentLastMonthCompanyDifference() }}</span>)
+        </span>
+        <span *ngIf="currentLastMonthCompanyDifference() < 0">
+          (<span style="color: red;">-{{ currentLastMonthCompanyDifference() }}</span>)
+        </span>
+        <span *ngIf="currentLastMonthCompanyDifference() == 0">
+          (<span style="color: gray;">+{{ currentLastMonthCompanyDifference() }}</span>)
+        </span>
+
       </div>
     </mat-list-item>
     <span class="fill-remaining-space"></span>
     <mat-list-item>
       <div class='statistic-list-item'>
         <mat-icon> category</mat-icon>
+
         <span>Product Count:</span>
+
         <span class='fill-remaining-space'></span>
+
         {{ statistic.allProductsCount }}
-        (<span style="color: red;">-1</span>)
+
+        <span *ngIf="currentLastMonthProductDifference() > 0">
+          (<span style="color: green;">+{{ currentLastMonthProductDifference() }}</span>)
+        </span>
+        <span *ngIf="currentLastMonthProductDifference() < 0">
+          (<span style="color: red;">-{{ currentLastMonthProductDifference() }}</span>)
+        </span>
+        <span *ngIf="currentLastMonthProductDifference() == 0">
+          (<span style="color: gray;">+{{ currentLastMonthProductDifference() }}</span>)
+        </span>
+        
       </div>
     </mat-list-item>
     <mat-list-item>
