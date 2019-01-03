@@ -1,12 +1,12 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Product } from '../models/product';
-import { DataService, ModelState } from '../data.service';
-import { ErrorService } from '../error.service';
+import { Component, OnInit, EventEmitter } from "@angular/core";
+import { Product } from "../models/product";
+import { DataService, ModelState } from "../data.service";
+import { ErrorService } from "../error.service";
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  selector: "app-products",
+  templateUrl: "./products.component.html",
+  styleUrls: ["./products.component.css"]
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
@@ -15,7 +15,10 @@ export class ProductsComponent implements OnInit {
   submitEmitter = new EventEmitter();
   modelState = new ModelState();
 
-  constructor(private dataService: DataService, private errorService: ErrorService) { }
+  constructor(
+    private dataService: DataService,
+    private errorService: ErrorService
+  ) {}
 
   ngOnInit() {
     this.getProducts();
@@ -33,13 +36,8 @@ export class ProductsComponent implements OnInit {
   }
 
   delete(product: Product): void {
-    this.dataService.deleteObject(product).subscribe((response) => {
-      if (response.object) {
-        this.products = this.products.filter(c => c !== product);
-      } else {
-        this.errorService.showError(response);
-      }
-    });
+    this.products = this.products.filter(p => p !== product);
+    this.dataService.deleteObject(product).subscribe();
   }
 
   add(name: string): void {
@@ -47,23 +45,21 @@ export class ProductsComponent implements OnInit {
     if (!name) {
       return;
     }
-    /*this.dataService.addCompany({name} as Product)
+    /*this.dataService.addproduct({name} as Product)
       .subscribe(product => {
-        this.companies.push(product);
+        this.products.push(product);
       });*/
   }
 
   onProductAddClick(): void {
     this.submitEmitter.emit();
-    this.dataService
-      .postObject(this.newProduct)
-      .subscribe((result) => {
-        if (result.object || !result.modelState.isOk()) {
-          this.modelState.update(result.modelState);
-          this.getProducts();
-        } else {
-          this.errorService.showError(result);
-        }
-      });
+    this.dataService.postObject(this.newProduct).subscribe(result => {
+      if (result.object || !result.modelState.isOk()) {
+        this.modelState.update(result.modelState);
+        this.getProducts();
+      } else {
+        this.errorService.showError(result);
+      }
+    });
   }
 }

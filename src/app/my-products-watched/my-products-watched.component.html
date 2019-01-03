@@ -10,7 +10,10 @@
       />
     </mat-form-field>
     <mat-list-item
-      *ngFor="let product of (watchedProducts | search: searchText)"
+      *ngFor="
+        let product of (watchedProducts | search: searchText);
+        let i = index
+      "
       [class.selected]="product === selectedProduct"
       (click)="onSelect(product)"
     >
@@ -18,7 +21,16 @@
         {{ product.name }}
       </button>
       <a routerLink="detail/{{ product.id }}"> <mat-icon> link </mat-icon> </a>
-      <span class="fill-remaining-space"></span>
+      <span class="fill-remaining-space"></span> Ocena:
+      <span *ngIf="ratings[i] && ratings[i].productId == watchedProducts[i].id">
+        <h5 *ngIf="ratings[i].avarageRating > 0">
+          {{ ratings[i].avarageRating }}
+        </h5>
+        <h5 *ngIf="ratings[i].avarageRating == 0">Brak Ocen</h5>
+      </span>
+      <button routerLink="ratings/{{ watchedProducts[i].id }}" mat-button>
+        <mat-icon>rate_review</mat-icon>
+      </button>
       <button mat-button title="Delete product" (click)="delete(product)">
         <mat-icon> delete </mat-icon>
       </button>

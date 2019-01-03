@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ProductAvarageRating } from "../models/product-avarage-rating";
-import { WatchedProduct } from "../models/watched-product";
 import { Product } from "../models/product";
+import { ProductRating } from "../models/product-rating";
+import { DataService } from "../data.service";
+import { ErrorService } from "../error.service";
 
 @Component({
   selector: "app-my-products-ratings",
@@ -9,15 +10,9 @@ import { Product } from "../models/product";
   styleUrls: ["./my-products-ratings.component.css"]
 })
 export class MyProductsRatingsComponent implements OnInit {
-  @Input() watchedProducts: WatchedProduct[] = [];
-  @Input() ratings: ProductAvarageRating[] = [];
-  selectedProduct = new Product();
+  @Input() userRatings: ProductRating[] = [];
+  @Input() ratedProducts: Product[] = [];
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.ratings);
-  }
-  onSelect(product: Product): void {
-    this.selectedProduct = product;
-  }
+  ngOnInit() {}
 }

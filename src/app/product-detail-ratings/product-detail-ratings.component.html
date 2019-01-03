@@ -1,8 +1,20 @@
 <div fxLayout="row" fxLayoutAlign="center start">
-  <mat-card fxFlex="33%">
-    <h1>O TU BĘDZIE LISTA WSZYSTKICH OCEN</h1>
-    <mat-selection-list *ngFor="let rate of rates"
-      >{{ rate.rating }}
+  <mat-card fxFlex="50%">
+    <h3>Oceny produktu: {{ product.name }}</h3>
+    <h5 *ngIf="rates.length == 0">Dany produkt nie ma jeszcze ocen</h5>
+    <mat-selection-list *ngFor="let rate of rates; let i = index">
+      <mat-list-item
+        *ngIf="userProfiles[i] && rates[i].userId == userProfiles[i].id"
+      >
+        Użytkownik:
+        <h5>{{ userProfiles[i].userName }}</h5>
+        <span class="fill-remaining-space"></span> Ocena:
+        <h5>{{ rates[i].rating }}</h5>
+      </mat-list-item>
     </mat-selection-list>
+    <button type="button" mat-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
   </mat-card>
 </div>

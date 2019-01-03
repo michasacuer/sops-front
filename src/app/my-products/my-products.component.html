@@ -4,6 +4,7 @@
       <mat-card fxFlex="100%">
         <app-my-products-watched
           [watchedProducts]="watchedProducts"
+          [ratings]="ratings"
         ></app-my-products-watched>
       </mat-card>
     </mat-tab>
@@ -25,8 +26,8 @@
     <mat-tab label="Ratings">
       <mat-card fxFlex="100%">
         <app-my-products-ratings
-          [watchedProducts]="watchedProducts"
-          [ratings]="ratings"
+          [userRatings]="userRatings"
+          [ratedProducts]="ratedProducts"
         ></app-my-products-ratings>
       </mat-card>
     </mat-tab>
