@@ -27,7 +27,8 @@ import {
   MatInputModule,
   MatListModule,
   MatBadgeModule,
-  MatTabsModule
+  MatTabsModule,
+  MatGridListModule
 } from "@angular/material";
 import { AuthLoginDialogComponent } from "./auth-login-dialog/auth-login-dialog.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -43,6 +44,7 @@ import { SearchPipe } from "./pipes/search.pipe";
 import { MyProductsWatchedComponent } from "./my-products-watched/my-products-watched.component";
 import { StarRatingModule } from "angular-star-rating";
 import { MyProductsRatingsComponent } from './my-products-ratings/my-products-ratings.component';
+import { NewsComponent } from './news/news.component';
 import { ProductDetailRatingsComponent } from './product-detail-ratings/product-detail-ratings.component';
 
 @NgModule({
@@ -65,6 +67,7 @@ import { ProductDetailRatingsComponent } from './product-detail-ratings/product-
     SearchPipe,
     MyProductsWatchedComponent,
     MyProductsRatingsComponent,
+    NewsComponent,
     ProductDetailRatingsComponent
   ],
   imports: [
@@ -86,6 +89,7 @@ import { ProductDetailRatingsComponent } from './product-detail-ratings/product-
     FlexLayoutModule,
     MatBadgeModule,
     MatTabsModule,
+    MatGridListModule,
     StarRatingModule.forRoot()
   ],
   providers: [
