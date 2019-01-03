@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.auth.userInfo.subscribe((response) => {
-      this.errorService.showError(response);
+      // this.errorService.showError(response);
       this.userInfo = response.object;
     });
   }
@@ -30,7 +30,7 @@ export class AuthComponent implements OnInit {
     const dialogRef = this.dialog.open(AuthLoginDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.auth.signIn(result);
+        // this.auth.signIn(result);
       }
     });
   }

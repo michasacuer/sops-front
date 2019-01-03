@@ -1,6 +1,8 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserCredentials } from '../models/user-credentials';
+import { AuthService } from '../auth.service';
+import { DataResponse } from '../data.service';
 
 @Component({
   selector: 'app-auth-login-dialog',
@@ -10,14 +12,21 @@ import { UserCredentials } from '../models/user-credentials';
 export class AuthLoginDialogComponent implements OnInit {
   public userCredentials: UserCredentials = new UserCredentials();
   public submitEmitter = new EventEmitter();
+  public errorMessage: string;
 
-  constructor(public dialogRef: MatDialogRef<AuthLoginDialogComponent>) { }
+  constructor(public auth: AuthService, public dialogRef: MatDialogRef<AuthLoginDialogComponent>) { }
 
   ngOnInit() {
   }
   onLoginClick() {
     this.submitEmitter.emit();
-    this.dialogRef.close(this.userCredentials);
+    this.auth.signIn(this.userCredentials).subscribe((response) => {
+      if (response.object) {
+        this.dialogRef.close(this.userCredentials);
+      } else {
+        this.errorMessage = response.errorMessage;
+      }
+    });
   }
 
 }

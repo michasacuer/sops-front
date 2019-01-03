@@ -1,7 +1,6 @@
 <div>
   <mat-selection-list>
     <h1>Oceny:</h1>
-
     <mat-form-field class="full-width">
       <input
         type="text"
@@ -10,9 +9,19 @@
         placeholder="Search..."
       />
     </mat-form-field>
-    <mat-list-item>
-      <button mat-button>test</button>
+    <mat-list-item
+      *ngFor="
+        let product of (watchedProducts | search: searchText);
+        let i = index
+      "
+    >
+      <button routerLink="ratings/{{ watchedProducts[i].id }}" mat-button>
+        {{ watchedProducts[i].name }}
+      </button>
       <span class="fill-remaining-space"></span> Ocena:
+      <span *ngIf="ratings[i] && ratings[i].productId == watchedProducts[i].id">
+        <h5>{{ ratings[i].avarageRating }}</h5>
+      </span>
     </mat-list-item>
   </mat-selection-list>
 </div>

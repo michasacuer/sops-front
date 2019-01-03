@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
-import { ApiService } from './api.service';
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { catchError, map, tap } from "rxjs/operators";
+import { ApiService } from "./api.service";
 
 export class ModelState<T> {
-  constructor(private modelStateResponse: {} = null) {
-  }
+  constructor(private modelStateResponse: {} = null) {}
 
   isOk(): boolean {
     return !this.modelStateResponse;
@@ -18,17 +17,17 @@ export class ModelState<T> {
 
   getErrorMessagesFor(propertyName: string): string[] {
     if (!this.modelStateResponse) {
-      return [''];
+      return [""];
     }
 
     propertyName = propertyName.toLowerCase();
     const keys = Object.keys(this.modelStateResponse);
     for (const key of keys) {
-      if (key.split('.')[1].toLowerCase() === propertyName) {
+      if (key.split(".")[1].toLowerCase() === propertyName) {
         return this.modelStateResponse[key];
       }
     }
-    return [''];
+    return [""];
   }
 
   hasErrorMessage(propertyName: string): boolean {
@@ -39,7 +38,7 @@ export class ModelState<T> {
     propertyName = propertyName.toLowerCase();
     const keys = Object.keys(this.modelStateResponse);
     for (const key of keys) {
-      if (key.split('.')[1].toLowerCase() === propertyName) {
+      if (key.split(".")[1].toLowerCase() === propertyName) {
         return true;
       }
     }
@@ -60,86 +59,136 @@ export class DataResponse<T> {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DataService {
-  constructor(
-    private http: HttpClient,
-    private api: ApiService) { }
+  constructor(private http: HttpClient, private api: ApiService) {}
 
-  public getObjects<T>(type: new () => T, ): Observable<DataResponse<T[]>> {
+  public getObjects<T>(type: new () => T): Observable<DataResponse<T[]>> {
     const url = this.getUrl(type);
-    return this.http.get(url).pipe(map((input: Object, indx: number) => {
-      const inputObjects: T[] = input as T[];
-      const outputObjects: T[] = [];
+    return this.http.get(url).pipe(
+      map((input: Object, indx: number) => {
+        const inputObjects: T[] = input as T[];
+        const outputObjects: T[] = [];
 
-      for (const obj of inputObjects) {
-        outputObjects.push(Object.assign(new type(), obj));
-      }
+        for (const obj of inputObjects) {
+          outputObjects.push(Object.assign(new type(), obj));
+        }
 
-      return new DataResponse(outputObjects);
-    }), catchError(this.handleError<T[]>(`get${type.name}`)));
+        return new DataResponse(outputObjects);
+      }),
+      catchError(this.handleError<T[]>(`get${type.name}`))
+    );
   }
 
-  public getObject<T>(type: new () => T, id: number): Observable<DataResponse<T>> {
+  public getObject<T>(
+    type: new () => T,
+    id: number
+  ): Observable<DataResponse<T>> {
     const url = `${this.getUrl(type)}${id}`;
-    return this.http.get<T>(url).pipe(map((input: Object, indx: number) => {
-      const inputObject: T = input as T;
-      const outputObject = new type();
-      Object.assign(outputObject, inputObject);
-      return new DataResponse(outputObject);
-    }), catchError(this.handleError<T>(`get${type.name} id=${id}`)));
+    return this.http.get<T>(url).pipe(
+      map((input: Object, indx: number) => {
+        const inputObject: T = input as T;
+        const outputObject = new type();
+        Object.assign(outputObject, inputObject);
+        return new DataResponse(outputObject);
+      }),
+      catchError(this.handleError<T>(`get${type.name} id=${id}`))
+    );
   }
 
-  public getObjectByUrl<T>(type: new () => T, relativeUrl: string, options?: any): Observable<DataResponse<T>> {
+  public getObjectByUrl<T>(
+    type: new () => T,
+    relativeUrl: string,
+    options?: any
+  ): Observable<DataResponse<T>> {
     const url = `${this.api.getBaseUrl()}${relativeUrl}`;
-    return this.http.get<T>(url, options).pipe(map((input: Object, indx: number) => {
-      const inputObject: T = input as T;
-      const outputObject = new type();
-      Object.assign(outputObject, inputObject);
-      return new DataResponse(outputObject);
-    }), catchError(this.handleError<T>(`get${type.name}`)));
+    return this.http.get<T>(url, options).pipe(
+      map((input: Object, indx: number) => {
+        const inputObject: T = input as T;
+        const outputObject = new type();
+        Object.assign(outputObject, inputObject);
+        return new DataResponse(outputObject);
+      }),
+      catchError(this.handleError<T>(`get${type.name}`))
+    );
+  }
+
+  public getObjectsByUrl<T>(
+    type: new () => T,
+    relativeUrl: string,
+    options?: any
+  ): Observable<DataResponse<T[]>> {
+    const url = `${this.api.getBaseUrl()}${relativeUrl}`;
+    return this.http.get(url, options).pipe(
+      map((input: Object, indx: number) => {
+        const inputObjects: T[] = input as T[];
+        const outputObjects: T[] = [];
+
+        for (const obj of inputObjects) {
+          outputObjects.push(Object.assign(new type(), obj));
+        }
+
+        return new DataResponse(outputObjects);
+      }),
+      catchError(this.handleError<T[]>(`get${type.name}`))
+    );
   }
 
   public putObject<T>(obj: T): Observable<DataResponse<any>> {
     const url = `${this.getUrl(obj.constructor)}${(<any>obj).id}`;
-    return this.http.put(url, obj).pipe(map((input: Object, indx: number) => {
-      return new DataResponse(input);
-    }), catchError(this.handleError<any>(`update${obj.constructor.name}`)));
+    return this.http.put(url, obj).pipe(
+      map((input: Object, indx: number) => {
+        return new DataResponse(input);
+      }),
+      catchError(this.handleError<any>(`update${obj.constructor.name}`))
+    );
   }
 
   public postObject<T>(obj: T): Observable<DataResponse<any>> {
     const url = this.getUrl(obj.constructor);
-    return this.http.post<T>(url, obj).pipe(map((input: Object, indx: number) => {
-      return new DataResponse(input);
-    }), catchError(this.handleError<T>(`add${obj.constructor.name}`)));
+    return this.http.post<T>(url, obj).pipe(
+      map((input: Object, indx: number) => {
+        return new DataResponse(input);
+      }),
+      catchError(this.handleError<T>(`add${obj.constructor.name}`))
+    );
   }
 
-  public postObjectByUrl<T>(obj: T, relativeUrl: string): Observable<DataResponse<any>> {
+  public postObjectByUrl<T>(
+    obj: T,
+    relativeUrl: string
+  ): Observable<DataResponse<any>> {
     const url = `${this.api.getBaseUrl()}${relativeUrl}`;
-    return this.http.post<T>(url, obj).pipe(map((input: Object, indx: number) => {
-      return new DataResponse(input);
-    }), catchError(this.handleError<T>(`add${obj.constructor.name}`)));
+    return this.http.post<T>(url, obj).pipe(
+      map((input: Object, indx: number) => {
+        return new DataResponse(input);
+      }),
+      catchError(this.handleError<T>(`add${obj.constructor.name}`))
+    );
   }
 
   public deleteObject<T>(obj: T): Observable<DataResponse<any>> {
     const url = `${this.getUrl(obj.constructor)}${(<any>obj).id}`;
-    return this.http.delete<T>(url).pipe(map((input: Object, indx: number) => {
-      return new DataResponse(input);
-    }), catchError(this.handleError<T>(`get${obj.constructor.name}`)));
+    return this.http.delete<T>(url).pipe(
+      map((input: Object, indx: number) => {
+        return new DataResponse(input);
+      }),
+      catchError(this.handleError<T>(`get${obj.constructor.name}`))
+    );
   }
 
   private getUrl(type: Function): string {
     return `${this.api.getBaseUrl()}api/${type.name.toLowerCase()}/`;
   }
 
-  public handleError<T>(operation = 'operation') {
+  public handleError<T>(operation = "operation") {
     return (errorResponse: any): Observable<DataResponse<T>> => {
       // console.error(operation);
       let errorMessage: string;
       let modelStatle: {};
 
-      console.error('http error');
+      console.error("http error");
       console.error(errorResponse);
 
       if (errorResponse.error) {
@@ -154,7 +203,9 @@ export class DataService {
         }
       }
 
-      return of(new DataResponse(null, errorMessage, errorResponse.error.modelState));
+      return of(
+        new DataResponse(null, errorMessage, errorResponse.error.modelState)
+      );
     };
   }
 }

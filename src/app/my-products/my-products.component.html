@@ -24,27 +24,10 @@
     </mat-tab>
     <mat-tab label="Ratings">
       <mat-card fxFlex="100%">
-        <mat-selection-list>
-          <h1>Oceny:</h1>
-
-          <mat-form-field class="full-width">
-            <input
-              type="text"
-              [(ngModel)]="searchText"
-              matInput
-              placeholder="Search..."
-            />
-          </mat-form-field>
-          <mat-list-item
-            *ngFor="
-              let product of (watchedProducts | search: searchText);
-              let i = index
-            "
-          >
-            <button mat-button>{{ watchedProducts[i].name }}</button>
-            <span class="fill-remaining-space"></span> Ocena:
-          </mat-list-item>
-        </mat-selection-list>
+        <app-my-products-ratings
+          [watchedProducts]="watchedProducts"
+          [ratings]="ratings"
+        ></app-my-products-ratings>
       </mat-card>
     </mat-tab>
   </mat-tab-group>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../models/product";
-import { DataService, ModelState } from "../data.service";
+import { DataService } from "../data.service";
 import { ErrorService } from "../error.service";
 import { WatchedProduct } from "../models/watched-product";
 import { forkJoin } from "rxjs";
@@ -24,8 +24,8 @@ export class MyProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getWatchedProducts();
-    console.log(this.watchedProducts);
   }
+
   getWatchedProducts(): void {
     forkJoin(
       this.dataService.getObjects(WatchedProduct),
@@ -33,9 +33,9 @@ export class MyProductsComponent implements OnInit {
     ).subscribe(result => {
       this.errorService.showError(result[0]);
       this.watched = result[0].object;
-
       this.errorService.showError(result[1]);
       this.products = result[1].object;
+
       for (let i = 0; i < this.watched.length; i++) {
         for (let j = 0; j < this.products.length; j++) {
           if (this.watched[i].productId == this.products[j].id) {

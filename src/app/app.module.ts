@@ -44,8 +44,13 @@ import { SearchPipe } from "./pipes/search.pipe";
 import { MyProductsWatchedComponent } from "./my-products-watched/my-products-watched.component";
 import { StarRatingModule } from "angular-star-rating";
 import { MyProductsRatingsComponent } from './my-products-ratings/my-products-ratings.component';
+<<<<<<< HEAD
 import { NewsComponent } from './news/news.component';
 0
+=======
+import { ProductDetailRatingsComponent } from './product-detail-ratings/product-detail-ratings.component';
+
+>>>>>>> a99e7622b62c1eb3ec1ca2e0cf1d36f8fba915f0
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +71,8 @@ import { NewsComponent } from './news/news.component';
     SearchPipe,
     MyProductsWatchedComponent,
     MyProductsRatingsComponent,
-    NewsComponent
+    NewsComponent,
+    ProductDetailRatingsComponent
   ],
   imports: [
     BrowserModule,

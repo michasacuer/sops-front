@@ -1,15 +1,15 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { Product } from '../models/product';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { DataService } from '../data.service';
-import { FormGenerator } from '../form-generator/form-generator';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input, EventEmitter } from "@angular/core";
+import { Product } from "../models/product";
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
+import { DataService } from "../data.service";
+import { FormGenerator } from "../form-generator/form-generator";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  selector: "app-product-detail",
+  templateUrl: "./product-detail.component.html",
+  styleUrls: ["./product-detail.component.css"]
 })
 export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
@@ -25,7 +25,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get("id");
     if (id == null) {
       return;
     }
@@ -35,7 +35,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    // this.location.back();
+    window.history.back();
   }
 
   save(): void {

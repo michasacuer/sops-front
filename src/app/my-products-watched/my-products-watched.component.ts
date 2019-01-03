@@ -21,7 +21,6 @@ export class MyProductsWatchedComponent implements OnInit {
 
   ngOnInit() {}
   onSelect(product: Product): void {
-    console.log(product);
     this.selectedProduct = product;
   }
 
