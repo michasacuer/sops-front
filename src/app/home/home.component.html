@@ -1,6 +1,4 @@
-<!-- <div><app-statistic></app-statistic></div> -->
-
-<mat-grid-list cols="10" rowHeight="fit" max>
+<mat-grid-list cols="10" rowHeight="fit" gutterSize="6px">
 
 	<mat-grid-tile id="event-list-title-tile" rowspan="1" colspan="7">
 		The Newest Events and Information
@@ -10,10 +8,17 @@
 		<app-statistic id="statistics-tile"></app-statistic>
 	</mat-grid-tile>
 
-	<mat-grid-tile rowspan="9" colspan="7">3</mat-grid-tile>
+	<mat-grid-tile rowspan="9" colspan="7">
+		<app-news></app-news>
+	</mat-grid-tile>
 
 	<mat-grid-tile rowspan="6" colspan="3">
-		<mat-card>Test</mat-card>
+		<mat-card id="page-description-tile">
+			<div id="page-description-tile-text">
+				Zrzeszamy tysiące niepełnosprawnych producentów żywności z całego świata pod misją wprowadzenia ujednoliconego systemu znakowania i przechowywania informacji o produktach.
+				<span style="font-size: 60px;">&#8452;</span>;
+			</div>
+		</mat-card>
 	</mat-grid-tile>
 
 </mat-grid-list>

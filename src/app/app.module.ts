@@ -44,7 +44,8 @@ import { SearchPipe } from "./pipes/search.pipe";
 import { MyProductsWatchedComponent } from "./my-products-watched/my-products-watched.component";
 import { StarRatingModule } from "angular-star-rating";
 import { MyProductsRatingsComponent } from './my-products-ratings/my-products-ratings.component';
-
+import { NewsComponent } from './news/news.component';
+0
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { MyProductsRatingsComponent } from './my-products-ratings/my-products-ra
     MyProductsComponent,
     SearchPipe,
     MyProductsWatchedComponent,
-    MyProductsRatingsComponent
+    MyProductsRatingsComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
