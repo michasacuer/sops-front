@@ -3,14 +3,24 @@
     <mat-icon>fastfood</mat-icon>
     SOPS
   </a>
-  <a href="/profile" mat-button>
+  <a
+    href="/profile"
+    mat-button
+    *ngIf="
+      auth.currentUserRole == 'Administrator' ||
+      auth.currentUserRole == 'Employee'
+    "
+  >
     <mat-icon>account_circle</mat-icon>
     Profile
   </a>
   <a
     href="/myproducts"
     mat-button
-    *ngIf="auth.currentUserRole == 'Administrator'"
+    *ngIf="
+      auth.currentUserRole == 'Administrator' ||
+      auth.currentUserRole == 'Employee'
+    "
   >
     <mat-icon> category</mat-icon>
     My products</a
@@ -29,6 +39,16 @@
     >
     Companies</a
   >
+  <a href="/companies" mat-button *ngIf="auth.currentUserRole == 'Employee'">
+    <mat-icon
+      matBadge="E"
+      matBadgeColor="accent"
+      matBadgePosition="above before"
+      matBadgeColor="primary"
+      >business</mat-icon
+    >
+    Companies</a
+  >
   <a
     href="/admin/products"
     mat-button
@@ -36,6 +56,16 @@
   >
     <mat-icon
       matBadge="A"
+      matBadgeColor="accent"
+      matBadgePosition="above before"
+      matBadgeColor="primary"
+      >layers</mat-icon
+    >
+    Products</a
+  >
+  <a href="/products" mat-button *ngIf="auth.currentUserRole == 'Employee'">
+    <mat-icon
+      matBadge="E"
       matBadgeColor="accent"
       matBadgePosition="above before"
       matBadgeColor="primary"
