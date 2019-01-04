@@ -16,6 +16,11 @@ const routes: Routes = [
   { path: "admin/products", component: ProductsComponent },
   { path: "admin/products/detail/:id", component: ProductDetailComponent },
   { path: "admin/myproducts/detail/:id", component: ProductDetailComponent },
+  { path: "/companies", component: CompaniesComponent },
+  { path: "/companies/detail/:id", component: CompanyDetailComponent },
+  { path: "/products", component: ProductsComponent },
+  { path: "/products/detail/:id", component: ProductDetailComponent },
+  { path: "/myproducts/detail/:id", component: ProductDetailComponent },
   { path: "profile", component: ProfileComponent },
   { path: "myproducts", component: MyProductsComponent },
   { path: "myproducts/ratings/:id", component: ProductDetailRatingsComponent }
