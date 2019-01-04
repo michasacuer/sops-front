@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
     this.dataService.getObjects(Product).subscribe(result => {
       this.errorService.showError(result);
       this.products = result.object;
+      console.log(this.products);
     });
   }
 

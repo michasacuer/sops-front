@@ -42,21 +42,26 @@ export class EmployeeCompanyComponent implements OnInit {
           .subscribe(result => {
             this.errorService.showError(result);
             this.company = result.object;
-            this.companyProducts = this.company.products;
+            console.log(this.company.products);
+            for (const item of this.company.products) {
+              this.companyProducts.push(Object.assign(new Product(), item));
+            }
             this.newProduct = new Product();
             this.newProduct.companyId = this.company.id;
-            console.log(this.newProduct.companyId);
           });
       });
   }
 
   onSelect(product: Product): void {
+    console.log(product);
     this.selectedProduct = product;
   }
 
   delete(product: Product): void {
     this.companyProducts = this.companyProducts.filter(p => p !== product);
-    this.dataService.deleteObject(product).subscribe();
+    this.dataService
+      .deleteObjectByFullUrl(`api/Product/${product.id}`)
+      .subscribe();
   }
 
   add(name: string): void {

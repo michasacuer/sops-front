@@ -191,6 +191,18 @@ export class DataService {
     );
   }
 
+  public deleteObjectByFullUrl<T>(
+    relativeUrl: string
+  ): Observable<DataResponse<any>> {
+    const url = `${this.api.getBaseUrl()}${relativeUrl}`;
+    return this.http.delete<T>(url).pipe(
+      map((input: Object, indx: number) => {
+        return new DataResponse(input);
+      }),
+      catchError(this.handleError<T>(`get${relativeUrl}`))
+    );
+  }
+
   private getUrl(type: Function): string {
     return `${this.api.getBaseUrl()}api/${type.name.toLowerCase()}/`;
   }
