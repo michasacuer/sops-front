@@ -14,7 +14,7 @@ export class EmployeeCompanyComponent implements OnInit {
   company: Company = new Company();
   companyProducts: Product[] = [];
   profileDetails: ProfileDetails = new ProfileDetails();
-  selectedProduct: Product = new Product();
+  selectedProduct: Product;
   newProduct: Product;
   submitEmitter = new EventEmitter();
   modelState = new ModelState();
