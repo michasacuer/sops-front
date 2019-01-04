@@ -30,6 +30,7 @@ import {
   MatTabsModule,
   MatGridListModule
 } from "@angular/material";
+import { MatExpansionModule } from "@angular/material/expansion";
 import { AuthLoginDialogComponent } from "./auth-login-dialog/auth-login-dialog.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ProductsComponent } from "./products/products.component";
@@ -47,6 +48,7 @@ import { MyProductsRatingsComponent } from "./my-products-ratings/my-products-ra
 import { NewsComponent } from "./news/news.component";
 import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-detail-ratings.component";
 import { EmployeeCompanyComponent } from "./employee-company/employee-company.component";
+import { CompanyProductsComponent } from "./company-products/company-products.component";
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { EmployeeCompanyComponent } from "./employee-company/employee-company.co
     MyProductsRatingsComponent,
     NewsComponent,
     ProductDetailRatingsComponent,
-    EmployeeCompanyComponent
+    EmployeeCompanyComponent,
+    CompanyProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +95,8 @@ import { EmployeeCompanyComponent } from "./employee-company/employee-company.co
     MatBadgeModule,
     MatTabsModule,
     MatGridListModule,
+
+    MatExpansionModule,
     StarRatingModule.forRoot()
   ],
   providers: [

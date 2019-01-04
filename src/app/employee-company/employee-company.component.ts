@@ -48,12 +48,12 @@ export class EmployeeCompanyComponent implements OnInit {
             }
             this.newProduct = new Product();
             this.newProduct.companyId = this.company.id;
+            console.log(this.company);
           });
       });
   }
 
   onSelect(product: Product): void {
-    console.log(product);
     this.selectedProduct = product;
   }
 
