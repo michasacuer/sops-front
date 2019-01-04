@@ -10,15 +10,13 @@
 
 --> do pobrania zeskanowanych produktow trzeba uzyc ScanCOntroller i metode GetScans (jesli ta metoda nie dziala to trzeba ja naprawic)
 
---> okno dialogowe dla Profile - beda tam wyswietlane infromacje na temat aktualnie zalogowanego uzytkownika, opcja usunięcia konta i prosta edycja
+--> okno dialogowe dla Profile - beda tam wyswietlane infromacje na temat aktualnie zalogowanego uzytkownika, opcja usunięcia konta i prosta edycja [Oskar]
 
 --> pracownicy beda mogli dodawac i edytowac produkty swojej firmy ale reszta bedzie mogla tylko przegladac
 
 --> naprawa wylogowania - czasem nie chce wylogować
 
 --> jakis dashboard tylko dla pracownikow gdzie moga zarzadzac firma czyli np. dodawac produkty (moze w takim razie dodawanie produktow w zakladce produkty jest zbedne) i pobierac raporty - albo taki dashboard jako oddzielna opcja w toolabrze, albo zamiast dashboard rozszerzyć widoki dla pracowników
-
---> strone glowna, gdzie beda statystyki typu zarejestrowano tyle produktow, najnowsze produkty firmy czy jakies inne bzdury zeby zaplenic cala strone [OSKAR]
 
 --> companies do panelu admina (albo rozszerzony widok Companies)
 
