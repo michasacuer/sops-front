@@ -46,6 +46,8 @@ import { StarRatingModule } from "angular-star-rating";
 import { MyProductsRatingsComponent } from "./my-products-ratings/my-products-ratings.component";
 import { NewsComponent } from "./news/news.component";
 import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-detail-ratings.component";
+import { EmployeeCompanyComponent } from './employee-company/employee-company.component';
+import { EmployeeCompanyProductsComponent } from './employee-company-products/employee-company-products.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-
     MyProductsWatchedComponent,
     MyProductsRatingsComponent,
     NewsComponent,
-    ProductDetailRatingsComponent
+    ProductDetailRatingsComponent,
+    EmployeeCompanyComponent,
+    EmployeeCompanyProductsComponent
   ],
   imports: [
     BrowserModule,
