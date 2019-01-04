@@ -1,11 +1,11 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Company } from '../models/company';
-import { DataService } from '../data.service';
+import { Component, OnInit, EventEmitter } from "@angular/core";
+import { Company } from "../models/company";
+import { DataService } from "../data.service";
 
 @Component({
-  selector: 'app-companies',
-  templateUrl: './companies.component.html',
-  styleUrls: ['./companies.component.css']
+  selector: "app-companies",
+  templateUrl: "./companies.component.html",
+  styleUrls: ["./companies.component.css"]
 })
 export class CompaniesComponent implements OnInit {
   companies: Company[] = [];
@@ -20,9 +20,12 @@ export class CompaniesComponent implements OnInit {
   }
 
   getCompanies(): void {
-    this.dataService.getObjects(Company).subscribe(result => {
-      this.companies = result.object;
-    });
+    this.dataService
+      .getObjectsByUrl(Company, "api/Company/Products")
+      .subscribe(result => {
+        this.companies = result.object;
+        console.log(result);
+      });
   }
 
   onSelect(company: Company): void {
@@ -31,7 +34,9 @@ export class CompaniesComponent implements OnInit {
 
   add(name: string): void {
     name = name.trim();
-    if (!name) { return; }
+    if (!name) {
+      return;
+    }
     /*this.dataService.addCompany({name} as Company)
       .subscribe(company => {
         this.companies.push(company);
@@ -45,6 +50,8 @@ export class CompaniesComponent implements OnInit {
 
   onCompanyAddClick(): void {
     this.submitEmitter.emit();
-    this.dataService.postObject(this.newCompany).subscribe(() => this.getCompanies());
+    this.dataService
+      .postObject(this.newCompany)
+      .subscribe(() => this.getCompanies());
   }
 }

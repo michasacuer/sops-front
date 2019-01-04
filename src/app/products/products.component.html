@@ -1,6 +1,10 @@
 <div fxLayout="row" fxLayoutAlign="center start">
   <mat-card fxFlex="33%">
-    <app-form [model]="newProduct" [modelState]='modelState' [submit]="submitEmitter"></app-form>
+    <app-form
+      [model]="newProduct"
+      [modelState]="modelState"
+      [submit]="submitEmitter"
+    ></app-form>
     <button type="button" mat-button (click)="onProductAddClick()">
       <mat-icon> add </mat-icon>
       Add

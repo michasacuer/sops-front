@@ -1,4 +1,5 @@
 import { editable, displayName } from '../model-decorators/display-decorators';
+import { Product } from './product';
 
 export class Company {
   id: number;
@@ -38,4 +39,6 @@ export class Company {
   @displayName('Join Date')
   @editable
   joinDate: Date;
+
+  products: Product[] = [];
 }

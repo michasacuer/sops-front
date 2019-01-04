@@ -11,11 +11,11 @@ import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "companies", component: CompaniesComponent },
-  { path: "companies/detail/:id", component: CompanyDetailComponent },
-  { path: "products", component: ProductsComponent },
-  { path: "products/detail/:id", component: ProductDetailComponent },
-  { path: "myproducts/detail/:id", component: ProductDetailComponent },
+  { path: "admin/companies", component: CompaniesComponent },
+  { path: "admin/companies/detail/:id", component: CompanyDetailComponent },
+  { path: "admin/products", component: ProductsComponent },
+  { path: "admin/products/detail/:id", component: ProductDetailComponent },
+  { path: "admin/myproducts/detail/:id", component: ProductDetailComponent },
   { path: "profile", component: ProfileComponent },
   { path: "myproducts", component: MyProductsComponent },
   { path: "myproducts/ratings/:id", component: ProductDetailRatingsComponent }
