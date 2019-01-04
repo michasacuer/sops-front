@@ -1,10 +1,11 @@
-import { editable, displayName } from '../model-decorators/display-decorators';
-import { Product } from './product';
+import { editable, displayName } from "../model-decorators/display-decorators";
+import { Product } from "./product";
+import { Employee } from "./employee";
 
 export class Company {
   id: number;
 
-  @displayName('Name')
+  @displayName("Name")
   @editable
   name: string;
 
@@ -12,33 +13,34 @@ export class Company {
   // @editable
   kind: string;
 
-  @displayName('Address street')
+  @displayName("Address street")
   @editable
   addressStreet: string;
 
-  @displayName('Address ZIP code')
+  @displayName("Address ZIP code")
   @editable
   addressZipCode: string;
 
-  @displayName('Address city')
+  @displayName("Address city")
   @editable
   addressCity: string;
 
-  @displayName('E-mail')
+  @displayName("E-mail")
   @editable
   email: string;
 
-  @displayName('NIP')
+  @displayName("NIP")
   @editable
   nip: string;
 
-  @displayName('REGON')
+  @displayName("REGON")
   @editable
   regon: string;
 
-  @displayName('Join Date')
+  @displayName("Join Date")
   @editable
   joinDate: Date;
 
   products: Product[] = [];
+  employees: Employee[] = [];
 }

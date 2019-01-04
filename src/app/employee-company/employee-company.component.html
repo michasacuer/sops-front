@@ -1,3 +1,37 @@
-<p>
-  employee-company works!
-</p>
+<div fxLayout="row" fxLayoutAlign="center start">
+  <mat-card fxFlex="33%">
+    <app-form
+      [model]="newProduct"
+      [modelState]="modelState"
+      [submit]="submitEmitter"
+    ></app-form>
+    <button type="button" mat-button (click)="onProductAddClick()">
+      <mat-icon> add </mat-icon>
+      Add
+    </button>
+  </mat-card>
+  <mat-card fxFlex="33%">
+    <h3>Jesteś zatrudniony w firmie: {{ company.name }}</h3>
+    <mat-selection-list>
+      <mat-form-field>
+        <input
+          type="text"
+          [(ngModel)]="searchText"
+          matInput
+          placeholder="Search..."
+        />
+      </mat-form-field>
+      <mat-list-item
+        *ngFor="let product of (companyProducts | search: searchText)"
+        [class.selected]="product === selectedProduct"
+        (click)="onSelect(product)"
+      >
+        <button mat-button>{{ product.name }}</button>
+        <span class="fill-remaining-space"></span>
+        <button mat-button title="Delete product" (click)="delete(product)">
+          <mat-icon> delete </mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-selection-list>
+  </mat-card>
+</div>
