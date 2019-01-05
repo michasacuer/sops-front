@@ -74,7 +74,7 @@ export class AuthService {
 
   public register(registerData: UserRegister) {
     const url = `${this.api.getBaseUrl()}Api/Account/Register`;
-    console.log(registerData);
+    /* console.log(registerData); */
     return this.http.post(url, registerData, {observe: 'response'});
   }
 

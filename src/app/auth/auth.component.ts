@@ -84,7 +84,6 @@ export class AuthComponent implements OnInit {
   }
 
   onLogoutClick() {
-    console.log(this.auth.currentUserId);
     this.auth.signOut();
 
     clippyRef.speak('I hope you get back');

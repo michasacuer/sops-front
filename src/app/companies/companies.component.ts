@@ -24,7 +24,7 @@ export class CompaniesComponent implements OnInit {
       .getObjectsByUrl(Company, "api/Company/Products")
       .subscribe(result => {
         this.companies = result.object;
-        console.log(result);
+        /* console.log(result); */
       });
   }
 

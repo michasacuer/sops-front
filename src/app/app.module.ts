@@ -39,7 +39,6 @@ import { ProductsComponent } from "./products/products.component";
 import { StatisticComponent } from "./statistic/statistic.component";
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
 import { ProfileComponent } from "./profile/profile.component";
-import { ProfileDetailsComponent } from "./profile-details/profile-details.component";
 import { AuthRegisterDialogComponent } from "./auth-register-dialog/auth-register-dialog.component";
 import { ErrorComponent as ErrorDialogComponent } from "./error-dialog/error.component";
 import { MyProductsComponent } from "./my-products/my-products.component";
@@ -67,7 +66,6 @@ import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-acc
     StatisticComponent,
     ProductDetailComponent,
     ProfileComponent,
-    ProfileDetailsComponent,
     AuthRegisterDialogComponent,
     ErrorDialogComponent,
     MyProductsComponent,

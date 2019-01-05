@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit
       if (response.errorMessage === null)
       {
         /* this.profileChangeEmitter.emit(this.userInfo); */
-        console.log(this.userInfo);
+        /* console.log(this.userInfo); */
         this.authService.loadUserInfo();
         this.snackbar.open('zmiana zaakceptowana', null, {
           duration: 3000,
@@ -125,7 +125,6 @@ export class ProfileComponent implements OnInit
     newRole.role = "User";
     newRole.optionalCompanyId = 0;
 
-    console.log('hello');
     this.dataService.postObjectByUrl(newRole, 'api/Role/').subscribe(result => {
       if (result.errorMessage === null)
       {

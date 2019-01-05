@@ -49,7 +49,7 @@ export class NewPasswordDialogComponent implements OnInit
     userCredentials.email = this.authService.currentUserEmail;
     userCredentials.password = this.changePassword.oldPassword;
 
-    console.log(userCredentials);
+    /* console.log(userCredentials); */
 
     this.dataService.postObjectByUrl(this.changePassword, 'api/Account/ChangePassword').subscribe(result => {
       if (result.errorMessage === null)
