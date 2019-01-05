@@ -16,7 +16,9 @@
       </mat-expansion-panel-header>
       <mat-selection-list>
         <mat-list-item *ngFor="let product of company.products">
-          {{ product.name }}
+          <button mat-button>{{ product.name }}</button>
+          <span class="fill-remaining-space"></span>
+          <button mat-button><mat-icon>search</mat-icon></button>
         </mat-list-item>
       </mat-selection-list>
     </mat-expansion-panel>
