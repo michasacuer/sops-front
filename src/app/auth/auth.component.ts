@@ -72,9 +72,9 @@ export class AuthComponent implements OnInit {
         userInfo: this.userInfo
       }
     });
-    dialogRef.componentInstance.profileChangeEmitter.subscribe(updatedUserInfo => {
+/*     dialogRef.componentInstance.profileChangeEmitter.subscribe(updatedUserInfo => {
       this.userInfo = Object.assign({}, updatedUserInfo);
-    });
+    }); */
   }
 
   onLogoutClick() {

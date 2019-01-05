@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <mat-card fxFlex="33%">
+    <mat-form-field>
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        matInput
+        placeholder="Search..."
+      />
+    </mat-form-field>
+    <mat-expansion-panel
+      *ngFor="let company of (companies | search: searchText); let i = inedx"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ company.name }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-selection-list>
+        <mat-list-item *ngFor="let product of company.products">
+          <button mat-button>{{ product.name }}</button>
+          <span class="fill-remaining-space"></span>
+          <button mat-button><mat-icon>search</mat-icon></button>
+        </mat-list-item>
+      </mat-selection-list>
+    </mat-expansion-panel>
+  </mat-card>
+</div>

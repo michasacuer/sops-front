@@ -7,6 +7,7 @@ import { CompaniesComponent } from '../companies/companies.component';
 import { NewPasswordDialogComponent } from '../new-password-dialog/new-password-dialog.component';
 import { AuthService } from '../auth.service';
 import { ChangeRole } from '../models/change-role';
+import { DeleteAccountDialogComponent } from '../delete-account-dialog/delete-account-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,32 +17,46 @@ import { ChangeRole } from '../models/change-role';
 export class ProfileComponent implements OnInit
 {
   private userInfo: UserInfo;
+  private userEmail: string;
+  private userName: string;
+  private userSurname: string;
   private userCompany: Company;
-  public profileChangeEmitter = new EventEmitter();
+  /* public profileChangeEmitter = new EventEmitter(); */
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
               private dialogRef: MatDialogRef<ProfileComponent>,
+              private dialog: MatDialog,
               private dataService: DataService,
               private authService: AuthService, 
               private newPasswordDialog: MatDialog,
               private snackbar: MatSnackBar)
   {
-    this.userInfo = Object.assign({}, data.userInfo);
+  }
+
+  ngOnInit()
+  {
+    this.userInfo = Object.assign({}, this.data.userInfo);
     this.dataService.getObjectByUrl(Company, 'api/Company/' + this.userInfo.companyId).subscribe(result => {
       this.userCompany = result.object;
     });
   }
 
-  ngOnInit() {
-  }
-
-  onChangeUserInfoClick()
+  sendUpdateUserRequest()
   {
     this.dataService.putObjectByUrl(this.userInfo, 'api/User/Profile').subscribe(response => {
       if (response.errorMessage === null)
       {
-        this.profileChangeEmitter.emit(this.userInfo);
+        /* this.profileChangeEmitter.emit(this.userInfo); */
+        console.log(this.userInfo);
+        this.authService.loadUserInfo();
         this.snackbar.open('zmiana zaakceptowana', null, {
+          duration: 3000,
+          panelClass: ['my-snackbar']
+        });
+      }
+      else
+      {
+        this.snackbar.open('coś nie tak', null, {
           duration: 3000,
           panelClass: ['my-snackbar']
         });
@@ -49,19 +64,37 @@ export class ProfileComponent implements OnInit
     });
   }
 
+  onChangeUserEmailClick()
+  {
+    this.userInfo.email = this.userEmail;
+    this.sendUpdateUserRequest();
+  }
+
+  onChangeUserNameClick()
+  {
+    this.userInfo.name = this.userName;
+    this.sendUpdateUserRequest();
+  }
+
+  onChangeUserSurnameClick()
+  {
+    this.userInfo.surname = this.userSurname;
+    this.sendUpdateUserRequest();
+  }
+
   onEmailKeyup(newEmail: any)
   {
-    this.userInfo.email = newEmail;
+    this.userEmail = newEmail;
   }
 
   onNameKeyup(newName: any)
   {
-    this.userInfo.name = newName;
+    this.userName = newName;
   }
 
   onSurnameKeyup(newSurname: any)
   {
-    this.userInfo.suername = newSurname;
+    this.userSurname = newSurname;
   }
 
   onNewPasswordClick()
@@ -71,15 +104,15 @@ export class ProfileComponent implements OnInit
 
   onDeleteAccountClick()
   {
-    console.log(this.userInfo);
-    this.dataService.deleteUser(this.userInfo, 'api/Account').subscribe(result => {
+    const deleteAccountDialogRef = this.dialog.open(DeleteAccountDialogComponent);
+    /* this.dataService.deleteObjectByFullUrl('api/Account').subscribe(result => {
       console.log(result);
       if (result.errorMessage === null)
       {
         this.authService.signOut();
         this.dialogRef.close();
       }
-    });
+    }); */
   }
 
   onLeaveClick()

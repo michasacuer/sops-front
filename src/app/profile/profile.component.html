@@ -11,7 +11,7 @@
       <mat-form-field>
         <input matInput placeholder="Email" value="{{ userInfo.email }}"
                #newEmail (keyup)="onEmailKeyup( newEmail.value )">
-        <mat-icon mat-list-icon (click)="onChangeUserInfoClick()" 
+        <mat-icon mat-list-icon (click)="onChangeUserEmailClick()" 
                   matTooltip="click to change email" 
                   matTooltipPosition="above">
         create
@@ -23,7 +23,7 @@
       <mat-form-field>
         <input matInput placeholder="Name" value="{{ userInfo.name }}"
                #newName (keyup)="onNameKeyup( newName.value )">
-        <mat-icon mat-list-icon (click)="onChangeUserInfoClick()" 
+        <mat-icon mat-list-icon (click)="onChangeUserNameClick()" 
                   matTooltip="click to change name" 
                   matTooltipPosition="above">
         create
@@ -35,7 +35,7 @@
     <mat-form-field>
       <input matInput placeholder="Surname" value="{{ userInfo.surname }}"
              #newSurname (keyup)="onSurnameKeyup( newSurname.value )">
-      <mat-icon mat-list-icon (click)="onChangeUserInfoClick()" 
+      <mat-icon mat-list-icon (click)="onChangeUserSurnameClick()" 
                 matTooltip="click to change surname" 
                 matTooltipPosition="above">
       create
@@ -50,7 +50,7 @@
     </div>
   </mat-list-item>
 
-  <div *ngIf="userInfo.role === 'Employee'">
+  <div *ngIf="userInfo.role === 'Employee' && userCompany !== undefined">
     <mat-divider id="user-company-divider"></mat-divider>
 
     <h3 mat-subheader id="company-header">Employed in {{ userCompany.name }}</h3>

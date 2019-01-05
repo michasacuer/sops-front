@@ -3,7 +3,7 @@ import { editable, displayName } from "../model-decorators/display-decorators";
 export class UserInfo {
   id: string;
   name: string;
-  suername: string;
+  surname: string;
   phoneNumber: number;
   email: string;
   role: string;

@@ -41,6 +41,6 @@ export class Company {
   @editable
   joinDate: Date;
 
-  products: Product[] = [];
-  employees: Employee[] = [];
+  products: Product[];
+  employees: Employee[];
 }

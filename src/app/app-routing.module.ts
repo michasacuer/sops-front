@@ -9,6 +9,7 @@ import { ProductDetailComponent } from "./product-detail/product-detail.componen
 import { MyProductsComponent } from "./my-products/my-products.component";
 import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-detail-ratings.component";
 import { EmployeeCompanyComponent } from "./employee-company/employee-company.component";
+import { CompanyProductsComponent } from './company-products/company-products.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -18,8 +19,8 @@ const routes: Routes = [
   { path: "admin/products/detail/:id", component: ProductDetailComponent },
   { path: "admin/myproducts/detail/:id", component: ProductDetailComponent },
   { path: "companies", component: EmployeeCompanyComponent },
-  { path: "companies/detail/:id", component: CompanyDetailComponent },
-  { path: "products", component: ProductsComponent },
+  { path: "companies/product/detail/:id", component: ProductDetailComponent },
+  { path: "products", component: CompanyProductsComponent },
   { path: "products/detail/:id", component: ProductDetailComponent },
   { path: "myproducts/detail/:id", component: ProductDetailComponent },
   { path: "profile", component: ProfileComponent },

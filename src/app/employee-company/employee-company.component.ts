@@ -14,7 +14,7 @@ export class EmployeeCompanyComponent implements OnInit {
   company: Company = new Company();
   companyProducts: Product[] = [];
   profileDetails: ProfileDetails = new ProfileDetails();
-  selectedProduct: Product = new Product();
+  selectedProduct: Product;
   newProduct: Product;
   submitEmitter = new EventEmitter();
   modelState = new ModelState();
@@ -42,10 +42,13 @@ export class EmployeeCompanyComponent implements OnInit {
           .subscribe(result => {
             this.errorService.showError(result);
             this.company = result.object;
-            this.companyProducts = this.company.products;
+            console.log(this.company.products);
+            for (const item of this.company.products) {
+              this.companyProducts.push(Object.assign(new Product(), item));
+            }
             this.newProduct = new Product();
             this.newProduct.companyId = this.company.id;
-            console.log(this.newProduct.companyId);
+            console.log(this.company);
           });
       });
   }
@@ -56,7 +59,9 @@ export class EmployeeCompanyComponent implements OnInit {
 
   delete(product: Product): void {
     this.companyProducts = this.companyProducts.filter(p => p !== product);
-    this.dataService.deleteObject(product).subscribe();
+    this.dataService
+      .deleteObjectByFullUrl(`api/Product/${product.id}`)
+      .subscribe();
   }
 
   add(name: string): void {

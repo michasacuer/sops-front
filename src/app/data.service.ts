@@ -201,8 +201,7 @@ export class DataService {
     );
   }
 
-  public deleteUser<T>(
-    obj: T,
+  public deleteObjectByFullUrl<T>(
     relativeUrl: string
   ): Observable<DataResponse<any>> {
     const url = `${this.api.getBaseUrl()}${relativeUrl}`;
@@ -210,7 +209,7 @@ export class DataService {
       map((input: Object, indx: number) => {
         return new DataResponse(input);
       }),
-      catchError(this.handleError<T>(`get${obj.constructor.name}`))
+      catchError(this.handleError<T>(`get${relativeUrl}`))
     );
   }
 

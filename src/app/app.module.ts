@@ -32,6 +32,7 @@ import {
   MatTooltipModule,
   MatSnackBarModule
 } from "@angular/material";
+import { MatExpansionModule } from "@angular/material/expansion";
 import { AuthLoginDialogComponent } from "./auth-login-dialog/auth-login-dialog.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ProductsComponent } from "./products/products.component";
@@ -50,6 +51,8 @@ import { NewsComponent } from "./news/news.component";
 import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-detail-ratings.component";
 import { EmployeeCompanyComponent } from "./employee-company/employee-company.component";
 import { NewPasswordDialogComponent } from './new-password-dialog/new-password-dialog.component';
+import { CompanyProductsComponent } from "./company-products/company-products.component";
+import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,9 @@ import { NewPasswordDialogComponent } from './new-password-dialog/new-password-d
     NewsComponent,
     ProductDetailRatingsComponent,
     EmployeeCompanyComponent,
-    NewPasswordDialogComponent
+    NewPasswordDialogComponent,
+    CompanyProductsComponent,
+    DeleteAccountDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +103,8 @@ import { NewPasswordDialogComponent } from './new-password-dialog/new-password-d
     MatGridListModule,
     MatTooltipModule,
     MatSnackBarModule,
+
+    MatExpansionModule,
     StarRatingModule.forRoot()
   ],
   providers: [
