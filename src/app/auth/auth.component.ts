@@ -8,6 +8,7 @@ import { EventEmitter } from "protractor";
 import { AuthRegisterDialogComponent } from "../auth-register-dialog/auth-register-dialog.component";
 import { clippyRef } from "../../assets/clippy/clippy-ref";
 import { ErrorService } from "../error.service";
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: "app-auth",
@@ -58,6 +59,21 @@ export class AuthComponent implements OnInit {
           );
         }
       );
+    });
+  }
+
+  onProfileClick() {
+    let dialogRef = this.dialog.open(ProfileComponent, {
+      position: {
+        top: '64px',
+        right: '135.38px',
+      },
+      data: {
+        userInfo: this.userInfo
+      }
+    });
+    dialogRef.componentInstance.profileChangeEmitter.subscribe(updatedUserInfo => {
+      this.userInfo = Object.assign({}, updatedUserInfo);
     });
   }
 

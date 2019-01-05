@@ -1,10 +1,15 @@
 <div>
-  <div *ngIf='userInfo'>
-    <span>Hello {{ userInfo.email }}!</span>
+  <div *ngIf='userInfo' fxLayout='row'>
+    
+    <button type="button" mat-button (click)='onProfileClick()'>
+      <mat-icon>account_circle</mat-icon> {{ userInfo.name }} {{ userInfo.surname }}
+    </button>
+
     <button type='button' mat-button (click)='onLogoutClick()'>
       <mat-icon>exit_to_app</mat-icon>
       Logout
     </button>
+
   </div>
   <div *ngIf='!userInfo' fxLayout='row'>
     <div fxFlex>

@@ -4,17 +4,6 @@
     SOPS
   </a>
   <a
-    href="/profile"
-    mat-button
-    *ngIf="
-      auth.currentUserRole == 'Administrator' ||
-      auth.currentUserRole == 'Employee'
-    "
-  >
-    <mat-icon>account_circle</mat-icon>
-    Profile
-  </a>
-  <a
     href="/myproducts"
     mat-button
     *ngIf="

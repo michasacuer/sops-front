@@ -94,3 +94,8 @@ header .mat-display-4 {
 .model-form mat-form-field {
   width: 100%;
 }
+
+.mat-tooltip
+{
+	font-size: 16px !important;
+}

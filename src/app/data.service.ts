@@ -145,6 +145,16 @@ export class DataService {
     );
   }
 
+  public putObjectByUrl<T>(obj: T, relativeUrl: string): Observable<DataResponse<any>> {
+    const url = `${this.api.getBaseUrl()}${relativeUrl}?id=${(<any>obj).id}`;
+    return this.http.put(url, obj).pipe(
+      map((input: Object, indx: number) => {
+        return new DataResponse(input);
+      }),
+      catchError(this.handleError<any>(`update${obj.constructor.name}`))
+    );
+  }
+
   public postObject<T>(obj: T): Observable<DataResponse<any>> {
     const url = this.getUrl(obj.constructor);
     return this.http.post<T>(url, obj).pipe(
@@ -183,6 +193,19 @@ export class DataService {
     relativeUrl: string
   ): Observable<DataResponse<any>> {
     const url = `${this.getUrl(obj.constructor)}${relativeUrl}`;
+    return this.http.delete<T>(url).pipe(
+      map((input: Object, indx: number) => {
+        return new DataResponse(input);
+      }),
+      catchError(this.handleError<T>(`get${obj.constructor.name}`))
+    );
+  }
+
+  public deleteUser<T>(
+    obj: T,
+    relativeUrl: string
+  ): Observable<DataResponse<any>> {
+    const url = `${this.api.getBaseUrl()}${relativeUrl}`;
     return this.http.delete<T>(url).pipe(
       map((input: Object, indx: number) => {
         return new DataResponse(input);

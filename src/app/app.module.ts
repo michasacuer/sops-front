@@ -28,7 +28,9 @@ import {
   MatListModule,
   MatBadgeModule,
   MatTabsModule,
-  MatGridListModule
+  MatGridListModule,
+  MatTooltipModule,
+  MatSnackBarModule
 } from "@angular/material";
 import { AuthLoginDialogComponent } from "./auth-login-dialog/auth-login-dialog.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -47,6 +49,7 @@ import { MyProductsRatingsComponent } from "./my-products-ratings/my-products-ra
 import { NewsComponent } from "./news/news.component";
 import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-detail-ratings.component";
 import { EmployeeCompanyComponent } from "./employee-company/employee-company.component";
+import { NewPasswordDialogComponent } from './new-password-dialog/new-password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,8 @@ import { EmployeeCompanyComponent } from "./employee-company/employee-company.co
     MyProductsRatingsComponent,
     NewsComponent,
     ProductDetailRatingsComponent,
-    EmployeeCompanyComponent
+    EmployeeCompanyComponent,
+    NewPasswordDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +96,8 @@ import { EmployeeCompanyComponent } from "./employee-company/employee-company.co
     MatBadgeModule,
     MatTabsModule,
     MatGridListModule,
+    MatTooltipModule,
+    MatSnackBarModule,
     StarRatingModule.forRoot()
   ],
   providers: [
@@ -105,6 +111,8 @@ import { EmployeeCompanyComponent } from "./employee-company/employee-company.co
   entryComponents: [
     AuthLoginDialogComponent,
     AuthRegisterDialogComponent,
+    ProfileComponent,
+    NewPasswordDialogComponent,
     ErrorDialogComponent
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,67 @@
+#user-header
+{
+	margin-bottom: 5px;
+	font-size: 24px;
+	color: black;
+}
+
+#company-header
+{
+	margin-bottom: 5px;
+	font-size: 16px;
+	color: black;
+}
+
+input
+{
+	width: 85%;
+}
+
+mat-icon
+{
+	width: 15%;
+	position: absolute;
+	right: 0px;
+	bottom: 1px;
+	cursor: pointer;
+}
+
+mat-form-field
+{
+	width: 100%;
+}
+
+#user-actions
+{
+	width: 100%;
+}
+
+#user-actions > button
+{
+	margin: 2px;
+}
+
+#user-actions-delete-account
+{
+	color: red;
+}
+
+#user-company-divider
+{
+	margin: 5px;
+}
+
+::ng-deep snack-bar-container.my-snackbar {
+	background: tomato;
+	display: block;
+	min-height: 50px;
+	min-width: 70px;
+	margin-bottom: 300px;
+
+	text-align: center;
+  }
+  
+  ::ng-deep .my-snackbar .mat-simple-snackbar {
+	color: white;
+	font-size: 24px;
+  }
