@@ -22,6 +22,7 @@ export class AuthLoginDialogComponent implements OnInit {
   ngOnInit() {}
   onLoginClick() {
     this.submitEmitter.emit();
+    console.log(this.userCredentials);
     this.auth.signIn(this.userCredentials).subscribe(response => {
       if (response.object) {
         this.dialogRef.close(this.userCredentials);

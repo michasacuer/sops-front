@@ -26,10 +26,29 @@
 
     clippy.load('Clippy', function (agent) {
       clippyRef = agent;
-      window.setInterval(function () {
+
+      window.setInterval(function ()
+      {
         agent.animate();
+        if (Math.random() > 0.9)
+        {
+          const textSelector = Math.random();
+
+          if (textSelector < 0.5)
+          {
+            agent.speak('Did you know that I was created by Microsoft?    ');
+          }
+          else
+          {
+            agent.speak('Potrafię mówić po polsku, angielsku i portugalsku.    ');
+          }
+        }
       }, 8000);
+
+      agent.moveTo(-50, -50);
       agent.show();
+      agent.moveTo(100, 130);
+      agent.speak('Welcome to SPOS        ');
       agent.animate();
     });
   </script>

@@ -99,3 +99,26 @@ header .mat-display-4 {
 {
 	font-size: 16px !important;
 }
+
+.clippy {
+  z-index: 9999;
+}
+
+.clippy-balloon {
+  z-index: 9999;
+}
+
+::ng-deep snack-bar-container.my-snackbar {
+	background: tomato;
+	display: block;
+	min-height: 50px;
+	min-width: 70px;
+	margin-bottom: 300px;
+
+	text-align: center;
+  }
+  
+  ::ng-deep .my-snackbar .mat-simple-snackbar {
+	color: white;
+	font-size: 24px;
+  }

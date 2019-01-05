@@ -8,6 +8,7 @@ import { NewPasswordDialogComponent } from '../new-password-dialog/new-password-
 import { AuthService } from '../auth.service';
 import { ChangeRole } from '../models/change-role';
 import { DeleteAccountDialogComponent } from '../delete-account-dialog/delete-account-dialog.component';
+import { CompanyDeleteRequest } from '../models/company-delete-request';
 
 @Component({
   selector: 'app-profile',
@@ -104,15 +105,17 @@ export class ProfileComponent implements OnInit
 
   onDeleteAccountClick()
   {
-    const deleteAccountDialogRef = this.dialog.open(DeleteAccountDialogComponent);
-    /* this.dataService.deleteObjectByFullUrl('api/Account').subscribe(result => {
-      console.log(result);
-      if (result.errorMessage === null)
+    const deleteAccountDialogRef = this.dialog.open(DeleteAccountDialogComponent).afterClosed().subscribe(result => {
+      if (result == true)
       {
-        this.authService.signOut();
-        this.dialogRef.close();
+        this.dataService.deleteObjectByFullUrl('api/Account').subscribe(result => {
+        if (result.errorMessage === null)
+        {
+          this.authService.signOut();
+          this.dialogRef.close();
+        }});
       }
-    }); */
+    });
   }
 
   onLeaveClick()
@@ -129,18 +132,28 @@ export class ProfileComponent implements OnInit
         this.snackbar.open('papa firmo', null, {
           duration: 3000,
           panelClass: ['my-snackbar']
-        }); 
-        this.authService.signOut();
-        this.dialogRef.close();
+        });
+        this.userCompany = undefined;
+        this.userInfo.role = "User";
+        this.authService.loadUserInfo();
       }
     });
   }
 
   onDeleteRequestClick()
   {
-    this.snackbar.open('wysłano żądanie usunięcia (żartowałem)', null, {
-      duration: 3000,
-      panelClass: ['my-snackbar']
-    }); 
+    const companyDeleteRequest = new CompanyDeleteRequest();
+    companyDeleteRequest.userId = this.authService.currentUserId;
+    companyDeleteRequest.companyId = this.userCompany.id;
+
+    this.dataService.postCompanyDeleteRequest(companyDeleteRequest, 'api/Company/DeleteRequest').subscribe(result => {
+      if (result.errorMessage === null)
+      {
+        this.snackbar.open('wysłano żądanie usunięcia', null, {
+          duration: 3000,
+          panelClass: ['my-snackbar']
+        }); 
+      }
+    });
   }
 }

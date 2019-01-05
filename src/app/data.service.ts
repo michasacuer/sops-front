@@ -3,6 +3,7 @@ import { Observable, of } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, map, tap } from "rxjs/operators";
 import { ApiService } from "./api.service";
+import { CompanyDeleteRequest } from './models/company-delete-request';
 
 export class ModelState<T> {
   constructor(private modelStateResponse: {} = null) {}
@@ -170,6 +171,19 @@ export class DataService {
     relativeUrl: string
   ): Observable<DataResponse<any>> {
     const url = `${this.api.getBaseUrl()}${relativeUrl}`;
+    return this.http.post<T>(url, obj).pipe(
+      map((input: Object, indx: number) => {
+        return new DataResponse(input);
+      }),
+      catchError(this.handleError<T>(`add${obj.constructor.name}`))
+    );
+  }
+
+  public postCompanyDeleteRequest<T>(
+    obj: CompanyDeleteRequest,
+    relativeUrl: string,
+  ): Observable<DataResponse<any>> {
+    const url = `${this.api.getBaseUrl()}${relativeUrl}?userId=${obj.userId}&companyId=${obj.companyId}`;
     return this.http.post<T>(url, obj).pipe(
       map((input: Object, indx: number) => {
         return new DataResponse(input);

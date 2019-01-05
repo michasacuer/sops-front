@@ -120,6 +120,7 @@ import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-acc
     AuthRegisterDialogComponent,
     ProfileComponent,
     NewPasswordDialogComponent,
+    DeleteAccountDialogComponent,
     ErrorDialogComponent
   ],
   bootstrap: [AppComponent]

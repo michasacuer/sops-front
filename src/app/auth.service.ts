@@ -96,6 +96,10 @@ export class AuthService {
     return this.userData.userInfo == null ? null : this.userData.userInfo.id;
   }
 
+  public get currentUserEmail(): string {
+    return this.userData.userInfo.email == null ? null : this.userData.userInfo.email;
+  }
+
   public get currentUserRole(): string {
     return this.userData.userInfo == null ? 'Guest' : this.userData.userInfo.role;
   }

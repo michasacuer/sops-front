@@ -12,10 +12,16 @@ export class AuthRegisterDialogComponent implements OnInit {
   public userRegister: UserRegister = new UserRegister();
   public submitEmitter = new EventEmitter();
   public registerEmitter = new EventEmitter();
+  private theFirstTime = true;
 
   constructor(public dialogRef: MatDialogRef<AuthRegisterDialogComponent>) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+    clippyRef.stop();
+    clippyRef.stopCurrent();
+    clippyRef.moveTo(290, 355);
+    clippyRef.speak('I will assist you during registration');
   }
 
   onRegisterClick() {
@@ -24,17 +30,29 @@ export class AuthRegisterDialogComponent implements OnInit {
     if (this.userRegister.email === null ||
         this.userRegister.password === null ||
         this.userRegister.confirmPassword === null) {
+
         clippyRef.stop();
-        clippyRef.speak(`Look there!        `);
+        
+        if (this.theFirstTime === true) 
+        {
+           clippyRef.speak(`Look there!        `);
+           this.theFirstTime = false; 
+        }
         clippyRef.speak(`You forgot to enter some register data      .`);
 
+        
         return;
       }
 
     else if (this.userRegister.password !== this.userRegister.confirmPassword) {
       clippyRef.stop();
-      clippyRef.speak(`Look there!        `);
-      clippyRef.speak(`Oh no, bloody hell! Your password does not match confirm password.
+      
+      if (this.theFirstTime === true) 
+      {
+         clippyRef.speak(`Look there!        `);
+         this.theFirstTime = false; 
+      }
+      clippyRef.speak(`Oh no, it seems that Your password does not match confirm password.
                       I will not allow you in unless you correct it`);
 
       return;

@@ -36,6 +36,7 @@ export class AuthComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // this.auth.signIn(result);
+        clippyRef.speak('welcome back ' + this.userInfo.name);
       }
     });
   }
@@ -60,6 +61,11 @@ export class AuthComponent implements OnInit {
         }
       );
     });
+
+    dialogRef.afterClosed().subscribe(() => {
+      clippyRef.stop();
+      clippyRef.moveTo(100, 130);
+    });
   }
 
   onProfileClick() {
@@ -80,5 +86,7 @@ export class AuthComponent implements OnInit {
   onLogoutClick() {
     console.log(this.auth.currentUserId);
     this.auth.signOut();
+
+    clippyRef.speak('I hope you get back');
   }
 }
