@@ -10,8 +10,6 @@
 
 --> do pobrania zeskanowanych produktow trzeba uzyc ScanCOntroller i metode GetScans (jesli ta metoda nie dziala to trzeba ja naprawic)
 
---> okno dialogowe dla Profile - beda tam wyswietlane infromacje na temat aktualnie zalogowanego uzytkownika, opcja usunięcia konta i prosta edycja [Oskar]
-
 --> pracownicy beda mogli dodawac i edytowac produkty swojej firmy ale reszta bedzie mogla tylko przegladac
 
 --> naprawa wylogowania - czasem nie chce wylogować
