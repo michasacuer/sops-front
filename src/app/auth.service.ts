@@ -55,17 +55,21 @@ export class AuthService {
         return;
       }
       this.userData.tokenResponse = credentialsResponse.object.access_token;
-      this.dataService.getObjectByUrl(UserInfo, 'Api/Account/UserInfo/').subscribe((response) => { // switchmap?
-        if (response.errorMessage) {
-        } else {
-          this.userData.userInfo = response.object;
-          this.cookieService.set(authUserDataCookieKey, JSON.stringify(this.userData));
-        }
-        this.userInfoSubject.next(response);
-      });
+      this.loadUserInfo();
     });
 
     return this.userInfoSubject;
+  }
+
+  public loadUserInfo() {
+    this.dataService.getObjectByUrl(UserInfo, 'Api/Account/UserInfo/').subscribe((response) => { // switchmap?
+      if (response.errorMessage) {
+      } else {
+        this.userData.userInfo = response.object;
+        this.cookieService.set(authUserDataCookieKey, JSON.stringify(this.userData));
+      }
+      this.userInfoSubject.next(response);
+    });
   }
 
   public register(registerData: UserRegister) {
