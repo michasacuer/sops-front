@@ -44,6 +44,7 @@ export class CompaniesComponent implements OnInit {
   }
 
   delete(company: Company): void {
+    console.log(company);
     this.companies = this.companies.filter(c => c !== company);
     this.dataService.deleteObject(company).subscribe();
   }
