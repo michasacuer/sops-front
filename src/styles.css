@@ -94,3 +94,11 @@ header .mat-display-4 {
 .model-form mat-form-field {
   width: 100%;
 }
+
+.clippy {
+  z-index: 9999;
+}
+
+.clippy-balloon {
+  z-index: 9999;
+}
