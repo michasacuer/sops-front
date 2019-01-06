@@ -1,4 +1,6 @@
 import { editable, displayName } from "../model-decorators/display-decorators";
+import { ProductRating } from "./product-rating";
+import { ProductComment } from "./product-comment";
 
 export class Product {
   id: number;
@@ -34,4 +36,7 @@ export class Product {
   @displayName("SuggestedPrice")
   @editable
   suggestedPrice: any;
+
+  productRatings: ProductRating[];
+  productComments: ProductComment[];
 }

@@ -30,6 +30,7 @@ export class ProductPanelComponent implements OnInit {
     }
     this.dataService.getObject(Product, +id).subscribe(result => {
       this.product = result.object;
+      console.log(result);
     });
   }
 }
