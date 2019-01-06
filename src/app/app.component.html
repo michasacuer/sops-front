@@ -8,7 +8,8 @@
     mat-button
     *ngIf="
       auth.currentUserRole == 'Administrator' ||
-      auth.currentUserRole == 'Employee'
+      auth.currentUserRole == 'Employee' ||
+      auth.currentUserRole == 'User'
     "
   >
     <mat-icon> category</mat-icon>
@@ -52,9 +53,16 @@
     >
     Products</a
   >
-  <a href="/products" mat-button *ngIf="auth.currentUserRole == 'Employee'">
+  <a
+    href="/products"
+    mat-button
+    *ngIf="
+      auth.currentUserRole == 'Employee' ||
+      auth.currentUserRole == 'Administrator' ||
+      auth.currentUserRole == 'User'
+    "
+  >
     <mat-icon
-      matBadge="E"
       matBadgeColor="accent"
       matBadgePosition="above before"
       matBadgeColor="primary"
