@@ -1,0 +1,13 @@
+<div fxLayout="column" fxLayoutAlign="center start">
+  <mat-card fxFlex="100%">
+    <mat-card *ngFor="let comment of product.productComments; let i = index">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ comment.user.userName }}</mat-card-title>
+        <mat-card-content>
+          <p>{{ comment.comment }}</p>
+        </mat-card-content>
+      </mat-card-header>
+    </mat-card>
+  </mat-card>
+</div>

@@ -5,6 +5,9 @@ import { Location } from "@angular/common";
 import { DataService } from "../data.service";
 import { FormGenerator } from "../form-generator/form-generator";
 import { Observable } from "rxjs";
+import { ProductAvarageRating } from "../models/product-avarage-rating";
+import { UserInfo } from "../models/user-info";
+import { ProfileDetails } from "../models/profile-details";
 
 @Component({
   selector: "app-product-panel",
@@ -13,6 +16,7 @@ import { Observable } from "rxjs";
 })
 export class ProductPanelComponent implements OnInit {
   product: Product = new Product();
+  rating: ProductAvarageRating = new ProductAvarageRating();
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
@@ -30,7 +34,26 @@ export class ProductPanelComponent implements OnInit {
     }
     this.dataService.getObject(Product, +id).subscribe(result => {
       this.product = result.object;
-      console.log(result);
+      this.dataService
+        .getObjectByUrl(
+          ProductAvarageRating,
+          `api/ProductRating/Avarage/${this.product.id}`
+        )
+        .subscribe(result => {
+          this.rating = result.object;
+        });
+      for (let i = 0; i < this.product.productComments.length; i++) {
+        this.dataService
+          .getObjectByUrl(
+            ProfileDetails,
+            `api/User/Profile?id=${
+              this.product.productComments[i].applicationUserId
+            }`
+          )
+          .subscribe(result => {
+            this.product.productComments[i].user = result.object;
+          });
+      }
     });
   }
 }

@@ -53,6 +53,8 @@ import { NewPasswordDialogComponent } from './new-password-dialog/new-password-d
 import { CompanyProductsComponent } from "./company-products/company-products.component";
 import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component';
 import { ProductPanelComponent } from './product-panel/product-panel.component';
+import { ProductPanelUiComponent } from './product-panel-ui/product-panel-ui.component';
+import { ProductPanelUiCommentsComponent } from './product-panel-ui-comments/product-panel-ui-comments.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { ProductPanelComponent } from './product-panel/product-panel.component';
     NewPasswordDialogComponent,
     CompanyProductsComponent,
     DeleteAccountDialogComponent,
-    ProductPanelComponent
+    ProductPanelComponent,
+    ProductPanelUiComponent,
+    ProductPanelUiCommentsComponent
   ],
   imports: [
     BrowserModule,

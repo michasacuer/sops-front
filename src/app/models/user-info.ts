@@ -1,5 +1,3 @@
-import { editable, displayName } from "../model-decorators/display-decorators";
-
 export class UserInfo {
   id: string;
   name: string;
