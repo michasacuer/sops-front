@@ -1,0 +1,16 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <mat-card fxFlex="50%">
+    <h2>Nazwa: {{ product.name | uppercase }}</h2>
+    <h4>Barcode: {{ product.barcode }}</h4>
+    <h4>Opis:</h4>
+    <mat-card> {{ product.description }}</mat-card>
+    <h4>ID Firmy: {{ product.companyId }}</h4>
+    <h4>Kraj pochodzenia: {{ product.countryOfOrigin }}</h4>
+    <h4>Data utworzenia: {{ product.creationDate }}</h4>
+    <h4>
+      Czas wygaśnięcia (w miesiącach)
+      {{ product.defaultExpirationDateInMonths }}
+    </h4>
+    <h4>Sugerowana cena: {{ product.suggestedPrice }} zł</h4>
+  </mat-card>
+</div>

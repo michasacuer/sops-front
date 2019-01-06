@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="center start">
-  <mat-card fxFlex="33%">
+  <mat-card fxFlex="70%">
     <mat-form-field>
       <input
         type="text"
@@ -13,12 +13,16 @@
     >
       <mat-expansion-panel-header>
         <mat-panel-title>{{ company.name }}</mat-panel-title>
+        <mat-panel-description *ngIf="panelOpenState == false">
+          Zobacz produkty firmy {{ company.name }}
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-selection-list>
         <mat-list-item *ngFor="let product of company.products">
-          <button mat-button>{{ product.name }}</button>
-          <span class="fill-remaining-space"></span>
-          <button mat-button><mat-icon>search</mat-icon></button>
+          {{ product.name }} <span class="fill-remaining-space"></span>
+          <button routerLink="panel/{{ product.id }}" mat-button>
+            <h5>Details</h5>
+          </button>
         </mat-list-item>
       </mat-selection-list>
     </mat-expansion-panel>

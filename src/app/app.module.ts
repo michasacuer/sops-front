@@ -52,6 +52,7 @@ import { EmployeeCompanyComponent } from "./employee-company/employee-company.co
 import { NewPasswordDialogComponent } from './new-password-dialog/new-password-dialog.component';
 import { CompanyProductsComponent } from "./company-products/company-products.component";
 import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component';
+import { ProductPanelComponent } from './product-panel/product-panel.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-acc
     EmployeeCompanyComponent,
     NewPasswordDialogComponent,
     CompanyProductsComponent,
-    DeleteAccountDialogComponent
+    DeleteAccountDialogComponent,
+    ProductPanelComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,8 @@ import { ProductDetailComponent } from "./product-detail/product-detail.componen
 import { MyProductsComponent } from "./my-products/my-products.component";
 import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-detail-ratings.component";
 import { EmployeeCompanyComponent } from "./employee-company/employee-company.component";
-import { CompanyProductsComponent } from './company-products/company-products.component';
+import { CompanyProductsComponent } from "./company-products/company-products.component";
+import { ProductPanelComponent } from "./product-panel/product-panel.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: "myproducts/detail/:id", component: ProductDetailComponent },
   { path: "profile", component: ProfileComponent },
   { path: "myproducts", component: MyProductsComponent },
-  { path: "myproducts/ratings/:id", component: ProductDetailRatingsComponent }
+  { path: "myproducts/ratings/:id", component: ProductDetailRatingsComponent },
+  { path: "products/panel/:id", component: ProductPanelComponent }
 ];
 
 @NgModule({
