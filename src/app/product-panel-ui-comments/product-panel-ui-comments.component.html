@@ -2,11 +2,16 @@
   <mat-card fxFlex="100%">
     <mat-card *ngFor="let comment of product.productComments; let i = index">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ comment.user.userName }}</mat-card-title>
-        <mat-card-content>
+        <mat-card-title *ngIf="product.productComments.length > 0">{{
+          comment.user.userName
+        }}</mat-card-title>
+        <mat-card-content *ngIf="product.productComments.length > 0">
           <p>{{ comment.comment }}</p>
+          <p>{{ comment.date }}</p>
         </mat-card-content>
+        <mat-card-title *ngIf="product.productComments.length < 0"
+          >Brak Komentarzy</mat-card-title
+        >
       </mat-card-header>
     </mat-card>
   </mat-card>
