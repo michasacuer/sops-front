@@ -15,9 +15,13 @@
       </mat-card-header>
     </mat-card>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Leave a comment" />
+      <input
+        [(ngModel)]="commentFromInput"
+        matInput
+        placeholder="Leave a comment"
+      />
     </mat-form-field>
     <span class="fill-remaining-space"></span
-    ><button mat-raised-button>Submit</button>
+    ><button (click)="submitComment()" mat-raised-button>Submit</button>
   </mat-card>
 </div>
