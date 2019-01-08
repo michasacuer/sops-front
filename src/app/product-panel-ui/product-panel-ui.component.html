@@ -1,9 +1,8 @@
 <div>
-  <h4>
-    Średnia ocena produktu:
-    {{ rating.avarageRating == 0 ? "Brak Ocen" : rating.avarageRating }}
-  </h4>
-  <h4>Komentarze:</h4>
+  <app-product-panel-ui-rating
+    [product]="product"
+    [rating]="rating"
+  ></app-product-panel-ui-rating>
 
   <app-product-panel-ui-comments
     [product]="product"

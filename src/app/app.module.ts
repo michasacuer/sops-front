@@ -30,7 +30,8 @@ import {
   MatTabsModule,
   MatGridListModule,
   MatTooltipModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSelectModule
 } from "@angular/material";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { AuthLoginDialogComponent } from "./auth-login-dialog/auth-login-dialog.component";
@@ -49,12 +50,13 @@ import { MyProductsRatingsComponent } from "./my-products-ratings/my-products-ra
 import { NewsComponent } from "./news/news.component";
 import { ProductDetailRatingsComponent } from "./product-detail-ratings/product-detail-ratings.component";
 import { EmployeeCompanyComponent } from "./employee-company/employee-company.component";
-import { NewPasswordDialogComponent } from './new-password-dialog/new-password-dialog.component';
+import { NewPasswordDialogComponent } from "./new-password-dialog/new-password-dialog.component";
 import { CompanyProductsComponent } from "./company-products/company-products.component";
-import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component';
-import { ProductPanelComponent } from './product-panel/product-panel.component';
-import { ProductPanelUiComponent } from './product-panel-ui/product-panel-ui.component';
-import { ProductPanelUiCommentsComponent } from './product-panel-ui-comments/product-panel-ui-comments.component';
+import { DeleteAccountDialogComponent } from "./delete-account-dialog/delete-account-dialog.component";
+import { ProductPanelComponent } from "./product-panel/product-panel.component";
+import { ProductPanelUiComponent } from "./product-panel-ui/product-panel-ui.component";
+import { ProductPanelUiCommentsComponent } from "./product-panel-ui-comments/product-panel-ui-comments.component";
+import { ProductPanelUiRatingComponent } from "./product-panel-ui-rating/product-panel-ui-rating.component";
 
 @NgModule({
   declarations: [
@@ -83,7 +85,8 @@ import { ProductPanelUiCommentsComponent } from './product-panel-ui-comments/pro
     DeleteAccountDialogComponent,
     ProductPanelComponent,
     ProductPanelUiComponent,
-    ProductPanelUiCommentsComponent
+    ProductPanelUiCommentsComponent,
+    ProductPanelUiRatingComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +110,7 @@ import { ProductPanelUiCommentsComponent } from './product-panel-ui-comments/pro
     MatGridListModule,
     MatTooltipModule,
     MatSnackBarModule,
-
+    MatSelectModule,
     MatExpansionModule,
     StarRatingModule.forRoot()
   ],
