@@ -17,7 +17,9 @@
     <mat-card fxFlex="50%">
       <app-product-panel-ui
         [product]="product"
+        (productChange)="onProductChange($event)"
         [rating]="rating"
+        (ratingChange)="onRatingChange($event)"
       ></app-product-panel-ui>
     </mat-card>
   </mat-card>

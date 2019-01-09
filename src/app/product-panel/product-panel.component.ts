@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
 import { ProductAvarageRating } from "../models/product-avarage-rating";
 import { UserInfo } from "../models/user-info";
 import { ProfileDetails } from "../models/profile-details";
+import { ProductComment } from '../models/product-comment';
 
 @Component({
   selector: "app-product-panel",
@@ -17,6 +18,7 @@ import { ProfileDetails } from "../models/profile-details";
 export class ProductPanelComponent implements OnInit {
   product: Product = new Product();
   rating: ProductAvarageRating = new ProductAvarageRating();
+  
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
@@ -40,7 +42,8 @@ export class ProductPanelComponent implements OnInit {
           `api/ProductRating/Avarage/${this.product.id}`
         )
         .subscribe(result => {
-          this.rating = result.object;
+          /* this.rating = result.object; */
+          Object.assign(this.rating, result.object);
         });
       for (let i = 0; i < this.product.productComments.length; i++) {
         this.dataService
@@ -55,5 +58,38 @@ export class ProductPanelComponent implements OnInit {
           });
       }
     });
+  }
+
+  onRatingChange(newRating)
+  {
+    /* this.getProduct(); */
+    this.rating.avarageRating = newRating.avarageRating;
+    console.log('działa');
+  }
+
+  onProductChange(newComment)
+  {
+    /* this.getProduct(); */
+    this.product.productComments.push(newComment);
+
+    for (let i = 0; i < this.product.productComments.length; i++) {
+      this.dataService
+        .getObjectByUrl(
+          ProfileDetails,
+          `api/User/Profile?id=${
+            this.product.productComments[i].applicationUserId
+          }`
+        )
+        .subscribe(result => {
+          this.product.productComments[i].user = result.object;
+        });
+    }
+
+        console.log(JSON.stringify(newComment));
+        /* const newC = new ProductComment();
+        Object.assign(newC, newComment); */
+        console.log(this.product.productComments);
+        /* this.product.productComments. */
+        console.log('product emit top działa');
   }
 }

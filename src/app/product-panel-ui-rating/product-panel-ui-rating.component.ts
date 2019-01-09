@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Product } from "../models/product";
 import { ProductAvarageRating } from "../models/product-avarage-rating";
 import { ProductRating } from "../models/product-rating";
@@ -12,8 +12,12 @@ import { ErrorService } from "../error.service";
 })
 export class ProductPanelUiRatingComponent implements OnInit {
   @Input() product: Product;
+  @Output() productChange = new EventEmitter<Product>();
+  
   @Input() rating: ProductAvarageRating;
-  submitEmitter = new EventEmitter();
+  @Output() ratingChange = new EventEmitter<ProductAvarageRating>();
+
+  /* submitEmitter = new EventEmitter(); */
   modelState = new ModelState();
   value: number;
   newProductRating: ProductRating = new ProductRating();
@@ -32,17 +36,25 @@ export class ProductPanelUiRatingComponent implements OnInit {
       return;
     }
     this.newProductRating.rating = this.value;
-    this.submitEmitter.emit();
+    /* this.submitEmitter.emit(); */
     this.dataService
       .postObjectByUrl(
         this.newProductRating,
         `api/ProductRating/${this.product.id}`
       )
       .subscribe(result => {
-        if (result.object || !result.modelState.isOk()) {
+        if (result.errorMessage === null)
+        {
+          console.log('rating component: ok');
           this.modelState.update(result.modelState);
-          this.getAvarageRating();
-        } else {
+          this.getAvarageRating();        
+        }
+        else
+        {
+          console.log('rating component: error');
+          console.log(`api/ProductRating/${this.product.id}`);
+          console.log(result.object);
+          console.log(result.errorMessage);
           this.errorService.showError(result);
         }
       });
@@ -55,7 +67,13 @@ export class ProductPanelUiRatingComponent implements OnInit {
         `api/ProductRating/Avarage/${this.product.id}`
       )
       .subscribe(result => {
-        this.rating = result.object;
+        // this.rating = Object.assign({}, ) result.object;
+        /* Object.assign(this.rating, result.object); */
+        console.log('rating component-average: ok');
+        console.log(result.object);
+        /* this.newProductRating = result.object.avarageRating; */
+        this.ratingChange.emit(result.object);
+        /* console.log('rating component'); */
       });
   }
 }

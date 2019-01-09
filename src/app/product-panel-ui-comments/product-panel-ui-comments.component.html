@@ -3,8 +3,8 @@
   <mat-card fxFlex="100%">
     <mat-card *ngFor="let comment of product.productComments; let i = index">
       <mat-card-header>
-        <mat-card-title *ngIf="product.productComments.length > 0">{{
-          comment.user.userName
+        <mat-card-title>{{
+          comment.user?.userName
         }}</mat-card-title>
         <mat-card-content *ngIf="product.productComments.length > 0">
           <p>{{ comment.comment }}</p>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Product } from "../models/product";
 import { ProductAvarageRating } from "../models/product-avarage-rating";
 
@@ -9,7 +9,20 @@ import { ProductAvarageRating } from "../models/product-avarage-rating";
 })
 export class ProductPanelUiComponent implements OnInit {
   @Input() product: Product;
+  @Output() productChange = new EventEmitter<Product>();
+
   @Input() rating: ProductAvarageRating;
+  @Output() ratingChange = new EventEmitter();
+
+  onRatingChange(newRating)
+  {
+    this.ratingChange.emit(newRating);
+  }
+
+  onProductChange(newComment)
+  {
+    this.productChange.emit(newComment);
+  }
 
   constructor() {}
 
