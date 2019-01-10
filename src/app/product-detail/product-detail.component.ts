@@ -35,7 +35,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    window.history.back();
+    // window.history.back();
   }
 
   save(): void {

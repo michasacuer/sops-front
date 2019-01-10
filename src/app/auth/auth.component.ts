@@ -9,6 +9,7 @@ import { AuthRegisterDialogComponent } from "../auth-register-dialog/auth-regist
 import { clippyRef } from "../../assets/clippy/clippy-ref";
 import { ErrorService } from "../error.service";
 import { ProfileComponent } from '../profile/profile.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-auth",
@@ -21,7 +22,8 @@ export class AuthComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public dialog: MatDialog,
-    public errorService: ErrorService
+    public errorService: ErrorService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -86,6 +88,7 @@ export class AuthComponent implements OnInit {
   onLogoutClick() {
     this.auth.signOut();
 
+    this.router.navigate(['']);
     clippyRef.speak('I hope you get back');
   }
 }

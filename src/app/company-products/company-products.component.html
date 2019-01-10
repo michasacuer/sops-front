@@ -13,8 +13,8 @@
     >
       <mat-expansion-panel-header>
         <mat-panel-title>{{ company.name }}</mat-panel-title>
-        <mat-panel-description *ngIf="panelOpenState == false">
-          Zobacz produkty firmy {{ company.name }}
+        <mat-panel-description>
+          registered {{ company.products.length }} products
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-selection-list>
