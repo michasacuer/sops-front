@@ -1,10 +1,10 @@
 <mat-toolbar id="toolbar" color="warn" class="mat-elevation-z8">
-  <a href="" mat-button>
+  <a routerLink="" mat-button>
     <mat-icon>fastfood</mat-icon>
     SOPS
   </a>
   <a
-    href="/myproducts"
+    routerLink="/myproducts"
     mat-button
     *ngIf="
       auth.currentUserRole == 'Administrator' ||
@@ -16,7 +16,7 @@
     My products</a
   >
   <a
-    href="/admin/companies"
+    routerLink="/admin/companies"
     mat-button
     *ngIf="auth.currentUserRole == 'Administrator'"
   >
@@ -29,7 +29,7 @@
     >
     Companies</a
   >
-  <a href="/companies" mat-button *ngIf="auth.currentUserRole == 'Employee'">
+  <a routerLink="/companies" mat-button *ngIf="auth.currentUserRole == 'Employee'">
     <mat-icon
       matBadge="E"
       matBadgeColor="accent"
@@ -40,7 +40,7 @@
     Company</a
   >
   <a
-    href="/admin/products"
+    routerLink="/admin/products"
     mat-button
     *ngIf="auth.currentUserRole == 'Administrator'"
   >
@@ -54,7 +54,7 @@
     Products</a
   >
   <a
-    href="/products"
+    routerLink="/products"
     mat-button
     *ngIf="
       auth.currentUserRole == 'Employee' ||
