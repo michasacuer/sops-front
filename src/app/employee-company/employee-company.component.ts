@@ -43,6 +43,8 @@ export class EmployeeCompanyComponent implements OnInit {
             this.errorService.showError(result);
             this.company = result.object;
             console.log(this.company.products);
+
+            this.companyProducts = [];
             for (const item of this.company.products) {
               this.companyProducts.push(Object.assign(new Product(), item));
             }
@@ -78,7 +80,7 @@ export class EmployeeCompanyComponent implements OnInit {
   onProductAddClick(): void {
     this.submitEmitter.emit();
     this.dataService.postObject(this.newProduct).subscribe(result => {
-      if (result.object || !result.modelState.isOk()) {
+      if (result.errorMessage === null) {
         this.modelState.update(result.modelState);
         this.getCompany();
       } else {

@@ -1,4 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="center start">
+
   <mat-card fxFlex="33%">
     <app-form
       [model]="newProduct"
@@ -10,6 +11,7 @@
       Add
     </button>
   </mat-card>
+
   <mat-card fxFlex="33%">
     <h3>Jesteś zatrudniony w firmie: {{ company.name }}</h3>
     <mat-selection-list>
@@ -37,6 +39,7 @@
       </mat-list-item>
     </mat-selection-list>
   </mat-card>
+  
   <div fxFlex="33%">
     <app-product-detail [product]="selectedProduct"></app-product-detail>
   </div>
