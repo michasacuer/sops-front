@@ -37,7 +37,7 @@ export class ProductPanelUiCommentsComponent implements OnInit {
       .subscribe(result => {
         if (result.errorMessage === null)
         {
-          this.modelState.update(result.modelState);
+          // this.modelState.update(result.modelState);
           this.getComments();
         }
 /*         if (result.object || !result.modelState.isOk()) {
@@ -54,8 +54,9 @@ export class ProductPanelUiCommentsComponent implements OnInit {
     this.dataService
       .getObjectsByUrl(ProductComment, `api/ProductComment/${this.product.id}`)
       .subscribe(result => {
-        this.product.productComments = result.object;
-        console.log('to' + JSON.stringify(result.object));
+        // this.product.productComments = result.object;
+        this.newComment = result.object[this.product.productComments.length - 1];
+        // console.log('to' + JSON.stringify(result.object));
 
         this.onProductChange();
         console.log('comments lowest result' + result);
@@ -65,6 +66,6 @@ export class ProductPanelUiCommentsComponent implements OnInit {
   onProductChange()
   {
     console.log('product emit lowest');
-    this.productChange.emit(this.product.productComments[this.product.productComments.length - 1]);
+    this.productChange.emit(this.newComment);
   }
 }

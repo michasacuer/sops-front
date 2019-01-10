@@ -69,8 +69,25 @@ export class ProductPanelComponent implements OnInit {
 
   onProductChange(newComment)
   {
-    /* this.getProduct(); */
+    //console.log('banana: comments before: ' + JSON.stringify(this.product.productComments));
+    for(const comment of this.product.productComments)
+    {
+      console.log('banana: comment user before:' + comment.user);
+    }
+    console.log('banan: newComment user: ' + JSON.stringify(newComment.user));
+    
     this.product.productComments.push(newComment);
+
+    for(const comment of this.product.productComments)
+    {
+      console.log('banana: comment user after:' + comment.user);
+    }
+  }
+}
+
+
+     /* this.getProduct(); */
+    /* this.product.productComments.push(newComment);
 
     for (let i = 0; i < this.product.productComments.length; i++) {
       this.dataService
@@ -85,11 +102,10 @@ export class ProductPanelComponent implements OnInit {
         });
     }
 
-        console.log(JSON.stringify(newComment));
+        console.log(JSON.stringify(newComment)); */
         /* const newC = new ProductComment();
         Object.assign(newC, newComment); */
-        console.log(this.product.productComments);
+        //console.log(this.product.productComments);
         /* this.product.productComments. */
-        console.log('product emit top działa');
-  }
-}
+        //console.log('product emit top działa');
+  //}
