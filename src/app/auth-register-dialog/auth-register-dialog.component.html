@@ -2,6 +2,14 @@
 <div mat-dialog-content>
     <app-form [model]='userRegister' [submit]='submitEmitter'></app-form>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions fxLayout="row">
   <button mat-button (click)='onRegisterClick()' cdkFocusInitial>Register</button>
+
+  <div id="company-register-info">
+    If you want to register a company contact us:
+    <br>
+    email: sops@antoniuk.pl
+    <br>
+    phone: 123456789
+  </div>
 </div>
