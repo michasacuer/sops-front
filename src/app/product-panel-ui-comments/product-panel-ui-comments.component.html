@@ -1,23 +1,22 @@
 <div fxLayout="column" fxLayoutAlign="center start">
   <h4>Komentarze:</h4>
   <mat-card fxFlex="100%">
-    <mat-card *ngFor="let comment of product.productComments; let i = index">
+    <mat-card *ngFor="let comment of productComments; let i = index">
       <mat-card-header>
         <mat-card-title>{{
           comment.user?.userName
         }}</mat-card-title>
-        <mat-card-content *ngIf="product.productComments.length > 0">
+        <mat-card-content>
           <p>{{ comment.comment }}</p>
           <p>{{ comment.date }}</p>
         </mat-card-content>
-        <mat-card-title *ngIf="product.productComments.length < 0"
-          >Brak Komentarzy</mat-card-title
+        <mat-card-title *ngIf="productComments.length < 0">Brak Komentarzy</mat-card-title
         >
       </mat-card-header>
     </mat-card>
     <mat-form-field class="example-full-width">
       <input
-        [(ngModel)]="commentFromInput"
+        [(ngModel)]="newComment"
         matInput
         placeholder="Leave a comment"
       />

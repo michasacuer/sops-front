@@ -16,10 +16,10 @@
     </mat-card>
     <mat-card fxFlex="50%">
       <app-product-panel-ui
-        [product]="product"
-        (productChange)="onProductChange($event)"
-        [rating]="rating"
-        (ratingChange)="onRatingChange($event)"
+        [productComments]="product.productComments"
+        (newCommentSubmitted)="onNewCommentSubmitted($event)"
+        [averageRating]="averageRating"
+        (selectedRatingSubmitted)="onSelectedRatingSubmitted($event)"
       ></app-product-panel-ui>
     </mat-card>
   </mat-card>

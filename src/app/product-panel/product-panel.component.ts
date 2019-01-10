@@ -9,27 +9,31 @@ import { ProductAvarageRating } from "../models/product-avarage-rating";
 import { UserInfo } from "../models/user-info";
 import { ProfileDetails } from "../models/profile-details";
 import { ProductComment } from '../models/product-comment';
+import { ProductRating } from '../models/product-rating';
+import { ErrorService } from '../error.service';
 
 @Component({
   selector: "app-product-panel",
   templateUrl: "./product-panel.component.html",
   styleUrls: ["./product-panel.component.css"]
 })
-export class ProductPanelComponent implements OnInit {
+export class ProductPanelComponent implements OnInit 
+{
   product: Product = new Product();
-  rating: ProductAvarageRating = new ProductAvarageRating();
+  averageRating: ProductAvarageRating = new ProductAvarageRating();
   
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
-    private location: Location
-  ) {}
+    private errorService: ErrorService
+  ) { }
 
-  ngOnInit() {
-    this.getProduct();
+  ngOnInit() 
+  {
+    this.getProductAndCommentsAndAverageRatng();
   }
 
-  getProduct(): void {
+  getProductAndCommentsAndAverageRatng(): void {
     const id = this.route.snapshot.paramMap.get("id");
     if (id == null) {
       return;
@@ -42,8 +46,7 @@ export class ProductPanelComponent implements OnInit {
           `api/ProductRating/Avarage/${this.product.id}`
         )
         .subscribe(result => {
-          /* this.rating = result.object; */
-          Object.assign(this.rating, result.object);
+          Object.assign(this.averageRating, result.object);
         });
       for (let i = 0; i < this.product.productComments.length; i++) {
         this.dataService
@@ -60,52 +63,61 @@ export class ProductPanelComponent implements OnInit {
     });
   }
 
-  onRatingChange(newRating)
+  onSelectedRatingSubmitted(selectedRating: number)
   {
-    /* this.getProduct(); */
-    this.rating.avarageRating = newRating.avarageRating;
-    console.log('działa');
+    const newRating = new ProductRating();
+    newRating.rating = selectedRating;
+
+    this.dataService.postObjectByUrl(newRating, `api/ProductRating/${this.product.id}`)
+      .subscribe(result => {
+      if (result.errorMessage === null)
+      {
+        this.dataService.getObjectByUrl(ProductAvarageRating,
+          `api/ProductRating/Avarage/${this.product.id}`).subscribe(res => {
+            if (res.errorMessage === null)
+            {
+              this.averageRating.avarageRating = res.object.avarageRating; 
+            }
+            else
+            {
+              this.errorService.showError(res);
+            }
+          });
+      }
+      else
+      {
+        this.errorService.showError(result);
+      }
+    });
   }
 
-  onProductChange(newComment)
+  onNewCommentSubmitted(newComment: string)
   {
-    //console.log('banana: comments before: ' + JSON.stringify(this.product.productComments));
-    for(const comment of this.product.productComments)
-    {
-      console.log('banana: comment user before:' + comment.user);
-    }
-    console.log('banan: newComment user: ' + JSON.stringify(newComment.user));
-    
-    this.product.productComments.push(newComment);
+    const newCommendToSend = new ProductComment();
+    newCommendToSend.comment = newComment;
 
-    for(const comment of this.product.productComments)
-    {
-      console.log('banana: comment user after:' + comment.user);
-    }
-  }
-}
-
-
-     /* this.getProduct(); */
-    /* this.product.productComments.push(newComment);
-
-    for (let i = 0; i < this.product.productComments.length; i++) {
-      this.dataService
-        .getObjectByUrl(
-          ProfileDetails,
-          `api/User/Profile?id=${
-            this.product.productComments[i].applicationUserId
-          }`
-        )
+    this.dataService.postObjectByUrl(newCommendToSend, `api/ProductComment/${this.product.id}`)
         .subscribe(result => {
-          this.product.productComments[i].user = result.object;
-        });
+        if (result.errorMessage === null)
+        {
+          this.dataService.getObjectByUrl(ProfileDetails, 
+            `api/User/Profile?id=${result.object.applicationUserId}`).subscribe(res => 
+              {
+                if (res.errorMessage === null)
+                {
+                  result.object.user = res.object;
+                  this.product.productComments.push(result.object); 
+                }
+                else
+                {
+                  this.errorService.showError(res);
+                }
+              });   
+        }
+        else
+        {
+          this.errorService.showError(result);
+        }
+      });
     }
-
-        console.log(JSON.stringify(newComment)); */
-        /* const newC = new ProductComment();
-        Object.assign(newC, newComment); */
-        //console.log(this.product.productComments);
-        /* this.product.productComments. */
-        //console.log('product emit top działa');
-  //}
+}

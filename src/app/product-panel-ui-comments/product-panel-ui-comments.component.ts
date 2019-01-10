@@ -9,63 +9,27 @@ import { ProductComment } from "../models/product-comment";
   templateUrl: "./product-panel-ui-comments.component.html",
   styleUrls: ["./product-panel-ui-comments.component.css"]
 })
-export class ProductPanelUiCommentsComponent implements OnInit {
-  @Input() product: Product;
-  @Output() productChange = new EventEmitter();
+export class ProductPanelUiCommentsComponent implements OnInit 
+{
+  @Input()
+  productComments: Array<ProductComment>;
+  @Output()
+  newCommentSubmitted = new EventEmitter<string>();
 
-  commentFromInput: string;
-  submitEmitter = new EventEmitter();
-  modelState = new ModelState();
-  newComment: ProductComment = new ProductComment();
+  newComment: string = '';
 
-  constructor(
-    private dataService: DataService,
-    private errorService: ErrorService
-  ) {}
+  constructor() {}
 
   ngOnInit() {}
 
-  submitComment(): void {
-    if (this.commentFromInput == null) {
+  submitComment(): void 
+  {
+    if (this.newComment == null) 
+    {
       console.log("string empty");
       return;
     }
-    this.newComment.comment = this.commentFromInput;
-    /* this.submitEmitter.emit(); */
-    this.dataService
-      .postObjectByUrl(this.newComment, `api/ProductComment/${this.product.id}`)
-      .subscribe(result => {
-        if (result.errorMessage === null)
-        {
-          // this.modelState.update(result.modelState);
-          this.getComments();
-        }
-/*         if (result.object || !result.modelState.isOk()) {
-          
-        } */ 
-        else
-        {
-          this.errorService.showError(result);
-        }
-      });
-  }
 
-  getComments() {
-    this.dataService
-      .getObjectsByUrl(ProductComment, `api/ProductComment/${this.product.id}`)
-      .subscribe(result => {
-        // this.product.productComments = result.object;
-        this.newComment = result.object[this.product.productComments.length - 1];
-        // console.log('to' + JSON.stringify(result.object));
-
-        this.onProductChange();
-        console.log('comments lowest result' + result);
-      });
-  }
-
-  onProductChange()
-  {
-    console.log('product emit lowest');
-    this.productChange.emit(this.newComment);
+    this.newCommentSubmitted.emit(this.newComment);
   }
 }

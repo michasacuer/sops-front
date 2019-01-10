@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Product } from "../models/product";
 import { ProductAvarageRating } from "../models/product-avarage-rating";
+import { ProductComment } from '../models/product-comment';
 
 @Component({
   selector: "app-product-panel-ui",
@@ -8,23 +9,27 @@ import { ProductAvarageRating } from "../models/product-avarage-rating";
   styleUrls: ["./product-panel-ui.component.css"]
 })
 export class ProductPanelUiComponent implements OnInit {
-  @Input() product: Product;
-  @Output() productChange = new EventEmitter<Product>();
+  @Input()
+  productComments: Array<ProductComment>;
+  @Output()
+  newCommentSubmitted = new EventEmitter<string>();
 
-  @Input() rating: ProductAvarageRating;
-  @Output() ratingChange = new EventEmitter();
-
-  onRatingChange(newRating)
-  {
-    this.ratingChange.emit(newRating);
-  }
-
-  onProductChange(newComment)
-  {
-    this.productChange.emit(newComment);
-  }
+  @Input()
+  averageRating: ProductAvarageRating;
+  @Output()
+  selectedRatingSubmitted = new EventEmitter<number>();
 
   constructor() {}
 
   ngOnInit() {}
+
+  onSelectedRatingSubmitted(selectedRating: number)
+  {
+    this.selectedRatingSubmitted.emit(selectedRating);
+  }
+
+  onNewCommentSubmitted(newComment: string)
+  {
+    this.newCommentSubmitted.emit(newComment);
+  }
 }

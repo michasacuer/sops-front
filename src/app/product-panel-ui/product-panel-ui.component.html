@@ -1,12 +1,11 @@
 <div>
   <app-product-panel-ui-rating
-    [product]="product"
-    [rating]="rating"
-    (ratingChange)="onRatingChange($event)"
+    [averageRating]="averageRating"
+    (selectedRatingSubmitted)="onSelectedRatingSubmitted($event)"
   ></app-product-panel-ui-rating>
 
   <app-product-panel-ui-comments
-    [product]="product"
-    (productChange)="onProductChange($event)"
+    [productComments]="productComments"
+    (newCommentSubmitted)="onNewCommentSubmitted($event)"
   ></app-product-panel-ui-comments>
 </div>
