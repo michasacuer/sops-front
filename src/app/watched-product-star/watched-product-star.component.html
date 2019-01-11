@@ -1,0 +1,6 @@
+<mat-icon *ngIf="isWatched === true" class="star" color="warn" (click)="onFullStarClick()">
+	star
+</mat-icon>
+<mat-icon *ngIf="isWatched === false" class="star" color="warn" (click)="onEmptyStarClick()">
+	star_border
+</mat-icon>

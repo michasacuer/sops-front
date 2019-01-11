@@ -57,6 +57,7 @@ import { ProductPanelComponent } from "./product-panel/product-panel.component";
 import { ProductPanelUiComponent } from "./product-panel-ui/product-panel-ui.component";
 import { ProductPanelUiCommentsComponent } from "./product-panel-ui-comments/product-panel-ui-comments.component";
 import { ProductPanelUiRatingComponent } from "./product-panel-ui-rating/product-panel-ui-rating.component";
+import { WatchedProductStarComponent } from './watched-product-star/watched-product-star.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { ProductPanelUiRatingComponent } from "./product-panel-ui-rating/product
     ProductPanelComponent,
     ProductPanelUiComponent,
     ProductPanelUiCommentsComponent,
-    ProductPanelUiRatingComponent
+    ProductPanelUiRatingComponent,
+    WatchedProductStarComponent
   ],
   imports: [
     BrowserModule,

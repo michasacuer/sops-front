@@ -31,6 +31,7 @@ export class ProductPanelComponent implements OnInit
   ngOnInit() 
   {
     this.getProductAndCommentsAndAverageRatng();
+    console.log('product-panel: ' + JSON.stringify(this.product));
   }
 
   getProductAndCommentsAndAverageRatng(): void {
