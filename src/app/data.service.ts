@@ -227,6 +227,20 @@ export class DataService {
     );
   }
 
+  getImageByUrl(relativeImageUrl: string): Observable<Blob> 
+  {
+    const url = `${this.api.getBaseUrl()}${relativeImageUrl}`;
+    // console.log('image: service: url = ' + url);
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
+  getPdfByUrl(relativePdfUrl: string): Observable<Blob> 
+  {
+    const url = `${this.api.getBaseUrl()}${relativePdfUrl}`;
+    console.log('image: service: url = ' + url);
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
   private getUrl(type: Function): string {
     return `${this.api.getBaseUrl()}api/${type.name.toLowerCase()}/`;
   }

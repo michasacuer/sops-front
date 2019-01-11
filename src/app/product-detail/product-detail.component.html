@@ -1,8 +1,9 @@
 <div *ngIf="product">
   <mat-card>
-    <h2>{{ product.name | uppercase }}</h2>
+    <h2 >{{ product.name | uppercase }}</h2>
 
     <app-form [model]="product" [submit]="submitEmitter"></app-form>
+
     <button type="button" mat-button (click)="goBack()">
       <mat-icon>arrow_back</mat-icon>
       Back

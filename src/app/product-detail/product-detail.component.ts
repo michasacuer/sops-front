@@ -21,21 +21,22 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getProduct();
+    // this.getProduct();
   }
 
   getProduct(): void {
-    const id = this.route.snapshot.paramMap.get("id");
+/*     const id = this.route.snapshot.paramMap.get("id");
     if (id == null) {
       return;
     }
     this.dataService.getObject(Product, +id).subscribe(result => {
       this.product = result.object;
-    });
+    }); */
   }
 
   goBack(): void {
     // window.history.back();
+    console.log('go back: ' + JSON.stringify( this.product));
   }
 
   save(): void {
