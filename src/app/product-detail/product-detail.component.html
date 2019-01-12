@@ -7,16 +7,25 @@
     <app-form
     [model]="product"
     [modelState]="modelState"
-    [submit]="submitEmitter"
-  ></app-form>
+    [submit]="submitEmitter">
+    </app-form>
 
-    <button type="button" mat-button (click)="goBack()">
-      <mat-icon>arrow_back</mat-icon>
-      Back
-    </button>
-    <button type="button" mat-button (click)="save()">
-      <mat-icon> edit </mat-icon>
-      Save
-    </button>
+    <div fxLayout="row">
+      <button type="button" mat-button fxFlex="33%" matTooltip="accept changes to product"
+              (click)="onAcceptChangedClick()">
+        <mat-icon> edit </mat-icon>
+        Save
+      </button>
+      <button type="button" mat-button fxFlex="33%" matTooltip="add new existing product"
+              (click)="onAddNewExistingProductClick()">
+        <mat-icon> add_circle_outline </mat-icon>
+        Add
+      </button>
+      <button type="button" mat-button fxFlex="33%" matTooltip="delete product"
+              (click)="onDeleteProductClick()">
+        <mat-icon> delete </mat-icon>
+        Delete
+      </button>
+    </div>
   </mat-card>
 </div>

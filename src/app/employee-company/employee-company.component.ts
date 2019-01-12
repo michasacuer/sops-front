@@ -117,6 +117,14 @@ export class EmployeeCompanyComponent implements OnInit
     });
   }
 
+  onProductOrderedToDelete(productToDelete: Product)
+  {
+    console.log(JSON.stringify(productToDelete));
+
+    const idx = this.company.products.findIndex(product => product.id === productToDelete.id);
+    this.company.products.splice(idx, 1);
+  }
+
 /*   onSelect(product: Product): void {
     this.selectedProduct = product;
   }
