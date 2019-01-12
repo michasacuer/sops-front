@@ -18,7 +18,7 @@ export class EmployeeCompanyComponent implements OnInit
   companyExistingProducts: ExistingProduct[] = [];
 
   newProduct: Product;
-  selectedProduct: Product = new Product();
+  selectedProduct: Product;
 
   submitEmitter = new EventEmitter();
   modelState = new ModelState();
@@ -33,6 +33,7 @@ export class EmployeeCompanyComponent implements OnInit
 
   ngOnInit() {
     this.newProduct = new Product();
+    this.selectedProduct = new Product();
     this.getCompany();
   }
 
@@ -66,7 +67,8 @@ export class EmployeeCompanyComponent implements OnInit
     event.stopPropagation();
 
     this.selectedProduct = product;
-    console.log(this.selectedProduct);
+    this.submitEmitter.emit();
+    // console.log(this.selectedProduct);
   }
 
 /*   onSelect(product: Product): void {

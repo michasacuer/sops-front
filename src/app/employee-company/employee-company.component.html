@@ -13,7 +13,39 @@
     </button>
   </mat-card>
 
-<!--   <mat-card fxFlex="33%">
+  <mat-card fxFlex="33%">
+      <mat-card-title>You are employed in: {{ company.name }}</mat-card-title>
+
+      <mat-accordion>
+          <mat-expansion-panel *ngFor="let product of (company.products | search: searchText)">
+
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                  <button mat-button (click)="onProductNameClick($event, product)">
+                    {{ product.name }}
+                  </button>
+              </mat-panel-title>
+              <mat-panel-description>
+                <button mat-button disabled style="cursor: pointer;">count: 14</button>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <!-- srodek listy -->
+            <!-- <p>ala ma kota</p>
+            <p>ala ma kota</p> -->
+
+          </mat-expansion-panel>
+
+      </mat-accordion>
+
+  </mat-card>
+  
+  <div fxFlex="33%">
+    <app-product-detail [product]="selectedProduct"></app-product-detail>
+  </div>
+</div>
+
+<!-- <mat-card fxFlex="33%">
     <mat-card-title>You are employed in: {{ company.name }}</mat-card-title>
     <mat-selection-list>
       <mat-form-field style="width: 100%">
@@ -41,39 +73,8 @@
     </mat-selection-list>
   </mat-card> -->
 
-  <mat-card fxFlex="33%">
-      <mat-card-title>You are employed in: {{ company.name }}</mat-card-title>
-
-      <mat-accordion>
-          <mat-expansion-panel *ngFor="let product of (company.products | search: searchText)">
-
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                  <button mat-button (click)="onProductNameClick($event, product)">
-                    {{ product.name }}
-                  </button>
-              </mat-panel-title>
-              <mat-panel-description>
-                <button mat-button disabled style="cursor: pointer;">count: 14</button>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-        
-            <!-- srodek listy -->
-            <p>ala ma kota</p>
-            <p>ala ma kota</p>
-
-          </mat-expansion-panel>
-
-      </mat-accordion>
-
-  </mat-card>
   
-  <div fxFlex="33%">
-    <app-product-detail [product]="selectedProduct"></app-product-detail>
-  </div>
-</div>
-
-<!-- <mat-card fxFlex="33%">
+<!--   <mat-card fxFlex="33%">
     <mat-card-title>You are employed in: {{ company.name }}</mat-card-title>
     <mat-selection-list>
       <mat-form-field style="width: 100%">

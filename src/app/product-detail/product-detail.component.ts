@@ -12,8 +12,11 @@ import { Observable } from "rxjs";
   styleUrls: ["./product-detail.component.css"]
 })
 export class ProductDetailComponent implements OnInit {
-  @Input() product: Product;
+  @Input()
+  product: Product;
+  
   public submitEmitter = new EventEmitter();
+  
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
