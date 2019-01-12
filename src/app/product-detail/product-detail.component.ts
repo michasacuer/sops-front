@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter } from "@angular/core";
 import { Product } from "../models/product";
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
-import { DataService } from "../data.service";
+import { DataService, ModelState } from "../data.service";
 import { FormGenerator } from "../form-generator/form-generator";
 import { Observable } from "rxjs";
 
@@ -14,9 +14,10 @@ import { Observable } from "rxjs";
 export class ProductDetailComponent implements OnInit {
   @Input()
   product: Product;
-  
+
   public submitEmitter = new EventEmitter();
-  
+  public modelState = new ModelState();
+
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
@@ -39,11 +40,14 @@ export class ProductDetailComponent implements OnInit {
 
   goBack(): void {
     // window.history.back();
-    console.log('go back: ' + JSON.stringify( this.product));
+    console.log('go back: ' + JSON.stringify(this.product));
   }
 
   save(): void {
     this.submitEmitter.emit();
-    this.dataService.putObject(this.product).subscribe(() => this.goBack());
+    this.dataService.putObject(this.product).subscribe((response) => {
+      this.modelState.update(response.modelState);
+      this.goBack();
+    });
   }
 }
