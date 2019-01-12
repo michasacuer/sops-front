@@ -6,13 +6,14 @@ import { ErrorService } from "../error.service";
 import { Product } from "../models/product";
 import { ExistingProduct } from '../models/existing-product';
 import { AuthService } from '../auth.service';
+import { getEditables } from '../model-decorators/display-decorators';
 
 @Component({
   selector: "app-employee-company",
   templateUrl: "./employee-company.component.html",
   styleUrls: ["./employee-company.component.css"]
 })
-export class EmployeeCompanyComponent implements OnInit 
+export class EmployeeCompanyComponent implements OnInit
 {
   company: Company = new Company();
   companyExistingProducts: ExistingProduct[] = [];
@@ -38,16 +39,13 @@ export class EmployeeCompanyComponent implements OnInit
   }
 
   getCompany(): void {
-    this.dataService.getObjectByUrl(Company, 
-      `/api/Company/Profile?userid=${this.authService.currentUserId}`).subscribe(result => 
-      {
-        if (result.errorMessage === null)
-        {
+    this.dataService.getObjectByUrl(Company,
+      `/api/Company/Profile?userid=${this.authService.currentUserId}`).subscribe(result => {
+        if (result.errorMessage === null) {
+          const products = result.object.products.map(p => Object.assign(new Product(), p));
           this.company = result.object;
-          
-        }
-        else
-        {
+          this.company.products = products;
+        } else {
           this.errorService.showError(result);
         }
         // console.log(this.company.products);
@@ -65,10 +63,7 @@ export class EmployeeCompanyComponent implements OnInit
   onProductNameClick(event, product: Product)
   {
     event.stopPropagation();
-
     this.selectedProduct = product;
-    this.submitEmitter.emit();
-    // console.log(this.selectedProduct);
   }
 
 /*   onSelect(product: Product): void {
