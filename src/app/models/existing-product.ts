@@ -1,5 +1,6 @@
 export class ExistingProduct {
   id: number;
-  expirationDate: Date | string;
   productId: number;
+  creationDate: Date;
+  expirationDate: Date | string;
 }

@@ -1,0 +1,13 @@
+.middle-panel-product-name
+{
+	width: 96.1071px;
+}
+
+.existing-product-options
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+
+	cursor: pointer;
+}

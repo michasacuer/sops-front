@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from '../data.service';
 import { saveAs } from 'file-saver';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
 	selector: 'app-qr-dialog',
@@ -11,8 +12,13 @@ export class QrDialogComponent implements OnInit
 {
 	private qrImage: ArrayBuffer;
 
-	constructor(private existingProductId: number,
-				private dataService: DataService) {}
+	constructor(@Inject(MAT_DIALOG_DATA) data,
+				private dialogRef: MatDialogRef<QrDialogComponent>,
+				private existingProductId: number,
+				private dataService: DataService) 
+	{
+		this.existingProductId = (data as { existingProductId: number }).existingProductId;
+	}
 
 	ngOnInit() 
 	{
@@ -32,13 +38,6 @@ export class QrDialogComponent implements OnInit
 			}, false);
 
 			fileReader.readAsDataURL(result);
-		});
-	}
-
-	Pdf()
-	{
-		this.dataService.getPdfByUrl(`api/Document/${this.existingProductId}`).subscribe(result => {
-			saveAs(result, 'document.pdf');
 		});
 	}
 }

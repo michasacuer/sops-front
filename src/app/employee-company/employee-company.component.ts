@@ -7,6 +7,10 @@ import { Product } from "../models/product";
 import { ExistingProduct } from '../models/existing-product';
 import { AuthService } from '../auth.service';
 import { getEditables } from '../model-decorators/display-decorators';
+import { forEach } from '@angular/router/src/utils/collection';
+import { MatDialog } from '@angular/material';
+import { QrDialogComponent } from '../qr-dialog/qr-dialog.component';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: "app-employee-company",
@@ -23,29 +27,60 @@ export class EmployeeCompanyComponent implements OnInit
 
   submitEmitter = new EventEmitter();
   modelState = new ModelState();
+
+  dataReady: boolean = false;
+  isHovered: boolean = true;
   // companyProducts: Product[] = [];
   // profileDetails: ProfileDetails = new ProfileDetails();
 
   constructor(
     private dataService: DataService,
     private authService: AuthService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.newProduct = new Product();
-    this.selectedProduct = new Product();
+    /* this.selectedProduct = new Product(); */
     this.getCompany();
   }
 
   getCompany(): void {
     this.dataService.getObjectByUrl(Company,
       `/api/Company/Profile?userid=${this.authService.currentUserId}`).subscribe(result => {
-        if (result.errorMessage === null) {
+        if (result.errorMessage === null) 
+        {
           const products = result.object.products.map(p => Object.assign(new Product(), p));
           this.company = result.object;
           this.company.products = products;
-        } else {
+
+          for (let i = 0; i < this.company.products.length; ++i)
+          {
+            // let existingProducts = Array<ExistingProduct>();
+
+            this.dataService.getObjectsByUrl(ExistingProduct, `api/ExistingProduct/ForProduct?id=${this.company.products[i].id}`).subscribe(res => {
+              if (res.errorMessage === null)
+              {
+                const existingProducts = res.object.map(ep => Object.assign(new ExistingProduct(), ep));
+                this.company.products[i].existingProducts = existingProducts;
+                // console.log(JSON.stringify(this.company.products[i].existingProducts));
+
+                if (i === this.company.products.length - 1)
+                {
+                  console.log('i: ' + i + ", products.length: " + this.company.products.length);
+                  this.dataReady = true;
+                }
+              }
+              else
+              {
+                this.errorService.showError(res);
+              }
+            });
+          }
+        } 
+        else
+        {
           this.errorService.showError(result);
         }
         // console.log(this.company.products);
@@ -56,7 +91,6 @@ export class EmployeeCompanyComponent implements OnInit
         } */
         this.newProduct = new Product();
         this.newProduct.companyId = this.company.id;
-        // console.log(this.company);
       });
   }
 
@@ -64,6 +98,23 @@ export class EmployeeCompanyComponent implements OnInit
   {
     event.stopPropagation();
     this.selectedProduct = product;
+  }
+
+  onShowPdfClick(existingProduct: ExistingProduct)
+  {
+    this.dataService.getPdfByUrl(`api/Document/${existingProduct.id}`).subscribe(result => {
+			saveAs(result, 'document.pdf');
+		});
+  }
+
+  onShowQrClick(existingProduct: ExistingProduct)
+  {
+    this.dialog.open(QrDialogComponent, { 
+      data: 
+      {
+        existingProductId: existingProduct.id 
+      }
+    });
   }
 
 /*   onSelect(product: Product): void {
@@ -98,5 +149,28 @@ export class EmployeeCompanyComponent implements OnInit
         this.errorService.showError(result);
       }
     });
+  }
+
+  mouseEnterOptions()
+  {
+    console.log('hello  ')
+    this.isHovered = true;
+  }
+
+  mouseLeaveOptions()
+  {
+    this.isHovered = false;
+  }
+
+  isUndefined(x: any)
+  {
+    /* console.log(x);
+    console.log(x != null); */
+    return (x != null);
+  }
+
+  getNormalDate(abnormalDate: string): string
+  {
+    return abnormalDate.substring(0, 10).split("-").join(".");
   }
 }

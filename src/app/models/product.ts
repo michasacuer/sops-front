@@ -1,6 +1,7 @@
 import { editable, displayName } from "../model-decorators/display-decorators";
 import { ProductRating } from "./product-rating";
 import { ProductComment } from "./product-comment";
+import { ExistingProduct } from './existing-product';
 
 export class Product {
   id: number;
@@ -37,6 +38,7 @@ export class Product {
   @editable
   suggestedPrice: any;
 
+  existingProducts: ExistingProduct[];
   productRatings: ProductRating[];
   productComments: ProductComment[];
 }

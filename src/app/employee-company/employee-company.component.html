@@ -16,23 +16,46 @@
   <mat-card fxFlex="33%">
       <mat-card-title>You are employed in: {{ company.name }}</mat-card-title>
 
+      <mat-form-field style="width: 100%">
+            <input
+              type="text"
+              [(ngModel)]="searchText"
+              matInput
+              placeholder="search product"
+            />
+      </mat-form-field>
+
       <mat-accordion>
-          <mat-expansion-panel *ngFor="let product of (company.products)">
+          <mat-expansion-panel *ngFor="let product of (company.products | search: searchText)">
 
             <mat-expansion-panel-header>
               <mat-panel-title>
-                  <button mat-button (click)="onProductNameClick($event, product)">
+                  <button mat-button class="middle-panel-product-name"
+                          (click)="onProductNameClick($event, product)">
                     {{ product.name }}
                   </button>
               </mat-panel-title>
-              <mat-panel-description>
-                <button mat-button disabled style="cursor: pointer;">count: 14</button>
+              <mat-panel-description *ngIf="isUndefined(product.existingProducts?.length)">
+                <button mat-button disabled 
+                        style="cursor: pointer;">
+                  count: {{ product.existingProducts.length }}
+                </button>
               </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <!-- srodek listy -->
-            <!-- <p>ala ma kota</p>
-            <p>ala ma kota</p> -->
+            <div fxLayout="row" 
+                 *ngFor="let existingProduct of product.existingProducts; let idx = index"
+                 style="position: relative;">
+
+              <div fxFlex="33%">#{{ idx }}</div>
+              <div fxFlex="33%">{{ getNormalDate(existingProduct.creationDate) }}</div>
+              <div class="existing-product-options" fxLayout="row"
+                   [style.visibility]="isHovered ? 'visible' : 'hidden'">
+                <div><mat-icon (click)="onShowQrClick(existingProduct)">all_out</mat-icon></div>
+                <div><mat-icon (click)="onShowPdfClick(existingProduct)">note</mat-icon></div>
+              </div>
+
+            </div>
 
           </mat-expansion-panel>
 
@@ -44,6 +67,12 @@
     <app-product-detail [product]="selectedProduct"></app-product-detail>
   </div>
 </div>
+
+<!-- (mouseenter)="mouseEnterOptions()"
+(mouseleave)="mouseLeaveOptions()"> -->
+<!-- [style.visibility]="isHovered ? 'visible' : 'hidden'"
+(mouseenter)="mouseEnterOptions()" (mouseleave) ="mouseLeaveOptions()"
+on-mouseover="mouseEnterOptions()"> -->
 
 <!-- <mat-card fxFlex="33%">
     <mat-card-title>You are employed in: {{ company.name }}</mat-card-title>
