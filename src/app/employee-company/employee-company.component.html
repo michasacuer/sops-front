@@ -45,7 +45,7 @@
       <mat-card-title>You are employed in: {{ company.name }}</mat-card-title>
 
       <mat-accordion>
-          <mat-expansion-panel *ngFor="let product of (company.products | search: searchText)">
+          <mat-expansion-panel *ngFor="let product of (company.products)">
 
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -57,7 +57,7 @@
                 <button mat-button disabled style="cursor: pointer;">count: 14</button>
               </mat-panel-description>
             </mat-expansion-panel-header>
-        
+
             <!-- srodek listy -->
             <p>ala ma kota</p>
             <p>ala ma kota</p>
@@ -67,7 +67,7 @@
       </mat-accordion>
 
   </mat-card>
-  
+
   <div fxFlex="33%">
     <app-product-detail [product]="selectedProduct"></app-product-detail>
   </div>
