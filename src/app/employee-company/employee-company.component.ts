@@ -4,22 +4,30 @@ import { DataService, ModelState } from "../data.service";
 import { ProfileDetails } from "../models/profile-details";
 import { ErrorService } from "../error.service";
 import { Product } from "../models/product";
+import { ExistingProduct } from '../models/existing-product';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: "app-employee-company",
   templateUrl: "./employee-company.component.html",
   styleUrls: ["./employee-company.component.css"]
 })
-export class EmployeeCompanyComponent implements OnInit {
+export class EmployeeCompanyComponent implements OnInit 
+{
   company: Company = new Company();
-  companyProducts: Product[] = [];
-  profileDetails: ProfileDetails = new ProfileDetails();
-  selectedProduct: Product;
+  companyExistingProducts: ExistingProduct[] = [];
+
   newProduct: Product;
+  selectedProduct: Product = new Product();
+
   submitEmitter = new EventEmitter();
   modelState = new ModelState();
+  // companyProducts: Product[] = [];
+  // profileDetails: ProfileDetails = new ProfileDetails();
+
   constructor(
     private dataService: DataService,
+    private authService: AuthService,
     private errorService: ErrorService
   ) {}
 
@@ -29,33 +37,39 @@ export class EmployeeCompanyComponent implements OnInit {
   }
 
   getCompany(): void {
-    this.dataService
-      .getObjectByUrl(ProfileDetails, "/api/User/Current")
-      .subscribe(result => {
-        this.errorService.showError(result);
-        this.profileDetails = result.object;
-        this.dataService
-          .getObjectByUrl(
-            Company,
-            `/api/Company/Profile?userid=${this.profileDetails.id}`
-          )
-          .subscribe(result => {
-            this.errorService.showError(result);
-            this.company = result.object;
-            console.log(this.company.products);
+    this.dataService.getObjectByUrl(Company, 
+      `/api/Company/Profile?userid=${this.authService.currentUserId}`).subscribe(result => 
+      {
+        if (result.errorMessage === null)
+        {
+          this.company = result.object;
+          
+        }
+        else
+        {
+          this.errorService.showError(result);
+        }
+        // console.log(this.company.products);
 
-            this.companyProducts = [];
-            for (const item of this.company.products) {
-              this.companyProducts.push(Object.assign(new Product(), item));
-            }
-            this.newProduct = new Product();
-            this.newProduct.companyId = this.company.id;
-            console.log(this.company);
-          });
+        // this.companyProducts = [];
+/*         for (const item of this.company.products) {
+          this.companyProducts.push(Object.assign(new Product(), item));
+        } */
+        this.newProduct = new Product();
+        this.newProduct.companyId = this.company.id;
+        // console.log(this.company);
       });
   }
 
-  onSelect(product: Product): void {
+  onProductNameClick(event, product: Product)
+  {
+    event.stopPropagation();
+
+    this.selectedProduct = product;
+    console.log(this.selectedProduct);
+  }
+
+/*   onSelect(product: Product): void {
     this.selectedProduct = product;
   }
 
@@ -74,8 +88,8 @@ export class EmployeeCompanyComponent implements OnInit {
     /*this.dataService.addproduct({name} as Product)
       .subscribe(product => {
         this.products.push(product);
-      });*/
-  }
+      });
+  }*/
 
   onProductAddClick(): void {
     this.submitEmitter.emit();

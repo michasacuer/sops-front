@@ -58,6 +58,8 @@ import { ProductPanelUiComponent } from "./product-panel-ui/product-panel-ui.com
 import { ProductPanelUiCommentsComponent } from "./product-panel-ui-comments/product-panel-ui-comments.component";
 import { ProductPanelUiRatingComponent } from "./product-panel-ui-rating/product-panel-ui-rating.component";
 import { WatchedProductStarComponent } from './watched-product-star/watched-product-star.component';
+import { QrDialogComponent } from './qr-dialog/qr-dialog.component';
+import { AddExistingProductIconComponent } from './add-existing-product-icon/add-existing-product-icon.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,9 @@ import { WatchedProductStarComponent } from './watched-product-star/watched-prod
     ProductPanelUiComponent,
     ProductPanelUiCommentsComponent,
     ProductPanelUiRatingComponent,
-    WatchedProductStarComponent
+    WatchedProductStarComponent,
+    QrDialogComponent,
+    AddExistingProductIconComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +134,8 @@ import { WatchedProductStarComponent } from './watched-product-star/watched-prod
     ProfileComponent,
     NewPasswordDialogComponent,
     DeleteAccountDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    QrDialogComponent
   ],
   bootstrap: [AppComponent]
 })
