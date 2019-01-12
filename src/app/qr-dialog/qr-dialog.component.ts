@@ -11,17 +11,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class QrDialogComponent implements OnInit 
 {
 	private qrImage: ArrayBuffer;
+	private existingProductId: number;
 
-	constructor(@Inject(MAT_DIALOG_DATA) data,
-				private dialogRef: MatDialogRef<QrDialogComponent>,
-				private existingProductId: number,
-				private dataService: DataService) 
-	{
-		this.existingProductId = (data as { existingProductId: number }).existingProductId;
-	}
+	constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+				public dialogRef: MatDialogRef<QrDialogComponent>,
+				public dataService: DataService) {}
 
 	ngOnInit() 
 	{
+		this.existingProductId = this.data.existingProductId;
 		this.loadQrCode();
 	}
 

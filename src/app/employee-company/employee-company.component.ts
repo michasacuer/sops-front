@@ -8,7 +8,7 @@ import { ExistingProduct } from '../models/existing-product';
 import { AuthService } from '../auth.service';
 import { getEditables } from '../model-decorators/display-decorators';
 import { forEach } from '@angular/router/src/utils/collection';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { QrDialogComponent } from '../qr-dialog/qr-dialog.component';
 import { saveAs } from 'file-saver';
 
@@ -37,7 +37,7 @@ export class EmployeeCompanyComponent implements OnInit
     private dataService: DataService,
     private authService: AuthService,
     private errorService: ErrorService,
-    private dialog: MatDialog
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -109,10 +109,10 @@ export class EmployeeCompanyComponent implements OnInit
 
   onShowQrClick(existingProduct: ExistingProduct)
   {
-    this.dialog.open(QrDialogComponent, { 
-      data: 
-      {
-        existingProductId: existingProduct.id 
+    console.log(JSON.stringify(existingProduct));
+    const dialogRef = this.dialog.open(QrDialogComponent, {
+      data: {
+        existingProductId: existingProduct.id
       }
     });
   }
