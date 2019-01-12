@@ -8,7 +8,7 @@ import { ExistingProduct } from '../models/existing-product';
 import { AuthService } from '../auth.service';
 import { getEditables } from '../model-decorators/display-decorators';
 import { forEach } from '@angular/router/src/utils/collection';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { QrDialogComponent } from '../qr-dialog/qr-dialog.component';
 import { saveAs } from 'file-saver';
 
@@ -37,7 +37,8 @@ export class EmployeeCompanyComponent implements OnInit
     private dataService: DataService,
     private authService: AuthService,
     private errorService: ErrorService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackbar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -109,7 +110,7 @@ export class EmployeeCompanyComponent implements OnInit
 
   onShowQrClick(existingProduct: ExistingProduct)
   {
-    console.log(JSON.stringify(existingProduct));
+    console.log('get QR: ' + JSON.stringify(existingProduct));
     const dialogRef = this.dialog.open(QrDialogComponent, {
       data: {
         existingProductId: existingProduct.id
@@ -123,6 +124,12 @@ export class EmployeeCompanyComponent implements OnInit
 
     const idx = this.company.products.findIndex(product => product.id === productToDelete.id);
     this.company.products.splice(idx, 1);
+    this.selectedProduct = null;
+
+    this.snackbar.open('product deleted successfully', null, {
+      duration: 3000,
+      panelClass: ['my-snackbar']
+    });
   }
 
 /*   onSelect(product: Product): void {
@@ -153,6 +160,11 @@ export class EmployeeCompanyComponent implements OnInit
       if (result.errorMessage === null) {
         this.modelState.update(result.modelState);
         this.getCompany();
+
+        this.snackbar.open('product added successfully', null, {
+          duration: 3000,
+          panelClass: ['my-snackbar']
+        });
       } else {
         this.errorService.showError(result);
       }

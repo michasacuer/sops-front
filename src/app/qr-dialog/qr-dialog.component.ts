@@ -10,7 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class QrDialogComponent implements OnInit 
 {
-	private qrImage: ArrayBuffer;
+	private qrImage: ArrayBuffer = null;
 	private existingProductId: number;
 
 	constructor(@Inject(MAT_DIALOG_DATA) public data: any,
