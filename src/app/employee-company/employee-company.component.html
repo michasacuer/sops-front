@@ -51,8 +51,12 @@
               <div fxFlex="33%">{{ getNormalDate(existingProduct.creationDate) }}</div>
               <div class="existing-product-options" fxLayout="row"
                    [style.visibility]="isHovered ? 'visible' : 'hidden'">
-                <div><mat-icon (click)="onShowQrClick(existingProduct)">all_out</mat-icon></div>
-                <div><mat-icon (click)="onShowPdfClick(existingProduct)">note</mat-icon></div>
+                <div><mat-icon (click)="onShowQrClick(existingProduct)" matTooltip="show QR code">
+                  all_out
+                </mat-icon></div>
+                <div><mat-icon (click)="onShowPdfClick(existingProduct)" matTooltip="download pdf">
+                  note
+                </mat-icon></div>
               </div>
 
             </div>

@@ -1,0 +1,77 @@
+<mat-card>
+	
+	<h1>Scanned products</h1>
+	<mat-form-field style="width: 265px;">
+		<input	type="text"
+				[(ngModel)]="searchText"
+				matInput
+				placeholder="Search...">
+	</mat-form-field>
+
+	<div *ngIf="scans != null">
+		<div *ngFor="let scan of (scans | search: searchText)">
+
+			<hr>
+			<div fxLayout="row">
+				<div fxFlex="25%">
+					<img *ngIf="scan.productPicture != null" [src]="scan.productPicture">
+				</div>
+				<div class="scan-container" fxFlex="75%">
+					<div class="scan-header">
+						<h1> {{ scan.productName }} </h1>
+						<h3> {{ scan.companyName }} </h3>
+					</div>
+					<mat-card class="scan-details" fxLayout="row">
+						<div fxFlex="50%" class="scan-details-left-list">	
+							<ul>
+								<li>
+									scanned on {{ getNormalDate(scan.scanDate) }}
+								</li>
+								<li>
+									created on {{ getNormalDate(scan.existingProductCreationDate) }}
+								</li>
+								<li>
+									expires on {{ getNormalDate(scan.existingProductExpirationDate) }}
+								</li>
+								<li>
+									price {{ scan.productSuggestedPrice }}
+								</li>
+								<li>
+									made in {{ scan.productCountryOfOrigin }}
+								</li>
+								<li>
+									default best-before {{scan.productDefaultExpirationDateInMonths}} months
+								</li>
+							</ul>
+						</div>
+						<div fxFlex="50%">
+							<ul>
+								<li>
+									{{ scan.isWatched ? "watched" : "not watched" }}
+								</li>
+								<li>
+									email {{ scan.companyEmail }}
+								</li>
+								<li>
+									comapny NIP {{ scan.companyNIP }}
+								</li>
+								<li>
+									company city {{ scan.companyAddressCity }}
+								</li>
+								<li>
+									company Zip {{ scan.companyAddressZipCode }}
+								<li>
+									company since {{ getNormalDate(scan.companyJoinDate) }}
+								</li>
+							</ul>
+						</div>
+					</mat-card>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- <button (click)="log()">log</button> -->
+
+</mat-card>

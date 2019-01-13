@@ -9,19 +9,7 @@
       </mat-card>
     </mat-tab>
     <mat-tab label="Scans">
-      <mat-card fxFlex="100%">
-        <mat-selection-list>
-          <h1>Skany:</h1>
-          <mat-form-field>
-            <input
-              type="text"
-              [(ngModel)]="searchText"
-              matInput
-              placeholder="Search..."
-            />
-          </mat-form-field>
-        </mat-selection-list>
-      </mat-card>
+      <app-my-products-scans></app-my-products-scans>
     </mat-tab>
     <mat-tab label="Ratings">
       <mat-card fxFlex="100%">

@@ -60,6 +60,7 @@ import { ProductPanelUiRatingComponent } from "./product-panel-ui-rating/product
 import { WatchedProductStarComponent } from './watched-product-star/watched-product-star.component';
 import { QrDialogComponent } from './qr-dialog/qr-dialog.component';
 import { AddExistingProductIconComponent } from './add-existing-product-icon/add-existing-product-icon.component';
+import { MyProductsScansComponent } from './my-products-scans/my-products-scans.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { AddExistingProductIconComponent } from './add-existing-product-icon/add
     ProductPanelUiRatingComponent,
     WatchedProductStarComponent,
     QrDialogComponent,
-    AddExistingProductIconComponent
+    AddExistingProductIconComponent,
+    MyProductsScansComponent
   ],
   imports: [
     BrowserModule,

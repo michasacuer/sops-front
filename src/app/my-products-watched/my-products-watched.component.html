@@ -17,7 +17,7 @@
       [class.selected]="product === selectedProduct"
       (click)="onSelect(product)"
     >
-      <button routerLink="detail/{{ product.id }}" mat-button>
+      <button routerLink="../products/panel/{{ product.id }}" mat-button>
         {{ product.name }}
       </button>
       <a routerLink="detail/{{ product.id }}"> <mat-icon> link </mat-icon> </a>
