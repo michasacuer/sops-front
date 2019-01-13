@@ -35,7 +35,7 @@
       Ocena: &nbsp;
       <span *ngIf="ratings[i] && ratings[i].productId == watchedProducts[i].id">
         <h5 *ngIf="ratings[i].avarageRating > 0">
-          {{ ratings[i].avarageRating }}
+          {{ roundRating(ratings[i].avarageRating) }}
         </h5>
         <h5 *ngIf="ratings[i].avarageRating == 0">X</h5>
       </span>

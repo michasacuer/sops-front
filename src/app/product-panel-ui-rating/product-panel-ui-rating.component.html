@@ -1,7 +1,7 @@
 <div>
   <h4>
     Średnia ocena produktu:
-    {{ averageRating.avarageRating == 0 ? "Brak Ocen" : averageRating.avarageRating }}
+    {{ averageRating.avarageRating == 0 ? "Brak Ocen" : roundNumber(averageRating.avarageRating) }}
   </h4>
   <mat-form-field>
     <mat-select [(ngModel)]="selectedRating">

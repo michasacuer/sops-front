@@ -10,7 +10,7 @@
       <mat-card> {{ product.description }}</mat-card>
       <h4>ID Firmy: {{ product.companyId }}</h4>
       <h4>Kraj pochodzenia: {{ product.countryOfOrigin }}</h4>
-      <h4>Data utworzenia: {{ product.creationDate }}</h4>
+      <h4>Data utworzenia: {{ getNormalDate(product.creationDate) }}</h4>
       <h4>
         Czas wygaśnięcia (w miesiącach):
         {{ product.defaultExpirationDateInMonths }}

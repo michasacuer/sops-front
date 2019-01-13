@@ -33,4 +33,9 @@ export class ProductPanelUiRatingComponent implements OnInit
     
     this.selectedRatingSubmitted.emit(this.selectedRating);
   }
+
+  roundNumber(number: number)
+  {
+    return number.toPrecision(3);
+  }
 }

@@ -32,4 +32,9 @@ export class MyProductsWatchedComponent implements OnInit {
     this.watched = this.watched.filter(p => p !== product);
     this.dataService.deleteObject(product).subscribe();
   }
+
+  roundRating(rating: number)
+  {
+    return rating.toPrecision(1);
+  }
 }

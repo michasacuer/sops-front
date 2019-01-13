@@ -121,4 +121,9 @@ export class ProductPanelComponent implements OnInit
         }
       });
     }
+
+    getNormalDate(abnormalDate: string): string
+    {
+      return abnormalDate.substring(0, 10).split("-").join(".");
+    }
 }
