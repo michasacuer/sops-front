@@ -1,0 +1,56 @@
+<mat-card>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let profile of profiles">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ profile.userName }}
+      </mat-panel-title>
+      <mat-panel-description>
+        <span *ngIf="profile.isEmployee">
+          Employed in
+          {{ profile.company.name }}
+        </span>
+        <span *ngIf="!profile.isEmployee">
+          User
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div fxLayout="row">
+
+      <div fxFlex="none">
+        <mat-icon class="profile-picture">
+          account_box
+        </mat-icon>
+      </div>
+
+      <div fxFlex="">
+        <div fxLayout="row">
+          <div fxFlex="50%"><p class="row-title">User name</p></div>
+          <div fxFlex="50%"><p>{{ profile.userName }}</p></div>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex="50%"><p class="row-title">Name</p></div>
+          <div fxFlex="50%"><p>{{ profile.name }}</p></div>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex="50%"><p class="row-title">Surname</p></div>
+          <div fxFlex="50%"><p>{{ profile.surname }}</p></div>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex="50%"><p class="row-title">Phone</p></div>
+          <div fxFlex="50%"><p>{{ profile.phoneNumber }}</p></div>
+        </div>
+        <div fxLayout="row" *ngIf="!profile.isEmployee && auth.currentUserRole == 'Employee'">
+          <button mat-button color="primary" (click)="promoteUserClick(profile)">
+            <mat-icon>add</mat-icon>
+            Promote user to employee
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+</mat-card>

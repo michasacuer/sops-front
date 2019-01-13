@@ -1,25 +1,34 @@
-import { editable, displayName } from "../model-decorators/display-decorators";
+import { editable, displayName } from '../model-decorators/display-decorators';
+import { Company } from './company';
 
 export class ProfileDetails {
   id: string;
 
-  @displayName("UserName")
+  @displayName('User name')
   @editable
   userName: string;
 
-  @displayName("Name")
+  @displayName('Name')
   @editable
   name: string;
 
-  @displayName("Surname")
+  @displayName('Surname')
   @editable
-  suername: string;
+  surname: string;
 
-  @displayName("PhoneNumber")
+  @displayName('Phone')
   @editable
   phoneNumber: number;
 
-  @displayName("Email")
+  @displayName('E-mail')
   @editable
   email: string;
+
+  @displayName('Is employee')
+  @editable
+  isEmployee: boolean;
+
+  @displayName('Company')
+  @editable
+  company: Company;
 }

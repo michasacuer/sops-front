@@ -36,14 +36,14 @@
                   </button>
               </mat-panel-title>
               <mat-panel-description *ngIf="isUndefined(product.existingProducts?.length)">
-                <button mat-button disabled 
+                <button mat-button disabled
                         style="cursor: pointer;">
                   count: {{ product.existingProducts.length }}
                 </button>
               </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <div fxLayout="row" 
+            <div fxLayout="row"
                  *ngFor="let existingProduct of product.existingProducts; let idx = index"
                  style="position: relative;">
 
@@ -64,7 +64,7 @@
   </mat-card>
 
   <div fxFlex="33%">
-    <app-product-detail [product]="selectedProduct" 
+    <app-product-detail [product]="selectedProduct"
                         (productOrderedToDelete)="onProductOrderedToDelete($event)">
     </app-product-detail>
   </div>
@@ -104,7 +104,7 @@ on-mouseover="mouseEnterOptions()"> -->
     </mat-selection-list>
   </mat-card> -->
 
-  
+
 <!--   <mat-card fxFlex="33%">
     <mat-card-title>You are employed in: {{ company.name }}</mat-card-title>
     <mat-selection-list>

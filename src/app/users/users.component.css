@@ -1,0 +1,12 @@
+
+.profile-picture {
+  font-size: 200px;
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+  margin-right: 30px;
+}
+
+.row-title {
+  font-weight: bold;
+}
