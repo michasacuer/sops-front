@@ -70,3 +70,7 @@ li:nth-child(odd)
 {
 	background: #f9979944;
 }
+
+.product-picture-container img {
+  object-fit: contain;
+}
