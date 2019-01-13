@@ -2,7 +2,7 @@
   <mat-card fxFlex="100%">
 
     <mat-card fxFlex="50%">
-      <app-watched-product-star [product]="product"></app-watched-product-star>
+      <app-watched-product-star [productId]="product.id"></app-watched-product-star>
 
       <h2>Nazwa: {{ product.name | uppercase }}</h2>
       <h4>Barcode: {{ product.barcode }}</h4>

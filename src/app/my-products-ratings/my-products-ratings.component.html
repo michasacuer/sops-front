@@ -1,6 +1,6 @@
 <div>
   <mat-selection-list>
-    <h1>Twoje Oceny:</h1>
+    <h1>Rated prodcts</h1>
     <mat-form-field class="full-width">
       <input
         type="text"
@@ -8,21 +8,27 @@
         matInput
         placeholder="Search..."
       />
+
     </mat-form-field>
     <mat-list-item
       *ngFor="let rates of (userRatings | search: searchText); let i = index"
       [class.selected]="rates === selectedProductRating"
       (click)="onSelect(rates)"
     >
-      Produkt:
-      <h5 *ngIf="ratedProducts[i]">{{ ratedProducts[i].name }}</h5>
-      <span class="fill-remaining-space"></span> Data dodania oceny:
-      <h5>{{ rates.added | date }}</h5>
-      Ocena:
-      <h5>{{ rates.rating }}</h5>
-      <button mat-button title="Delete rate" (click)="delete(rates)">
+    <button routerLink="../products/panel/{{ ratedProducts[i].id }}" mat-button
+            *ngIf="ratedProducts[i]">
+            {{ ratedProducts[i].name }}
+    </button>
+    Rated a &nbsp; <strong>{{ rates.rating }}</strong> / 5
+    <button mat-button title="Delete rate" (click)="delete(rates)">
         <mat-icon> delete </mat-icon>
-      </button>
+    </button>
+      <!-- <h5 *ngIf="ratedProducts[i]">{{ ratedProducts[i].name }}</h5> -->
+      <span class="fill-remaining-space"></span>
+      
+      {{ rates.added | date }}
+<!--       Ocena:
+      <h5></h5> -->
     </mat-list-item>
   </mat-selection-list>
 </div>

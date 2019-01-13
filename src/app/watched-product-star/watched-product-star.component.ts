@@ -14,7 +14,7 @@ import { ErrorService } from '../error.service';
 export class WatchedProductStarComponent implements OnInit 
 {
 	@Input()
-	product: Product;
+	productId: number;
 
 	isWatched: boolean = false;
 
@@ -27,13 +27,13 @@ export class WatchedProductStarComponent implements OnInit
 	{
 		// console.log('change: ' + JSON.stringify(this.product));
 
-		if (this.product.id == undefined)
+		if (this.productId == undefined)
 		{
 			this.isWatched = false;
 			return;
 		}
 
-		this.dataService.getObjectByUrl(Object, `api/WatchedProduct/Check?id=${this.product.id}`).subscribe(result => 
+		this.dataService.getObjectByUrl(Object, `api/WatchedProduct/Check?id=${this.productId}`).subscribe(result => 
 		{
 			// console.log(JSON.stringify(result.object));
 			if (result.errorMessage === null)
@@ -51,7 +51,7 @@ export class WatchedProductStarComponent implements OnInit
 
 	onFullStarClick()
 	{
-		this.dataService.deleteObjectByFullUrl(`api/WatchedProduct/${this.product.id}`).subscribe(result => {
+		this.dataService.deleteObjectByFullUrl(`api/WatchedProduct/${this.productId}`).subscribe(result => {
 			if (result.errorMessage === null)
 			{
 				this.isWatched = false;
@@ -65,7 +65,7 @@ export class WatchedProductStarComponent implements OnInit
 
 	onEmptyStarClick()
 	{
-		this.dataService.postObjectByUrl(new WatchedProduct(), `api/WatchedProduct/${this.product.id}`).subscribe(result => {
+		this.dataService.postObjectByUrl(new WatchedProduct(), `api/WatchedProduct/${this.productId}`).subscribe(result => {
 			if (result.errorMessage === null)
 			{
 				this.isWatched = true;
