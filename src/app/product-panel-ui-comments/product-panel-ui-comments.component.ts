@@ -32,4 +32,12 @@ export class ProductPanelUiCommentsComponent implements OnInit
 
     this.newCommentSubmitted.emit(this.newComment);
   }
+
+  getNormalDate(abnormalDate: string): string
+  {
+    if (abnormalDate !== undefined)
+      return abnormalDate.substring(0, 10).split("-").join(".");
+    
+      return '...'
+  }
 }
