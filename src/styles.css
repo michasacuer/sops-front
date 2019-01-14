@@ -116,9 +116,14 @@ header .mat-display-4 {
 	margin-bottom: 300px;
 
 	text-align: center;
-  }
-  
-  ::ng-deep .my-snackbar .mat-simple-snackbar {
+}
+
+::ng-deep .my-snackbar .mat-simple-snackbar {
 	color: white;
 	font-size: 24px;
-  }
+}
+
+mat-card mat-card mat-card {
+  box-shadow: none !important;
+  padding: 0 !important;
+}
