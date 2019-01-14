@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Product } from "../models/product";
 import { ProductAvarageRating } from "../models/product-avarage-rating";
 import { ProductComment } from '../models/product-comment';
+import { ProductRating } from '../models/product-rating';
 
 @Component({
   selector: "app-product-panel-ui",
@@ -18,6 +19,9 @@ export class ProductPanelUiComponent implements OnInit {
   averageRating: ProductAvarageRating;
   @Output()
   selectedRatingSubmitted = new EventEmitter<number>();
+
+  @Input()
+  userRating: ProductRating;
 
   constructor() {}
 

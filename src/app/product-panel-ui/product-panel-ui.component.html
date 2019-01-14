@@ -1,5 +1,6 @@
 <div>
   <app-product-panel-ui-rating
+    [userRating]="userRating"
     [averageRating]="averageRating"
     (selectedRatingSubmitted)="onSelectedRatingSubmitted($event)"
   ></app-product-panel-ui-rating>
