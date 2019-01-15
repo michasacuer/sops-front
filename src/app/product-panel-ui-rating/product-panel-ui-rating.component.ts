@@ -17,6 +17,9 @@ export class ProductPanelUiRatingComponent implements OnInit
   @Output() 
   selectedRatingSubmitted = new EventEmitter<number>();
 
+  @Input()
+  userRating: ProductRating;
+
   selectedRating: number;
 
   constructor( ) {}
@@ -39,3 +42,5 @@ export class ProductPanelUiRatingComponent implements OnInit
     return number.toPrecision(3);
   }
 }
+
+//    console.log(JSON.stringify(this.userRating.rating === undefined));

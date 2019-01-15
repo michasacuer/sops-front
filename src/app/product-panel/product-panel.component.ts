@@ -11,6 +11,7 @@ import { ProfileDetails } from "../models/profile-details";
 import { ProductComment } from '../models/product-comment';
 import { ProductRating } from '../models/product-rating';
 import { ErrorService } from '../error.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: "app-product-panel",
@@ -21,26 +22,34 @@ export class ProductPanelComponent implements OnInit
 {
   product: Product = new Product();
   averageRating: ProductAvarageRating = new ProductAvarageRating();
+  userRating: ProductRating = new ProductRating();
   
   constructor(
     private route: ActivatedRoute,
+    private authService: AuthService,
     private dataService: DataService,
     private errorService: ErrorService
   ) { }
 
   ngOnInit() 
   {
-    this.getProductAndCommentsAndAverageRatng();
+    this.getProductAndCommentsAndAverageRatngAndUserRating();
     console.log('product-panel: ' + JSON.stringify(this.product));
   }
 
-  getProductAndCommentsAndAverageRatng(): void {
+  getProductAndCommentsAndAverageRatngAndUserRating(): void {
     const id = this.route.snapshot.paramMap.get("id");
     if (id == null) {
       return;
     }
     this.dataService.getObject(Product, +id).subscribe(result => {
       this.product = result.object;
+      this.dataService.getObjectByUrl(ProductRating, 
+          `api/ProductRating/${this.authService.currentUserId}/${this.product.id}`)
+          .subscribe(r => {
+          this.userRating = r.object;
+          console.log('user rating: ' + this.userRating.rating);
+      });
       this.dataService
         .getObjectByUrl(
           ProductAvarageRating,
@@ -78,6 +87,7 @@ export class ProductPanelComponent implements OnInit
             if (res.errorMessage === null)
             {
               this.averageRating.avarageRating = res.object.avarageRating; 
+              this.userRating.rating = selectedRating;
             }
             else
             {
@@ -124,6 +134,9 @@ export class ProductPanelComponent implements OnInit
 
     getNormalDate(abnormalDate: string): string
     {
-      return abnormalDate.substring(0, 10).split("-").join(".");
+      if (abnormalDate !== undefined)
+        return abnormalDate.substring(0, 10).split("-").join(".");
+      
+        return '...'
     }
 }

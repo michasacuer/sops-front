@@ -8,7 +8,7 @@
         }}</mat-card-title>
         <mat-card-content>
           <p>{{ comment.comment }}</p>
-          <p>{{ comment.date }}</p>
+          <p>{{ getNormalDate(comment.date) }}</p>
         </mat-card-content>
         <mat-card-title *ngIf="productComments.length < 0">Brak Komentarzy</mat-card-title
         >

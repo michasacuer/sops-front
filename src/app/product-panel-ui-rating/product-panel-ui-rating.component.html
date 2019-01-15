@@ -1,7 +1,7 @@
 <div>
   <h4>
     Średnia ocena produktu:
-    {{ averageRating.avarageRating == 0 ? "Brak Ocen" : roundNumber(averageRating.avarageRating) }}
+    {{ averageRating.avarageRating === undefined ? "Brak Ocen" : roundNumber(averageRating.avarageRating) }}
   </h4>
   <mat-form-field>
     <mat-select [(ngModel)]="selectedRating">
@@ -14,7 +14,8 @@
     </mat-select>
   </mat-form-field>
 
-  <p>Twoja ocena: {{ selected }}</p>
+  <p *ngIf="userRating.rating !== undefined">Twoja ocena: {{ userRating.rating }}</p>
+  <p *ngIf="userRating.rating === undefined">Twoja ocena: brak</p>
   <button (click)="submitRate()" mat-raised-button>Submit</button>
 </div>
 
